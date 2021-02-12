@@ -1,0 +1,15 @@
+\chapter{Usecase}
+\label{ch:usecase}
+
+Im Folgenden wird der Usecase beschrieben der mittels der zu entwickelnden Modelle behandelt werden können soll.
+
+Die Türschließanlage eines Schienenfahrzeugs öffnet und schließt eine Zugtür über einen Bautenzug, der von einem pneumatischen Zylinder angetrieben wird. Die Anlage verfügt über mehrere Bauteile die starken Verschleiß aufgrund von Reibung unterworfen sind. Dazu gehören Rollenlager, Gleitschienen und Seilrollen. 
+
+Condition Mointoring, und die daraus erwachsenden Möglichkeiten zur vorausschauenden Wartung, sind in Allgemeinen nur für besonders teure oder extrem sicherheitsrelevante Komponenten wirtschaftlich. Da die gesamte Türschließanlage keine kritische Komponenten des Zuges ist, ist auch die Fragestellung nach einer besonders kritischen Komponente in diesen Subsystem redundant. Ein effizienter PDM-Usecase an solch einer Schließanlage würde, die Komponenten in Betracht ziehen, die relativ zu anderen häufig ausfallen oder teuer sind und somit Ausfälle hohe Kosten nach sich ziehen würden. Da Umlenkrollen wie eingangs erwähnt zu den Komponenten gehören, die starkem Verschleiß ausgesetzt sind, kann angenohmen werden, dass Umlenkrollen eine sinnvollerweise zu überwachende Komponenten sind. 
+
+Ziel des fiktiven PDM-Usecases ist es einen Algorithmus zuverwenden, um anhand von Messwerten auf den Zustand der Umlenkrollen schließen zu können. Dabei wird von einer starken Beschädigung ausgegangen, die jedoch noch nicht so weit fortgeschritten ist, dass sie ihre Funktion nicht mehr erfüllen kann und in Konsequenz die Türschließanlage ausfällt. 
+
+Die Daten, die durch das Condition Mointoring aufgenohmen werden sollen, richten sich nach den mechanischen Eigenschaften der Umlenkrollen und dem Funktionsprinzip der Türschließanlage. Es ist zu erwarten, dass sich mit zunehmender Beschädigung der Umlenkrolle dessen Vibrationsprofil ändert. Daher werden die Beschleunigungen entlang der drei Raumrichtungen, sowie die Winkelgeschwindigkeiten gemessen. 
+Da sich mit zunehmendem Verschleiß Reibungsverluste vergrößern, ist zu erwarten, dass die pneumatische Leistung, die nötig ist um die Anlage zu betreiben ebenfalls steigen wird. Bedeuten tut dies, dass der Zylinder eine größere Kraft aufbringen muss, sprich ein größerer Druck in Zylinder herschen muss. Es wäre daher sinnvoll auch den Luftdruck in Zylinder zu messen.
+
+Zusätzlich wird die Zeit aufgenohmen, die benötigt wird, um eine Öffen/Schleißen-Zyklus zu beenden. Es wird erwartet, das sich die Zyklusdauer verlängert, wenn sich die Reibverluste aufgrund von Verschleiß ansteigen.
