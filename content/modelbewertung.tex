@@ -5,16 +5,9 @@ Tabelle \todo{Referenz auf Tabelle einfügen} zeigt die Parameter der besten Mod
 \todo{Tabelle einfügen}
 
 
-Den Ergebnissen nach ist das Random Forest Modell am besten geeignet, um für Vorhersagen zu dem Usecase verwendet zu werden. 
+Den Ergebnissen nach ist das Random Forest Modell am besten geeignet, um für Vorhersagen zu dem Usecase verwendet zu werden. Von allen Modellen weist es die höchste Sensitivität auf. 
 
-Zwar ist sind Sensitivität und Relevanz des Random Forests um \num{0,04} bzw. \num{0,11} kleiner als beim zweit bestplatziertem GBT-Model, da für ist es mit 19 Bäumen jedoch deutlich weniger komplex.
-
-Der einzelne Entscheidungsbaum erzielt zwar den gleichen Grad an Komplexität wie der Random Forest, unterliegt aber insgesamt bei der Qualität der Vorhersagen.
-
-Auffällig ist, dass alle Modelle eine Baumtiefe von \num{1} aufweisen. Für den einfachen Entscheidungsbaum bedeutet es, dass nur ein Merkmal des Datensatzes für die Vorhersagen herangezogen wurde; der Median der Rotationsgeschwindigkeit um die X-Achse. 
-
-Random Forest und GBT nutzen mehrere Merkmale. Jeder einzelnen Baum jedoch nur eins. Da der einzelne Entscheidungsbaum vergleich auch relativ gute Vorhersagen liefert, wird vermutet, dass gx\_median eine sehr hohe Bedeutung gegenüber allen anderen Merkmalen hat. Alle drei Modelle nutzen dieses Merkmal.
-
+Der Random Forest fällt ungewöhlich simple aus. Die Tiefe der Bäume ist minimal und die Anzahl der Bäume ist klein. Üblicherweise zählt ein Random Forest hundert Bäume oder mehr. Die geringe Anzahl ist vermutlich auf den Datensatz zurückzuführen. Ein Hinweis darauf bietet die Tatsache, dass alle Modelle die minimale Baumtiefe verwenden und alle das Merkmal "gx\_median" verwenden. Zwar verwenden der Random Forest und die GBT einen groß Teil der Merkmale, jedoch erreicht selbst der einfache Entscheidungsbaum, der nur "gx\_median" verwendet, verhältnismäßig gut Ergebnisse. Daraus wird gefolgert, dass sich die Kategorien gut anhand dieses einen Merkmals einteilen lassen. Das erklärt die niedrige Komplexität des Random Forest.
 
 
 welche Features verwendet welches Model
