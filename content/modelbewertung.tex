@@ -3,21 +3,7 @@
 Tabelle \todo{Referenz auf Tabelle einfügen} zeigt die Parameter der besten Modelle jedes Typs und deren Sensitivität und Relevanz. Zusätzlich ist der Gesamtscore aufgeführt der sich aus der Präferenzfunktion ergibt.
 
 \todo{Tabelle einfügen}
-\begin{tabular}{g|c|c|c|}
-    \hline
-    \rowcolor{Gray}
-    Metrik & Decision Tree & Random Forest & Boosted Trees\\
-    \hline
-    Tiefe (max) & 1 & 1 & 1\\
-    \hline
-    Anzahl & 1 & 19 & 95\\
-    Sensitivität & 0,87 & 0,96 & 1,00\\
-    \hline
-    Relevanz & 0,91 & 0,85 & 0,96\\
-    \hline
-    \hline
-    Nutzwert & 0,77 & 1 & 0,94\\
-\end{tabular}
+
 
 Den Ergebnissen nach ist das Random Forest Modell am besten geeignet, um für Vorhersagen zu dem Usecase verwendet zu werden. 
 
@@ -27,7 +13,7 @@ Der einzelne Entscheidungsbaum erzielt zwar den gleichen Grad an Komplexität wi
 
 Auffällig ist, dass alle Modelle eine Baumtiefe von \num{1} aufweisen. Für den einfachen Entscheidungsbaum bedeutet es, dass nur ein Merkmal des Datensatzes für die Vorhersagen herangezogen wurde; der Median der Rotationsgeschwindigkeit um die X-Achse. 
 
-Random Forest und GBT nutzen mehrere Merkmale. Jeder einzelnen Baum jedoch nur eins. Da der einzelne Entscheidungsbaum vergleich auch relativ gute Vorhersagen liefert, wird vermutet, dass "gx_median" eine sehr hohe Bedeutung gegenüber allen anderen Merkmalen hat. Alle drei Modelle nutzen dieses Merkmal.
+Random Forest und GBT nutzen mehrere Merkmale. Jeder einzelnen Baum jedoch nur eins. Da der einzelne Entscheidungsbaum vergleich auch relativ gute Vorhersagen liefert, wird vermutet, dass gx\_median eine sehr hohe Bedeutung gegenüber allen anderen Merkmalen hat. Alle drei Modelle nutzen dieses Merkmal.
 
 
 
