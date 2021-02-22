@@ -40,7 +40,7 @@ Die Relevanz beschreibt wie viele Datenpunkte tatsächlich der positven Kategori
 
 Um die Modelle einfach mit ein ander vergleichen zu können, wird eine Präferenzfunktion aufgestellt. Diese erlaubt es einem Modell anhand relevanter Kriterien einen \textit{Kosten-Nutzen-Score} zuzuweisen. Die Präferenzfunktion lautet:
 \begin{center}
-    Nutzenscore=\num{0,22}\bullet Komplexität + \num{0,44}\bullet Sensitivität + \num{0,33} \bullet Relevanz
+    Nutzenscore=\num{0,22}$\bullet$ Komplexität + \num{0,44}$\bullet$ Sensitivität + \num{0,33} $\bullet$ Relevanz
 \end{center}
 
 Die einzelnen Variablen der Funktion stellen die Bewertungskriterien dar. Ihnen wird jeweils ein Wert zwischen 0 und 1 zugewiesen; entsprechend \todo{Tabelle für Bewertungskriterien verweisen}.
@@ -48,3 +48,24 @@ Die einzelnen Variablen der Funktion stellen die Bewertungskriterien dar. Ihnen 
 Die Bewertungskriterien sind mit einem Gewichtungsfaktor versehen. Die Gewichtungen spiegeln die Ergebnisse eines Paarvergleichs der Kriterien wieder. \todo{Paarvergleichstabelle erstellen und in Anhang einfügen}
 
 Der Nutzenscore kann einen beliebigen Wert zwischen 0 und 1 annehmen. Das Model, das den höchsten Nutzenscore erzielt, ist für den potentiellen PDM-Anwendungsfall zu bevorzugen.
+
+Tabelle \todo{Refernez einfügen} zeigt die gewählt Zuordnung der Werte für die Summanden der Präferenzfunktion sowie derer Gewichtungen. Die Gewichtungen wurden durch einen Paarvergleich ermittelt.
+
+\begin{table}[ht]
+	\raggedright
+	\begin{tabularx}{\textwidth}{ | l | l | l | X|}
+		\hline
+		% \rowcolor{gray}
+		Kriterium & Wertezuordnung: Kriteriumswert $\rightarrow$ Erfüllungsgrad & Gewichtung & Bemerkungen \\ 
+		\hline
+		% \multirow{5}{*}{Baumtiefe (Komplexität)} & \num{1} \rightarrow \num{1} & \num{2} \rightarrow \num{0.75} & \num{3} \rightarrow \num{0,5} & \num{4} \rightarrow \num{0,25} $>=5$ \rightarrow \num{0} & \multirow{5}{*}{\num{0,165}} & \multirow{5}{*}{Insgesamt wird die Komplexität mit \num{0,22} gewichtet. Da die Komplexität exponentiell mit der Baumtiefe steigt und linear mit der Baumanzahl wurde entschieden, dass die Baumtiefe \SI{75}{\percent} der Komplexität ausmacht; also $0.22*0.75=0,165$. Die restlichen \SI{0.055}{\percent} entfälle auf die Baumanzahl}\\ 
+		\hline
+		Baumanzahl (Komplexität) & 9C & \num{0.05} & s. Baumtiefe\\ 
+		\hline
+		Sensitivität & 10C & \num{0.44} & Je höher die Sensitivität ist, desto weniger falsch negative Vorhersagen werden getroffen. Für den PDM-Usecase bedeutet es, dass mehr Instandhaltungsarbeiten geplant werden können. \\
+		\hline
+        Relevanz & xx & \num{0.33} & Eine hohe Relevanz bedeutet, dass wenige falsch positive Vorhersagen getroffen werden. Entsprechend niedrig fällt die Anzahl unnötiger Inspektionen für den PDM-Usecase aus.\\
+	\end{tabularx}
+	\caption{Metriken für Präferenzfunktion}%muss unten sein, sonst caption über Tab
+	\label{tab:metriken_praeferenzfunktion}	%zum referenzieren
+\end{table}
