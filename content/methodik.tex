@@ -66,14 +66,14 @@ Tabelle \todo{Refernez einfügen} zeigt die gewählt Zuordnung der Werte für di
 
 \begin{table}[ht]
 	\raggedright
-	\begin{tabularx}{\textwidth}{ | l | l | l | X|}
+	\begin{tabularx}{\textwidth}{ | l | l | c | X|}
 		\hline
-		% \rowcolor{gray}
-		Kriterium & Wertezuordnung: Kriteriumswert $\rightarrow$ Erfüllungsgrad & Gewichtung & Bemerkungen \\ 
-		\hline
-		% \multirow{5}{*}{Baumtiefe (Komplexität)} & \num{1} \rightarrow \num{1} & \num{2} \rightarrow \num{0.75} & \num{3} \rightarrow \num{0,5} & \num{4} \rightarrow \num{0,25} $>=5$ \rightarrow \num{0} & \multirow{5}{*}{\num{0,165}} & \multirow{5}{*}{Insgesamt wird die Komplexität mit \num{0,22} gewichtet. Da die Komplexität exponentiell mit der Baumtiefe steigt und linear mit der Baumanzahl wurde entschieden, dass die Baumtiefe \SI{75}{\percent} der Komplexität ausmacht; also $0.22*0.75=0,165$. Die restlichen \SI{0.055}{\percent} entfälle auf die Baumanzahl}\\ 
-		\hline
-		Baumanzahl (Komplexität) & 9C & \num{0.05} & s. Baumtiefe\\ 
+		% % \rowcolor{gray}
+		Kriterium & \thead{Wertezuordnung:\\Kriteriumswert\\ $\rightarrow$ Erfüllungsgrad} & Gewichtung & Bemerkungen \\ 
+		% \hline
+		% % \multirow{5}{*}{Baumtiefe (Komplexität)} & \num{1} \rightarrow \num{1} & \num{2} \rightarrow \num{0.75} & \num{3} \rightarrow \num{0,5} & \num{4} \rightarrow \num{0,25} $>=5$ \rightarrow \num{0} & \multirow{5}{*}{\num{0,165}} & \multirow{5}{*}{Insgesamt wird die Komplexität mit \num{0,22} gewichtet. Da die Komplexität exponentiell mit der Baumtiefe steigt und linear mit der Baumanzahl wurde entschieden, dass die Baumtiefe \SI{75}{\percent} der Komplexität ausmacht; also $0.22*0.75=0,165$. Die restlichen \SI{0.055}{\percent} entfälle auf die Baumanzahl}\\ 
+		% \hline
+		\thead{Baumanzah\\(Komplexität)} & 9C & \num{0.05} & s. Baumtiefe\\ 
 		\hline
 		Sensitivität & 10C & \num{0.44} & Je höher die Sensitivität ist, desto weniger falsch negative Vorhersagen werden getroffen. Für den PDM-Usecase bedeutet es, dass mehr Instandhaltungsarbeiten geplant werden können. \\
 		\hline
