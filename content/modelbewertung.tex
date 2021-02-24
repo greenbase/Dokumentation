@@ -1,8 +1,26 @@
 \chapter{Modelbewertung und Diskussion}
 \label{ch:modelbewertung}
-Tabelle \todo{Referenz auf Tabelle einfügen} zeigt die Parameter der besten Modelle jedes Typs und deren Sensitivität und Relevanz. Zusätzlich ist der Gesamtscore aufgeführt der sich aus der Präferenzfunktion ergibt.
+\cref{tab:metrikwerte_der_trainierten_modelle} zeigt die Parameter der besten Modelle jedes Typs und deren Sensitivität und Relevanz. Zusätzlich ist der Gesamtscore aufgeführt der sich aus der Präferenzfunktion ergibt.
 
-\todo{Tabelle einfügen}
+\begin{table}[ht]
+	\raggedright
+	\begin{tabularx}{\textwidth}{ | l | r | r | r|}
+		\hline
+		% \rowcolor{gray}
+		Metrik & Baum & Random Forest & GBT\\
+		\hline
+		Tiefe & 1 & 1 & 1\\
+		Anzahl Bäume & 1 & 19 & 26\\
+		Sensitivität & \num{0.87} & \num{0.85} & \num{0.91}\\
+		Relevanz & \num{0.91} & \num{0.85} & \num{0.91}\\
+		\hline
+		\hline
+		Nutzen & \num{0.77} & \num{1} & \num{0.87}\\
+		\hline
+	\end{tabularx}
+	\caption{Metrikwerte der trainierten Modelle und Nutzenwert nach Präferenzfunktion}%muss unten sein, sonst caption über Tab
+	\label{tab:metrikwerte_der_trainierten_modelle}	%zum referenzieren
+\end{table}
 
 
 Den Ergebnissen nach ist das Random Forest Modell am besten geeignet, um für Vorhersagen zu dem Usecase verwendet zu werden. Von allen Modellen weist es die höchste Sensitivität auf. 
