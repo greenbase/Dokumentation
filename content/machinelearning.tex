@@ -37,3 +37,11 @@ Gradient Boosted Trees (GBT) ist die zweite Ensembles-Methode, die in dieser Arb
 Laut Müller~\cite{Muller.2017} sind die wichtisten Parameter von GBT die Lernrate und die Anzahl der Bäume. Weiterhin beschreibt er: Eine höhere Lernrate gewährt dem GBT die Möglichkeit mit jedem Baum die Fehler des vorherigen stärker zu korrigieren. Je größer die Baumanzahl ist desto häufiger kann der Korrekturvorgang wiederholt werden, um das Ergebniss zu verbessern. Beide Parameter beeinflussen die Komplexität des Models. Müller~\cite{Muller.2017} weißt auch darauf hin, dass eine höhere Baumanzahl nicht zwangsläufig zu einer Verbesserung des Models führt, wie beim Random Forest. GBT neige bei großen Anzahlen an Bäumen zu Overfitting. Für den Fall, dass Overfitting in Zusammenhang mit einer hohen Baumanzahl vermutet wird, wird daher die Anzahl reduziert werden, bis vertrauenswürdigere Ergebnisse beobachtet werden können.
 
 Als relevanteste Vorteilen von GBT nennt Müller~\cite{Muller.2017}, dass derartige Modelle in vielen Fällen hohe Genauigkeiten im Vergleich zu anderen Modeltypen liefern; vorausgesetzt die Parameter sind geeignet eingestellt. Wie beim Random Forest nennt er auch für GBT den Nachteil, dass die Modelle relative komplex sind.
+
+\section{Machine Learning für Predictive Maintenance}
+\label{sec:machine_learning_fuer_pdm}
+Im Bereich Predictive Maintenance fallen je nach Anwendungsfall Datenmengen an, die nur mithilfe von Software und ausreichenden Rechenkapazitäten wirtschaftlich verarbeitet werden können. 
+
+Idealer Weise kann in Vorfeld bestimmt werden welche Merkmale der zu überwachenden Entität aussagekräftig sind. In komplexen Systemen ist es jedoch häufig nicht möglich auszuschließen, dass alle relevanten Faktoren berücksichtigt wurden. Möglicher Weise bestehen Zusammenhänge, die sich nur aus der Gesamtheit der Daten ergeben, mit Methoden der beschreibenden Analytik aber nicht festgestellt werden können. Aus diesem Grund bietet es sich bei PDM an maschinelles Lernen einzusetzen, um große Datenmengen zu verarbeiten; bekannte Zusammenhänge auszuwerten und ggf. neue Zusammenhänge zu identifizieren.
+
+\todo{Beispiele für ML bei PDM finden}
