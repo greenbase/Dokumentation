@@ -61,7 +61,7 @@ backend=biber,
 style=numeric,
 citestyle=numeric-comp,
 maxbibnames=2,
-firstinits=true
+firstinits=true 
 ]{biblatex}
 
 \renewcommand*{\labelnamepunct}{\addcolon\addspace}
@@ -76,9 +76,7 @@ firstinits=true
 \deffootnote{1.5em}{1em}{%
 	\makebox[1.5em][l]{\thefootnotemark}%
 }
-
-%Fussnoten nicht umbrechen
-\interfootnotelinepenalty=10000
+\interfootnotelinepenalty=10000 %Fussnoten nicht umbrechen
 
 %Gestaltung der Bildunterschrift und Tabellenüberschirften sowieTitelseitenangaben
 \addtokomafont{caption}{\small}
