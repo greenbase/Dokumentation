@@ -1,5 +1,6 @@
 \chapter{Maschinelles Lernen}
 \label{ch:maschinelles lernen}
+WAS IST PDM? VORFÜR IST ES GUT? WELCHEN BEZUG HAT ES ZUR AUFGABENSTELLUNG? WAS IST DER STAND DER TECHNIK DER MODELTYPEN DIE VERWENDET WERDEN?
 
 Machine Learning; oder zu deutsch maschinelles Lernen (ML); ist "ein Forschungsfeld in der Schnittmenge von Statistik, künstlicher Intelligenz und Informatik"\cite[S.~1]{Muller.2017}. ML wird heute in vielen kommeriziellen Bereichen genutzt; ebenso wie in der datengetriebenen Forschung. Die steigende Komplexität von Problemen hat dazu geführt, dass die individuelle Anfertigung von Programmen zur lösung des Problems, häufig nicht praktikabel sind. Entweder muss ein Programm bereits für eine klein Änderung der Problemstellung aufwendig überarbeitet oder gar komplett neu aufgesetzt werden oder die Problemstellung übersteigt die Fähigkeit eines Experten, das Problem in seiner vollständigen Komplexität zu erfassen. Müller \cite{Muller.2017} nennt in diesem Zusammenhang die Entwicklung von Gesichtserkennungssoftware als Beispiel. Er betont, dass aufgrund der grundsätzlich verschiedenen "Wahrnehmung" von Bildern zwischen Menschen und Computern, es für den Menschen unmöglich ist allgemeingültige Regeln zum Erkennen von Gesichtern zu definieren, die eine Software einsetzten könnte. Während Menschen einen optischen Eindruck von der Welt erhalten, sind Computer bei der Interpretation von Bildern auf Farbwerte einzelner Pixel angewiesen; sprich eine konkrete Menge diskreten Zahlenwerte. Die Entwicklung maschineller Lernalgorithmen hat es jedoch möglich gemacht, Entscheidungsregeln zu finden, ohne dass diese durch einen Menschen vorgegeben werden müssen.
 
@@ -12,6 +13,7 @@ Maschinelles Lernen findet neben vielen anderen Einsatzgebieten auch bei der vor
 
 \section{Entscheidungsbäume}
 \label{sec:entscheidungsbaeume}
+WIE FUNKTIONIEREN ENTSCHEIDUNGSBÄUME? WAS SIND VOR UND NACHTEILE? WELCHE IMPLEMENTATIONEN WERDEN VERWENDET WERDEN? 
 Algorithmen, die auf Entscheidungsbäumen beruhen, finden weit verbreitete Anwendungsfälle. Bei Entscheidungsbäumen erfolgt die Bewertung eines Datenpunktes durch eine Reihe von Teilungen des Datensatzes. In jedem Knoten eines Baums werden die darin liegenden Datenpunkte anhand eines Merkmals aufgeteilt. Jede dieser Unterteilungen wird abermals geteilt bis der Entscheidungsbäume eine spezifizierte Grenze erreicht, die eine weitere Ausbildung des Baums verhindert. Beispielsweise kann die minimale Anzahl der Datenpunkte in einem Blatt limitiert werden oder die Anzahl der Knoten begrenzt werden. Alle Datenpunkte, die sich in dem selben Blatt wiederfinden, werden durch den Algorithmus der selben Kategorie bzw. dem selben Regressionswert zugewiesen. \todo{Schema eines entscheidendbaum einfügen} Auf diese Weise extrahieren Entscheidungsbäume Informationen über Entitäten aus einen Datensatz.
 
 Es gibt verschiedenen Arten von ML-Modellen, die auf Entscheidungsbäumen basieren. Sie unterscheiden sich sowohl in der Strategie zum Aufbau der Bäume; der Anzahl der Bäume; als auch der Ermittlung des Gesamtergebnisses für einen Datenpunkt. Im Folgenden werden die drei Modeltypen beschrieben, die im weiteren Verlauf dieser Arbeit herangezogen wurden.
@@ -20,18 +22,22 @@ Datensätze die mit Entscheidungsbäumen ausgewertet wreden sollen müssen grund
 
 \subsection{Einfache Entscheidungsbäume}
 \label{subsec:einfache_entscheidungsbaeume}
+WAS IST BEI DER MODELLIERUNG ZU BEACHTEN?
 Ein einzelner Entscheidungsbaum stellt die am wenigsten komplexe Modelart dieses Typs dar. Ein einzelner Baum lässt sich praktikabel visualisieren; vorausgesetzt seine Knotenanzahl ist überschaubar. Das Verfahren nach dem der Baum Entscheidungen triff, kann so durch Sachverständige nachvollzogen und beurteilt werden. Dies ist der entscheidende Vorteil gegenüber anderen Modelarten, wie dem Random Forest oder den Gradient Boosted Trees.
 
 Nachteil von Entscheidungsbäumen ist das sie zu Overfitting neigen; also dazu tendieren den Trainingsdatensatz auswendig zu lernen statt Verallgemeinerungen zu finden. Overfitting führt zu unrealistisch hohen Genauigkeiten der Vorhersagen auf dem Testdatensatz. Selbst durch die Verwendung von \textit{Präpruning}-Parametern -- wie einer maximalen Baumtiefe -- lässt sich Overfitting nicht gänzlich verhindern. \cite{Muller.2017}
 
 \subsection{Random Forests}
 \label{subsec:random_forest}
+WIE FUNKTIONIEREN Random Forests? WAS SIND VOR UND NACHTEILE? WELCHE IMPLEMENTATIONEN WERDEN VERWENDET WERDEN? WAS IST BEI DER MODELLIERUNG ZU BEACHTEN?
 \textit{Random Forests} gehören zu den \textit{Ensembles} von Entscheidungsbäumen. Ensembles kombinieren mehere Modelle miteinander um ein komplexeres Model zu generieren. Im Fall des Random Forest (RF) wird eine Vielzahl von Entscheidungsbäumen trainiert. Als Entscheidung eines Random Forest wird der gemittelte Wert aller Bäume gewählt. Die einzelnen Bäume können sich in all ihren Eigenschaften von einander unterscheiden. Das beinhaltet neben der Größe auch die Wahl der verwendeten Merkmale. Jeder Baum wird also unabhängig von den anderen konstruiert. Mit einer großen Anzahl von Bäume, die alle unterschiedliche Entscheidungsverfahren verwenden und dennoch pasable Ergebnisse liefern, können Random Forests Overfitting weitgehend reduzieren \cite{Muller.2017}. 
 
 Durch die große Anzahl an Bäumen sind Random Forests wesentlich komplexer; verglichen mit einfachen Entscheidungsbäumen. Zwar sind dadurch zuverlässigere Ergebnisse möglich, allerdings können die Modelle nur mit erheblichem Aufwand nachvollzogen werden.
 
 \subsection{Gradient Boosted Trees}
 \label{subsec:gradient_boosted_trees}
+WIE FUNKTIONIEREN Gradient Boosted Trees? WAS SIND VOR UND NACHTEILE? WELCHE IMPLEMENTATIONEN WERDEN VERWENDET WERDEN? WAS IST BEI DER MODELLIERUNG ZU BEACHTEN?
+
 Gradient Boosted Trees (GBT) ist die zweite Ensembles-Methode, die in dieser Arbeit verwendet werden soll. GBT beziehen im Gegensatz zum Random Forest die Ergebnisse der einzelnen Bäume nicht parallel, sondern nacheinander in die Gesamtbewertung mit ein. GBT versucht den Fehler eines Baums im nachfolgenden bestmöglich zu beheben. Dies setzt sich durch die gesamte Reihe an Bäumen fort.
 
 Laut Müller~\cite{Muller.2017} sind die wichtisten Parameter von GBT die Lernrate und die Anzahl der Bäume. Weiterhin beschreibt er: Eine höhere Lernrate gewährt dem GBT die Möglichkeit mit jedem Baum die Fehler des vorherigen stärker zu korrigieren. Je größer die Baumanzahl ist desto häufiger kann der Korrekturvorgang wiederholt werden, um das Ergebniss zu verbessern. Beide Parameter beeinflussen die Komplexität des Models. Müller~\cite{Muller.2017} weißt auch darauf hin, dass eine höhere Baumanzahl nicht zwangsläufig zu einer Verbesserung des Models führt, wie beim Random Forest. GBT neige bei großen Anzahlen an Bäumen zu Overfitting. Für den Fall, dass Overfitting in Zusammenhang mit einer hohen Baumanzahl vermutet wird, wird daher die Anzahl reduziert werden, bis vertrauenswürdigere Ergebnisse beobachtet werden können.
@@ -40,6 +46,8 @@ Als relevanteste Vorteilen von GBT nennt Müller~\cite{Muller.2017}, dass derart
 
 \section{Machine Learning für Predictive Maintenance}
 \label{sec:machine_learning_fuer_pdm}
+WIE UND WARUM KANN ML FÜR PDM EINGESETZT WERDEN? WAS SIND DIE VOR- UND NACHTEILE? WAS SIND BEISPIELE?
+
 Im Bereich Predictive Maintenance fallen je nach Anwendungsfall Datenmengen an, die nur mithilfe von Software und ausreichenden Rechenkapazitäten wirtschaftlich verarbeitet werden können. 
 
 Idealer Weise kann in Vorfeld bestimmt werden welche Merkmale der zu überwachenden Entität aussagekräftig sind. In komplexen Systemen ist es jedoch häufig nicht möglich auszuschließen, dass alle relevanten Faktoren berücksichtigt wurden. Möglicher Weise bestehen Zusammenhänge, die sich nur aus der Gesamtheit der Daten ergeben, mit Methoden der beschreibenden Analytik aber nicht festgestellt werden können. Aus diesem Grund bietet es sich bei PDM an maschinelles Lernen einzusetzen, um große Datenmengen zu verarbeiten; bekannte Zusammenhänge auszuwerten und ggf. neue Zusammenhänge zu identifizieren.

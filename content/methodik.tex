@@ -1,10 +1,12 @@
 \chapter{Methodik}
 \label{ch:methodik}
 
-WIE SOLL IN DEN EINZELNEN SCHRITTEN DER ABREIT VORGEGANGEN WERDEN? NUR BESCHREIBEN! NOCH NICHT DURCHFÜHREN. DAS KOMMT SPÄTER.
+WIE WERDEN DIE ANGESTREBTEN ERGEBNISSE ERARBEITET?
 
 \section{Messdaten}
 \label{sec:messdaten}
+WIE WERDEN DIE MESSDATEN AUFGENOMMEN? WARUM DIESE? WIE UND WARUM WERDEN DIE DATEN AUFBEREITET? WIE SIEHT DER FINALE DATENSATZ AUS?
+
 Die Klassifizierung der Datenpunkte erfolgt anhand von Messwerten, die während einer Messreihe aufgezeichnet werden. 
 
 Es wird die Dauer der Zyklen aufgenommen. Das ist die Zeit von der Initierung des Öffnungsvorgangs bis zu dem Zeitpunkt andem der Magnetschalter der Anlage anschlägt und damit eine geschlossene Tür signalisiert. Bei verschließenen Bauteilen wird erwartet, dass die Verlustleistungen zunehmen. Gleichzeitig bleibt die Leistung des pneumatischen Antriebs unverändert. Aus diesem Grund wird erwartet, dass sich die Beschädigungen an den Umlenkrollen auch in den Zykluszeit wiederspiegeln.
@@ -16,6 +18,7 @@ Die Messgrößen der Beschleunigungen und der Rotationgeschwindigkeiten wurden a
 
 \section{Modelauswahl}
 \label{sec:modelauswahl}
+WELCHE MODELTYPEN EIGNEN SICH GRUNDSÄTZLICH, UM FÜR DEN USECASE VERWENDET ZU WERDEN? WELCHE NICHT UND WARUM? 
 
 Grundsätzlich eignet sich jedes Klassifikatormodel für die vorliegende Aufgabe. Darüber hinaus geben sich aus der Natur der Problemstellung weitere Anforderungen an die Modelle:
 
@@ -36,6 +39,7 @@ Da der Datensatz im Vergleich zu anderen Machinelearningproblemen wenige Feature
 
 \section{Bewertungskriterien}
 \label{sec:bewertungskriterien}
+WONACH WIRD BEWERTET WELCHES MODEL AM BESTEN FÜR DEN USECASE GEEIGNET IST? WARUM SIND DIESE KRITERIEN FÜR DEN USECASE RELEVANT?
 
 Tabelle \todo{Verweis auf Tabelle einfügen} zeigt die einzelnen Bewertungskriterien der Modelle. Im Abschnitt \todo{Verweis auf abschnitt Präferenzfunktion} werden diese zu einem einzelnen Wert zusammengefasst. 
 
@@ -50,6 +54,7 @@ Die Relevanz beschreibt wie viele Datenpunkte tatsächlich der positven Kategori
 
 \section{Präferenzfunktion}
 \label{sec:präferenzfunktion}
+WELCHES KRITERIUM IST WIE WICHTIG? WIE WIRD DER NUTZENSCORE BERECHNET?
 
 Um die Modelle einfach mit ein ander vergleichen zu können, wird eine Präferenzfunktion aufgestellt. Diese erlaubt es einem Modell anhand relevanter Kriterien einen \textit{Kosten-Nutzen-Score} zuzuweisen. Die Präferenzfunktion lautet:
 \begin{center}
