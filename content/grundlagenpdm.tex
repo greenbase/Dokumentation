@@ -1,12 +1,82 @@
-\chapter{Vorausschauende Instandhaltung}
-\label{ch:vorausschauende instandhaltung}
+\chapter{Instandhaltungsstrategien und vorausschauende Instandhaltung}
+\label{ch:instandhaltungsstrategien}
 WAS IST PDM? VORFÜR IST ES GUT? WELCHEN BEZUG HAT ES ZUR AUFGABENSTELLUNG?
 
-Kernelement der vorausschauenden Instandhaltung ist es eine bevorstehende Störung vorzeitig zu erkennen und entsprechende Maßnahmen zu ergreifen, um den Störungsfall zu verhindern. PDM ist also wie die präventive Instandhaltung darauf bedacht Störungen aktiv zu verhindern, löst Maßnahmen jedoch erst aus, wenn Hinweise auf eine baldige Störung vorliegen.
+Die Norm DIN~\num{31051}~\cite{DIN.2019} definiert die \textit{Instandhaltung} allgemein als \enquote{Kombination aller technischen und administrativen Maßnahmen sowie Maßnahmen des Managements während des Lebenszyklus [\dots] eines Objekts [\dots], die den Erhalt oder der Wiederherstellung ihres funktionsfähigen Zustands dient, sodass es die geforderte Funktion [\dots] erfüllen kann}. Darüber hinaus enthält die Normschrift Definitionen für die folgenden Unterkategorien der Instandhaltung
+
+\begin{table}[ht]
+	\raggedright
+	\begin{tabularx}{\textwidth}{ | l | X |}
+		\hline
+        \rowcolor{lightgray}
+        Unterkategorie & Definition\\
+        \hline
+        Wartung & \enquote{Maßnahmen zur Verzögerung des Abbaus des vorhandenen \textit{Abnutzungsvorrats}.}\\
+        \hline
+        Inspektion & \enquote{Prüfung auf Konformität der maßgeblichen Merkmale eines \textit{Objekts […]}, durch Messung, Beobachtung oder Funktionsprüfung}\\
+        \hline
+        Instandsetzung & \enquote{physische Maßnahme, die ausgeführt wird, um die Funktion eines fehlerhaften \textit{Objekts […] }wiederherzustellen.}\\
+        \hline
+        Verbesserung & \enquote{Kombination aller technischen und administrativen Maßnahmen sowie Maßnahmen des Managements zur Steigerung der immanenten Zuverlässigkeit und/oder Instandhaltbarkeit und/oder Sicherheit eines \textit{Objekts […]}, ohne seine ursprüngliche Funktion zu ändern.}\\
+        \hline
+	\end{tabularx}
+	\caption{Definitionen von Unterkategorien der Instandhaltung nach DIN~\num{31051}~\cite{DIN.2019}}%muss unten sein, sonst caption über Tab
+	\label{tab:definition_unterkategorien_instandhaltung}	%zum referenzieren
+\end{table}
+
+Die Umsetzung von Instandhaltungsmaßnahmen lässt sich üblicherweise einer \textit{Instandhaltungsstrategie} zuordnen. Eine Instandhaltungsstrategie beschreibt Regelmäßigkeiten nach denen Instandhaltungsmaßnahmen ausgelöst und durchgeführt werden. In der Literatur herrscht keine Einheitlichkeit bei der Einordnung oder Benennung der Instandhaltungsstrategien. Das U.S. Department of Defense~\cite[p.~16]{U.S.DepartmentofDefense.2008} unterscheidet drei Strategien, die im Rahmen dieser Arbeit verwendet werden sollen:
+
+\begin{itemize}
+    \item Korrektive Instandhaltung - Corrective Maintenance (CM)
+    \item Präventive Instandhaltung - Preventive Maintenance (PM)
+    \item Prädiktive Instandhaltung - Predictive Maintenance (PdM)
+\end{itemize}
+
+Die drei Strategien unterscheiden sich grundlegender Weise dadurch, wie Instandhaltungsmaßnahmen ausgelöst werden. Im Falle der CM-Strategie wird nur ein Minimum an Wartungsmaßnahmen durchgeführt und Reparaturen werden erst ausgeführt, wenn es zu einem Ausfall des Systems gekommen ist. 
+
+Die präventive Instandhaltung zielt darauf ab, Ausfälle durch vorbeugende Maßnahmen zu verhindern. Dies gelingt beispielsweise durch den regelmäßigen Austausch von verschleißenden Komponenten. Das Intervall in dem die Komponente überarbeitet oder ausgetauscht wird, beruht häufig auf Abschätzungen und Erfahrungswerten. Sofern es wirtschaftlich sinnvoll ist, werden auch die Ergebnisse von Inspektionen mit in die Entscheidung einbezogen, ob die Komponente überarbeitet werden sollte. Grundsätzlich wird bei diesem Vorgehen jedoch ein Verlust der Restlebensdauer der Komponente in Kauf genommen. 
+
+Bei der PM-Strategie fließt im Idealfall nur der aktuelle Kompoentenzustand in die Entscheidung über eine Instandhaltungsmaßnahme ein. Bei der PdM-Strategie soll die Entscheidung darüber, wann eine Instandhaltungsmaßnahme idealerweise durchzuführen ist, des zu erwartenden Verlaufs des Zustandes getroffen werden. Der Zeitpunkt einer Wartungs- oder Instandsetzungsmaßnahme wird also auf Basis des erwarteten Ausfallzeitpunktes der jeweiligen Komponente bestimmt. PdM kombiniert damit Eigenschaften von CM und PM. Die Lebensdauer von Komponenten ist best möglich auszunutzen, während dennoch Planbarkeit der Instandhaltungsmaßnahmen gewährleistet ist. In der Folge der Planbarkeit können so z.B. die Kosten für die Lagerhaltung von Ersatzteilen reduziert und Arbeiten auf den günstigsten Zeitpunkt gelegt werden, was die nötige Kapazität an Arbeitskraft reduziert. Mit PdM können die laufenden Kosten der Instandhaltung also gesenkt werden.
+
+Mit dem Potential der Kostenreduzierung setzt PdM einen Trend fort, der bereits mit der bereits mit der weit verbreiteten PM-Strategie eingeläutet wurde, die eine für einen Großteil der Anwendungsfälle eine bedeutende Verbesesrung gegenüber der CM-Strategien darstellt. Laut Mobley~\cite{Mobley.2002} betragen die Kosten korrektiver Instandhaltung durchschnittlich das dreifache der präventiven Herangehensweise.
+
+PdM wird häufig zusammen mit \textit{Condition Monitoring}; also der kontinuierlichen Überwachung von Komponenten; umgesetzt. Zwar können unter gewissen Voraussetzungen auch mit sporadischen Inspektionen Vorhersagen über verbleibene Komponentenlebensdauer gemacht werden; je detailierter jedoch die Zunstandsänderung dokumentiert wird desto zuverlässiger lässt sich der weitere Verlauf bestimmen. 
+
+
+
+Die Umsetzung von Instandhaltungsmaßnahmen lässt sich üblicherweise einer \textit{Instandhaltungsstrategie} zuordnen. Eine Instandhaltungsstrategie beschreibt Regelmäßigkeiten nach denen Instandhaltungsmaßnahmen ausgelöst und durchgeführt werden. In der Literatur herrscht keine Einheitlichkeit bei der Einordnung oder Benennung der Instandhaltungsstrategien. Das U.S. Department of Defense~\cite[p.~16]{U.S.DepartmentofDefense.2008} unterscheidet drei Strategien, die im Rahmen dieser Arbeit verwendet werden sollen:
+
 
 PDM wird häufig im Zusammenspiel mit Condition Monitoring umgesetzt. Letzteres kann entweder in Form von kontinuierlicher Überwachung von Anlangen mit Hilfe von Sensoren oder durch regelmäßige Inspektionen durchgeführt werden.
 
-In jeden Fall kann durch die vorzeitige Feststellung von Hinweisen auf einen kritschen Schaden Maßnahmen zum optimalen Zeitpunkt durchgeführt werden. Einerseits um die Lebensdauer von Komponenten voll ausschöpfen zu können. Andererseits den Arbeitsplan möglichst effizient zu gestalten.
+\section{Predictive Maintenance}
+\label{sec:predictive_maintenance}
+Girdhar~\cite[p.~4]{Girdhar.2004} bezeichnet PdM als eine Managmentphilsophie, die darauf bedacht ist den tatsächlichen Zustand von Komponenten, Maschinen und Systemen zu verwenden, um das gesamte System bzw. die Anlage zu optimieren. Damit ist nicht nur die vorausschauende Wartung, sondern auch die anderen Unterkategorien der instandhaltung gemeint (s. \cref{tab:definition_unterkategorien_instandhaltung}). Die Möglichkeit Trends in der Zustandsveränderung von Systemen zu identifizieren eröffnet auch Möglichkeiten die gewonnen Information für die Verbesserung und Prozesssteuerung zu nutzen. Die nötigen Daten für eine vorrauschauende Wartung enthalten auch dafür wertvolle Informationen.
 
-Die bedarfsgerechte Planbarkeit von Instandhaltungsmaßnahmen ermöglicht außerdem Ersatzteile und Arbeitsmaterial termingerecht zu beschaffen. Im Gegensatz zur präventiven Instandhaltung, bietet dies den Vorteil gesenker Lagerkosten. Bei PM kann Arbeitsmaterial zwar auch termingerecht zum Wartungsintervall bestellt werden, unerwartete Ausfälle lassen sich so jedoch nicht gänzlich vermeiden, was wiederrum Lagerhaltung notwendig macht. 
+In diesem Zusammenhang ist PdM -- im Sinne einer Managmentphilsophie -- auch zur Qualitätssicherung, Prozesssteuerung und damit zur Produktivitätsteigerung geeignet~\cite{Mobley.2002}. Schließlich endhalten die Daten Informationen zu all diesen Bereichen; unabhängig davon ob sie nur für einen Zweck aufgenohmen werden.
 
+
+
+\section{Vor- und Nachteile von PdM}
+\label{sec:vorteile_nachteile_pdm}
+
+Pauschal ist keine der drei Instandhaltungsstrategien als den anderen überlegen anzusehen. Obwohl PM heute zutage für einen überweigenden Anteil die beste Strategie darstellt, gibt es dennoch Fälle in denen CM zu bevorzugen ist. beispielsweise wenn die instand zu haltende Komponente nicht kritsich für die Funktion des Systems ist oder so billig ist, das die Instandhaltungskosten den Austausch der Komponente im Schadensfall übersteigen würde.
+
+Ebenso biete auch PdM keine pauschale Verbesesrungen gegenüber PM und CM. Für einen gegebenen Anwendungsfall kann jede der drei Strategien zu bevorzugen sein; je nach Anfordungen der Anwendung.
+
+Um eine Wahl treffen zu können müssen die Vor- und Nachteile der Instandhaltungsstrategien auf die Eigenschaften des Anwenungsfalls projeziert werden. Da in dieser Arbeit ein PdM-Anwendungsfall behandelt wird soll hier eine Auswahl an Vor- und Nachteilen von PdM aufgeführt werden. Für entsprechende Informationen zu den anderen beiden Strategien sein auf entsprechende Literatur verwiesen.
+
+\textbf{Vorteile:}
+
+\begin{itemize}
+    \item Vermeidung von Verschwendung (z.B. durch unnötige Inspektionen oder frühzeitigen Austausch von Komponenten) \cite{Mobley.2002}
+    \item Minimierung der Instandhaltungsmaßnahmen auf das Nötigste
+    \item Gewonnene Information sind nicht nur zur Instandhaltung, sondern auch zur Prozesssteuerung und Qualitätssicherung anwendbar.
+\end{itemize}
+
+\textbf{Nachteile:}
+
+\begin{itemize}
+    \item Hoher Investionsaufwand (z.B. für Condition Monitoring System)
+    \item Bedarf an entsprechendem Fachpersonal
+\end{itemize}

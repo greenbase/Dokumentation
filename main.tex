@@ -32,37 +32,37 @@
 \setcounter{page}{1}
 
 %Beginn der Kapitel
-\input{content/einleitung}\cleardoublepage
+% \input{content/einleitung}\cleardoublepage
 \input{content/grundlagenpdm}\cleardoublepage	
-\input{content/machinelearning}\cleardoublepage	
-\input{content/usecase}\cleardoublepage	
-\input{content/methodik}\cleardoublepage
-\input{content/modelierung}\cleardoublepage
-\input{content/modelbewertung}\cleardoublepage
-\input{content/fazit}\cleardoublepage
+% \input{content/machinelearning}\cleardoublepage	
+% \input{content/usecase}\cleardoublepage	
+% \input{content/methodik}\cleardoublepage
+% \input{content/modelierung}\cleardoublepage
+% \input{content/modelbewertung}\cleardoublepage
+% \input{content/fazit}\cleardoublepage
 
 
 % 							Backmatter
 %================================================================
 %Literatur
 \printbibliography[heading=bibintoc]
+\cleardoublepage
 
 %Abkürzungs- und Symbolverzeichnis
-\cleardoublepage
 \input{content/symbole_abk}
+\cleardoublepage
 
 %Abbildungsverzeichnis
-\cleardoublepage
 \addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures
+\cleardoublepage
 
 %Tabellenverzeichnis
-\cleardoublepage
 \addcontentsline{toc}{chapter}{\listtablename}
 \listoftables
+\cleardoublepage
 
 %Anhang
-\cleardoublepage
 \appendix
 \input{content/anhang}
 %================================================================
