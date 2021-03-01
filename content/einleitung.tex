@@ -5,6 +5,14 @@
 \label{sec:motivation}
 WAS SOLL IN DER MASTERARBEIT BEHANDELT WERDEN?
 
+Die vorausschauende Instandhaltung bietet im Vergleich zur präventativen Instandhaltung das Potentiale der Senkung der Instandhaltungskosten und einen darüber hinausgehenden Informationsgewinn der auch für Prozesssteuerung und Verbesserungen genutzt werden kann. Dies ist aber nur unter bestimmten Voraussetzungen der Fall, welche sich dazu vom betrachteten Fall abhängen.
+
+Um überhaupt eine Einschätzung über das Potential eines bestimmten Anwendungsfall abgeben zu können, ist es notwendig diesen so weit zu erarbeiteten, dass ein Vergleich mit dem zu ersetzenden Verfahren sinnvoll durchgeführt werden kann.
+
+Für die vorausschauende Wartung sind Vorhersagemodelle nötig. Deren Qualität ist u.a. der wichtigste Faktor für den Nutzen des gesamten Anwendungsfalls. Ist beispielsweise die Verhinderung von Ausfällen und eine bessere Ausnutzung der Bauteillebensdauer das Ziel, so muss das Model Vorhersagen treffen die zu einem gewissen Maß zutreffend sind, um einem anderen Verfahren gegenüber bevorzugt zu werden.
+
+Soll ein maschinelles Lernmodel verwendet werden, um Vorhersagen für einen Anwendungsfall der vorausschauenden Wartung abzugeben, so muss ein solches Model zunächst modelliert und bewertet werden, ehe eine Abschätzung des Nutzen des Anwendungsfalls abgegeben werden kann.
+
 Das Konzept der vorausschauenden Wartung (eng. \textit{predictive Maintenance (PDM)}) ist nicht neu. Schon im vergangenen Jahrhundert wurden Methoden entwickelt, um an hand von Messwerten Schlüsse über den Betriebszustand einer Maschine zu ziehen. Beispielsweise konnte so der Verschleißzustand von Lokomotiven anhand von Ölproben bestimmt werden. \todo{Mehr Researche nötig} Dennoch war und ist PDM auch heute noch nur in wenigen Einsatzgebieten gängige Praxis.
 
 Mit dem Aufschwung der Industrie 4.0 und der damit einhergehenden stetig größer weredenden Menge verfügbarer Daten, rückt PDM jedoch aus Nischenanwendungen aktuell weiter in den Fokus von Anlagenbetreidenden. Schließlich bieten sich durch eine große Menge Daten neue Möglichkeiten. Nicht nur können bestehende Anwendungen mit größerer Präzision ausgeführt werden; es ergeben sich auch grundlegend neue Anwendungsmöglichkeiten. \todo{Beispiel}
@@ -37,7 +45,13 @@ dskalfj dsaflke dsd dkslf ssfe e dsd dkslf ssfe dsfafeklflsdkf
 \label{sec:ziel}
 WELCHE ERGEBNISSE UND ERKENNTNISSE SOLLEN AM ENDE FESTSTEHEN?
 
-Kern dieser Arbeit ist es ein maschinelles Lernmodel für einen PDM-Usecase zu entwickeln. Das zugrunde leigende Instandhaltungsproblem ist dabei eine Beschädigte aber noch funktionstüchtige Umlenkrolle. Abschließend soll die Tauglichkeit des Modell für einen fiktiven PDM-Usecase bewertet werden. 
+Der System von Interesse in dieser Arbeit ist eine Türschließanlage. Diese findet in Intercity-Züge der Deutschen Bahn Anwendung. Für ausgewählte Komponenten der Anlage wird ein Anwendungsfall zur vorausschauenden Wartung der Komponenten erdacht. Dabei wird das Ziel verfolgt den Zustand einer Komponenten anhand von Sensordaten klassifizieren zu können. 
+
+Kern dieser Arbeit ist es ein maschinelles Lernmodel zu entwickeln, dass diese Klassifikation vornehmen kann. Ein solches Model bietet die Grundlage um eine Einschätzung des Nutzen des Anwendungsfalls abgeben zu können. Bei der Entwicklung des Models sollen sowohl Erfolgskriterien für den potenitellen Anwendungsfall, wie auch Eigenschaften der betrachteten Modeltypen berücksichtigt werden. Aus einer Auswahl an Modellen soll das beste für den gegebenn Anwendungsfall bestimmt werden.
+
+Abschließend soll ein Ausblick gegeben werden, der mögliche nachfolgende Schritte beleuchtet, um den Anwendungsfall praxistauglich zu gestalten, sollte ein geeignete Vorhersagemodel entwickelt werden können.
+
+Das zugrunde leigende Instandhaltungsproblem ist dabei eine Beschädigte aber noch funktionstüchtige Umlenkrolle. Abschließend soll die Tauglichkeit des Modell für einen fiktiven PDM-Usecase bewertet werden. 
 
 
 
