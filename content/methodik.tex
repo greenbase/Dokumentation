@@ -1,0 +1,150 @@
+\chapter{Methodik}
+\label{ch:methodik}
+
+WIE WERDEN DIE ANGESTREBTEN ERGEBNISSE ERARBEITET?
+
+\section{Versuchsaufbau}
+\label{sec:versuchsaufbau}
+An die Türschließanlage ist eine Druckluftzufuhr angeschlossen. Ein Druckregeler regelt den Luftdruck auf ca. \SI{550000}{\pascal} (ca. \SI{80}{\psi}). Der Luftstrom wird durch ein 5/2-Wegeventil geleitet, dass magnetisch betätigt wird. Die Ventilstellung bestimmt die Bewegungsrichtung des Kolbens der Pneumatikzylinders. 
+
+Zwischen Druckregeler und Wegeventil ist außerdem ein Absperrventil eingebaut. Dieses wird ebenfalls durch einen Elektromagneten betätigt und kappt die Luftzufuhr, wenn das System zum Stillstand gebracht werden soll.
+
+Sämtliche Ventile werden über Relais mit den jeweils nötigen elektrischen Spannungen versorgt. Die Schaltung der Relais erfolgt durch einen Mircrokontroller, der den Programmcode zur Versuchsdurchführung ausführt. Dazu gehört auch das Auslesen des installierten Beschleunigungssensor und Gyroskops. Zur Speicherung der Daten werden diese über eine serielle USB-Schnittstelle an ein angeschlosses Computersystem übertragen. Der dort, parallel laufende Programmcode decodiert das Signal des Microkontrollers und speichert die Daten in einer passend fortmatierten CSV-Datei ab.
+
+Um vergleichbare Datenpunkte zu erhalten wird nicht das Original der Umlenkrolle verwendet, sondern eine im Lasersinterverfahren hergestellte Nachbildung. Die Festigkeit des Materials ist für den Versuch ausreichend. Nach dem Versuch wurden bei einer Sichtprüfung keine plastischen Verforumungen festgestellt. In eine der Nachbildungen wurden Rillen längst der Bohrung vorgesehen, die Materialausbrüche als Folge von Pittings simulieren. Insgesamt weist die so künstlich beschädigte Umlenkrolle drei Rillen auf die um jeweils 40° \todo{wie viel Grad sind es?} zueinander verschoben sind.
+
+Mit verbauter intakter bzw. beschädigter Umlenkrolle werden jeweils 100 Datenpunkte aufgezeichnet.
+
+\section{Messdaten}
+\label{sec:messdaten}
+WIE WERDEN DIE MESSDATEN AUFGENOMMEN? WARUM DIESE? WIE UND WARUM WERDEN DIE DATEN AUFBEREITET? WIE SIEHT DER FINALE DATENSATZ AUS?
+
+Die Klassifizierung der Datenpunkte erfolgt anhand von Messwerten, die während einer Messreihe aufgezeichnet werden. 
+
+Es wird die Dauer der Zyklen aufgenommen. Das ist die Zeit von der Initierung des Öffnungsvorgangs bis zu dem Zeitpunkt andem der Magnetschalter der Anlage anschlägt und damit eine geschlossene Tür signalisiert. Bei verschließenen Bauteilen wird erwartet, dass die Verlustleistungen zunehmen. Gleichzeitig bleibt die Leistung des pneumatischen Antriebs unverändert. Aus diesem Grund wird erwartet, dass sich die Beschädigungen an den Umlenkrollen auch in den Zykluszeit wiederspiegeln.
+
+Mit einem am Rahmen der Anlage befestigtem Gyroskop und Beschleunigungssensor, werden die Beschleunigungen und Rotationgeschwindigkeiten entlang der Raumrichtungen aufgezeichnet. Der Sensor ist schräg montiert, sodass die Werte nicht direkt mit der Gravitationbeschleunigung $g$ verglichen werden können. Da dies allerdings nicht von Bedeutung ist für die Klassikation der Datenpunkte, ist die Ausrichtung des Sensors für die Auswertung nicht relevant. 
+Das gleiche gilt für die Rotationgeschwindigkeiten; entscheidend sind die statischischen Parameter der Messwertpopulationen.
+
+Die Messgrößen der Beschleunigungen und der Rotationgeschwindigkeiten wurden ausgewählt, da sie das Schwingungsprofil der Anlage beschreiben. Es wird erwartet, dass sich dieses mit dem Grad der Beschädigung der Umlenkrollen ändert. Es kann also erwartet werden, dass die gewählten Messgrößen aussagekräftig über den Zustand der Umlenkrollen sind.
+
+Der Rohdatensatz ist perfekt balanciert. 
+
+\section{Modelauswahl}
+\label{sec:modelauswahl}
+WELCHE MODELTYPEN EIGNEN SICH GRUNDSÄTZLICH, UM FÜR DEN USECASE VERWENDET ZU WERDEN? WELCHE NICHT UND WARUM? 
+
+Grundsätzlich eignet sich jedes Klassifikatormodel für die vorliegende Aufgabe. Darüber hinaus geben sich aus der Natur der Problemstellung weitere Anforderungen an die Modelle:
+
+\begin{itemize}
+    \item Das Model muss die Ergebnisse in Form einer Konfusionmatrix wiedergeben können, damit Sensitivität und Relevanz bestimmt werden können. \todo{Prüfe: geben nicht eh alle Modelle eine Konfusionsmatrix aus?} Diese werden für die Bewertung der Modelle benötigt; s. \todo{Füge Verweis auf Präferenzfunktion ein}
+    \item Das Model muss prinzipiell nachvollziehbar sein. D.h. das Sachverständige in der Lage seinen müssen die Ergebnisse des Modell auf Logikfehler hin untersuchen zu können. \todo{Verweis auf diesen Punkt, wenn begründet wird warum NN und SVM´s rausfliegen}
+\end{itemize}
+
+Unter den genannten Voraussetzungen kommen Modelle folgender Arten in Frage:
+\begin{itemize}
+    \item Logistic Regression
+    \item Bäume
+    \item k-nearest neighbors
+    \item Naive Bayes
+\end{itemize}
+
+Modeltypen, die von ihrem Funktionsprinzip her, keine Beurteilung des Entscheidungsprozesses zulassen, sind erfüllen die Grundvorsetzung für das Komplexitäts-Kriterium nicht und scheiden damit aus.
+
+Da der Datensatz im Vergleich zu anderen Machinelearningproblemen wenige Features beinhaltet \todo{spezifizieren wie viele Features} können Modelle die auf Entscheidungsbäumen basieren gut dargestellt werden. Außerdem lassen sich die Entscheidungen in den einzelnen Blättern genau nachvollziehen und bewerten. Aus diesen beiden Gründen werden für die Modellentwicklung zunächst nur Entscheidungsbäume herangezogen. 
+
+\section{Bewertungskriterien}
+\label{sec:bewertungskriterien}
+WONACH WIRD BEWERTET WELCHES MODEL AM BESTEN FÜR DEN USECASE GEEIGNET IST? WARUM SIND DIESE KRITERIEN FÜR DEN USECASE RELEVANT?
+
+Tabelle \todo{Verweis auf Tabelle einfügen} zeigt die einzelnen Bewertungskriterien der Modelle. Im Abschnitt \todo{Verweis auf abschnitt Präferenzfunktion} werden diese zu einem einzelnen Wert zusammengefasst. 
+
+An dieser Stelle sollen die Bewertungskriterien genauer beschrieben, ihre Wertefunktionen und Limits begründet und ihre Bedeutung für die Modelqualität dargestellt werden.
+
+Die Komplexität bezieht sich auf die Anforderung, dass das Model nachvollziehbar sein muss. Wie in Abschnitt \cref{sec:modelauswahl} bereits erwähnt darf das Model von seiner Natur her keine Blackbox sein, um eine Nachvollziehbarkeit grundsätzlich möglich zu machen. Für die Komplexität gilt, dass sie so gering wie möglich sein sollte und dennoch die Dataminingerfolgskriterien erreicht werden können. Quantifiziert wird die Komplexität anhand der von Model verwendeten Merkmale. 
+
+Die Sensitivität beschreibt wie viele Datenpunkte der positiven Kategorie als solche erkannt wurden. Im Kontext der vorausschauende Instandhaltung bedeutet die Sensitivität welcher Anteil an bevorstehenden Ausfällen vermieden werden kann. Ihr Betrag sollte also möglichst groß sein. Zwar ist nicht bekannt wie viele Ausfälle durch präventive Instandhaltung verhindert werden könnten, aber es wird die Bedingung gestellt, dass mindestens 95\% aller Ausfälle richtig vorhergesagt werden können. Diese Wahl ist sinnvoll, weil ungeplante Ausfälle in der Regel deutlich höher Kosten nach sich ziehen, als Fehlalarme.
+
+Die Relevanz beschreibt wie viele Datenpunkte tatsächlich der positven Kategorie angehören von denen die als solche eingestuft worden sind. Eine niedrige Relevanz bedeutet demnach eine große Anzahl Fehlalarme. Da Fehlalarme jedoch verhältnismäßig kleine Kosten -- im Vergleich zu ungeplanten Ausfällen -- nach sich ziehen, kann auch eine niedrige Relevanz toleriert werden.
+
+
+\section{Präferenzfunktion}
+\label{sec:praeferenzfunktion}
+WELCHES KRITERIUM IST WIE WICHTIG? WIE WIRD DER NUTZENSCORE BERECHNET?
+
+Um die Modelle einfach mit ein ander vergleichen zu können, wird eine Präferenzfunktion aufgestellt. Diese erlaubt es einem Modell anhand relevanter Kriterien einen \textit{Kosten-Nutzen-Score} zuzuweisen. Die Präferenzfunktion lautet:
+\begin{center}
+    Nutzenscore=\num{0,22}$\dot$ Komplexität + \num{0,44}$\dot$ Sensitivität + \num{0,33} $\dot$ Relevanz
+\end{center}
+
+Die einzelnen Variablen der Funktion stellen die Bewertungskriterien dar. Ihnen wird jeweils ein Wert zwischen 0 und 1 zugewiesen; entsprechend \todo{Tabelle für Bewertungskriterien verweisen}.
+
+Die Bewertungskriterien sind mit einem Gewichtungsfaktor versehen. Die Gewichtungen spiegeln die Ergebnisse eines Paarvergleichs der Kriterien wieder. \todo{Paarvergleichstabelle erstellen und in Anhang einfügen}
+
+Der Nutzenscore kann einen beliebigen Wert zwischen 0 und 1 annehmen. Das Model, das den höchsten Nutzenscore erzielt, ist für den potentiellen PDM-Anwendungsfall zu bevorzugen.
+
+Tabelle \todo{Refernez einfügen} zeigt die gewählt Zuordnung der Werte für die Summanden der Präferenzfunktion sowie derer Gewichtungen. Die Gewichtungen wurden durch einen Paarvergleich ermittelt.
+
+\begin{table}[ht]
+	\raggedright
+	\begin{tabularx}{\textwidth}{ | l | l | c | X|}
+		\hline
+		\rowcolor{gray}
+		Kriterium & \thead{Wertezuordnung:\\Kriteriumswert\\ $\rightarrow$ Erfüllungsgrad} & Gewichtung & Bemerkungen \\ 
+		\hline
+		\multirow{5}{*}{\thead{Baumtiefe\\(Komplexität)}} & \num{1} $\rightarrow$ \num{1} & \multirow{5}{*}{\num{0.165}} & \multirow{5}{*}{Insgesamt wird die Komplexität mit \num{0,22} gewichtet. Da die Komplexität exponentiell mit der Baumtiefe steigt und linear mit der Baumanzahl wurde entschieden, dass die Baumtiefe \SI{75}{\percent} der Komplexität ausmacht; also $0.22*0.75=0,165$. Die restlichen \SI{0.055}{\percent} entfälle auf die Baumanzahl}\\
+		& \num{2} $\rightarrow$ \num{0,75} &&\\
+		& \num{3} $\rightarrow$ \num{0,5} &&\\
+		& \num{4} $\rightarrow$ \num{0,25} &&\\
+		& $>=5$ $\rightarrow$ \num{0} &&\\
+		\hline
+		\multirow{5}{*}{\thead{Baumanzahl\\(Komplexität)}} & \num{1} $\rightarrow$ \num{1} & \multirow{5}{*}{\num{0.05}} & \multirow{5}{*}{s. Baumtiefe}\\ 
+		& \num{2} $\rightarrow$ \num{0,75} &&\\
+		& \num{3} $\rightarrow$ \num{0,5} &&\\
+		& \num{4} $\rightarrow$ \num{0,25} &&\\
+		& $>=5$ $\rightarrow$ \num{0} &&\\
+		\hline
+		Sensitivität & 1,0C & \num{0.44} & Je höher die Sensitivität ist, desto weniger falsch negative Vorhersagen werden getroffen. Für den PDM-Usecase bedeutet es, dass mehr Instandhaltungsarbeiten geplant werden können. \\
+		\hline
+        Relevanz & xx & \num{0.33} & Eine hohe Relevanz bedeutet, dass wenige falsch positive Vorhersagen getroffen werden. Entsprechend niedrig fällt die Anzahl unnötiger Inspektionen für den PDM-Usecase aus.\\
+		\hline
+	\end{tabularx}
+	\caption{Metriken für Präferenzfunktion}%muss unten sein, sonst caption über Tab
+	\label{tab:metriken_praeferenzfunktion}	%zum referenzieren
+\end{table}
+
+\section{Modelierung}
+\label{sec:modelierung}
+WIE WERDEN DIE MODELE ERSTELLT? WIESO IST DIE PARAMETERSTUDIE IN DER FORM SINNVOLL? WELCHE EIGENSCHAFTEN DER MODELLE WERDEN BEI DER MODELLIERUNG DER MODELLE BERÜCKSICHTIGT? 
+
+Ziel dieser Arbeit ist ein maschinelles Lernmodell zu bestimmen, dass möglichst gut den Anforderungen des beschriebenen PDM-Usecases gerecht wird. Um das Spektrum möglicher Modelle im Vorfeld einzugrenzen, wurden bereits gewisse Modeltypen ausgeschlossen, da diese nicht den Grundanforderungen an den Usecase genügen. Die Auswahlmöglichkeiten wurden aus Modelle beschränkt die auf Entscheidungsbäumen basieren \todo{Verweis auf Modelauswahl einfügen}.
+
+Konkret werden Modelle der folgenden Typen modelliert werden und aus diesen das beste für den Usecase ausgewählt.
+\begin{itemize}
+    \item einfacher Entscheidungsbaum
+    \item Random Forest
+    \item Gradient Boosted Trees
+\end{itemize}
+
+Für die Modellbewertung ist es entscheidend, dass die einzelnen Modelle Charakteristika aufweisen, die vergleichbar sind. Eigenschaften, die alle drei Typen gemeinsam haben sind u.a. die Anzahl der Bäume und die Tiefe der Bäume. Für den Usecase, um den es sich handelt, spielt die Komplexität der Modelle eine Rolle. Diese wird durch die Baumanzahl und deren Tiefe eindeutig festgelegt. Die anderen Bewertungskriterien sind bei Klassifikatoren grundsätzlich vergleichbar (Relevanz, Signifiganz, etc.).
+Die gewählten Modelltypen können also sinnvoller Weise miteinander verglichen werden. 
+
+Ehe die trainierten Modelle verglichen werden können, ist es notwendig die Modelle zu optimieren. Die Qualität eines Modell ist nämlich nicht nur von dem zugrundeliegenden Algorithmus abhangig, sondern auch von den eingestellten Parametern. Erst wenn für jeden Modelltyp die optimalen Parameter bestimmt sind kann also eine Aussage über die Überlegenheit eines Modelltyps getroffen werden.
+
+Die Modelle wurden durch zwei Iterationen an Gittersuchen optimiert. Während der ersten Iteration wurde ein weiterer Wertebereich durch gröbere Parameterschritte abgedeckt als in der zweiten Iteration. Um eine hinreichend gute Annäherung zu erreichen, wurden für bei der zweiten Iteration neuen Wertebereiche gewählt, die auf der Annäherungen der ersten Iteration beruhen.
+
+
+
+Laut Müller \todo{Quelle einfügen S 79} ist es für einfache Entscheidungsbäume bereits in der Regel ausreichend einen Parameter für Präpruning zu setzen, um Overfitting zu verhindern. Entsprechend wurde sich für die Optimierung des einfachen Entscheidungsbaum-Klassifikators auf die maximale Tiefe beschränkt. 
+
+Weiter sind nach Müller die wichtigsten Parameter für Random Forest die Anzahl der Klassifikatoren, die Anzahl maximal zu verwendender Merkmale und ein Parameter zum Präpruning. Für das Präpruning wird auch hier eine begrenzte Baumtiefe verwendet, damit die Komplexität der Modelle verglichen werden kann (s.o.). 
+Müller empfiehlt weiterhin den Standardwert für die Maximalanzahl an Merkmalen zu verwenden. (S 85) Da die Umstände des Usecase hier keine Ausnahmesituation vermuten lassen, wird dieser Parameter nicht in die Modelloptimierung mit einbezogen.
+Schließlich wird für die Anzahl der Klassifikatoren in einem Bereich von 20 bis 120 das Optimum bestimmt.
+
+Für die Gradient Boosted Trees muss ebenfalls die Baumtiefe für das gleiche Spektrum optimiert werden wie für die anderen Modeltypen, um dieses Kriterum vergleichen zu können. Darüber hinaus sind laut Müller \todo{Zitat einfügen S88} die Anzahl der Bäume und die Lernrate für diesen Modeltype von besonderer Bedeutung. Davon abgesehen muss die Baumanzahl für den Vergleich eingegrenzt werden. Es ist wichtig beide Parametre parallel zu betrachten, weil diese von einander abhängig sind \todo{Zitat Müller einfügen S88}
+
+Um die Modelle während der Gittersuche zu evaluieren, um die beste Kombination an Parametern bestimmen zu können, wird eine fünffache Kreuzvalidierung verwendet. Vor dem Hintergrund, dass der Datensatz perfekt balanziert ist und eine zufällige Auswahl der Datenpunkte bei der Aufteilung in Trainings-, Validierungs- und Testdatensatz vorgenommen wurde, dient die Kreuzvalidierung nur dazu zusätzliche Sicherheit bei der Evaluation zu gewährleisten.
+
+Als Scoringparameter der Gittersuche wurde die Sensitivität gewählt. Diese hat in der Präferenzfunktion das größte Gewicht. 
+
+Die Parameterstudie hat für den GBT eine Baumanzahl von 95 ergeben. Das Model war damit sehr komplex verglichen mit den anderen. Gleichzeitig war die Sensitivität bei 1. Daher wird vermutet, dass Overfitting vorlag. Um dem entgegen zu wurde der Wertebereich der Bäumeanzahl auf 10 bis 30 reduziert. Das neue GBT-Model war mit 26 Bäumen deutlich simpler und erzielte dennoch zufrieden stellende, aber nicht länger perfekte Scores. Es könnte daraus geschlossen werden, dass das ursprüngliche Model tatsächlich Overfitting aufwies.

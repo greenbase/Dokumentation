@@ -1,0 +1,75 @@
+\chapter{Einleitung}
+\label{ch:einleitung}
+
+\section{Problemstellung}
+\label{sec:motivation}
+WAS SOLL IN DER MASTERARBEIT BEHANDELT WERDEN?
+
+Die vorausschauende Instandhaltung bietet im Vergleich zur präventativen Instandhaltung das Potentiale der Senkung der Instandhaltungskosten und einen darüber hinausgehenden Informationsgewinn der auch für Prozesssteuerung und Verbesserungen genutzt werden kann. Dies ist aber nur unter bestimmten Voraussetzungen der Fall, welche sich dazu vom betrachteten Fall abhängen.
+
+Um eine Einschätzung über das Potential eines bestimmten Anwendungsfall abgeben zu können, ist es notwendig diesen so weit zu erarbeiteten, dass ein Vergleich mit dem zu ersetzenden Verfahren sinnvoll durchgeführt werden kann.
+
+Für die vorausschauende Wartung sind Vorhersagemodelle nötig. Deren Qualität ist einer der wichtigste Faktor für den Nutzen des gesamten Anwendungsfalls. Ist beispielsweise die Verhinderung von Ausfällen und eine besserte Ausnutzung der Bauteillebensdauer das Ziel, so muss das Model Vorhersagen treffen die zu einem gewissen Maß zutreffend sind, um einem anderen Verfahren gegenüber bevorzugt werden zu können.
+
+Soll ein maschinelles Lernmodel verwendet werden, um Vorhersagen für einen Anwendungsfall der vorausschauenden Wartung abzugeben, so muss ein solches Model zunächst modelliert und bewertet werden.
+
+
+Mit dem Aufschwung der Industrie 4.0 und der damit einhergehenden stetig größer weredenden Menge verfügbarer Daten, rückt PDM jedoch aus Nischenanwendungen aktuell weiter in den Fokus von Anlagenbetreidenden. Schließlich bieten sich durch eine große Menge Daten neue Möglichkeiten. Nicht nur können bestehende Anwendungen mit größerer Präzision ausgeführt werden; es ergeben sich auch grundlegend neue Anwendungsmöglichkeiten. \todo{Beispiel}
+
+PDM ist in vielen technischen Bereichen insbesondere deshalb interessant, weil  dadurch nach Hölzel folgende Potentiale erschlossen werden können \todo{Verweis auf Hölzel S.31}. Diese sind in abgrenzung zur präventativen Instandhaltung zu sehen:
+\begin{itemize}
+	\item Bedarfsgerechte Ersatzteilbereitstellung
+	\item Instandhaltungsmaßnahmen können zum optimalen Zeitpunkt durchgeführt werden
+	\item Verlängerung der anlagen- und Bauteillebensdauer
+	\item Reduzierte Stillstandzeiten
+	\item Reduzierte Instandhaltungskosten
+	\item Verbesserung der Anlagenzuverlässigkeit
+\end{itemize}
+
+Auch für die Instandhaltung von Schienenfahrzeugen erscheinen PDM-Anwendungen interessant. Neben den oben genannten Punkten scheint sich durch die Verringerung von Ausfällen auch Imageschaden abzuwenden. Dieser Entsteht, wenn  der Ausfall einer Anlage sich direkt auf den Kunden auswirkt; in diesem Fall der Fahrgast.
+
+Ein für Fahrgäste zu beobachtender Fall sind Türstörungen. In der Regel äußern sich diese darin, dass die Zugtür nicht mehr entsprechend der Sicherheitsanforderungen nutzbar sind. In den meisten Fällen genügt es jedoch die Tür außer Betrieb zusetzen und um so die Sperrung eines Waggons oder gar den Ausfall einer ganzen Fahrt zu verhindern. Dennoch ist der Ausfall einer Zugtür für den Kunden direkt ersichtlich und führt damit zu einem Imageschaden. Aus diesem Grund erscheint der Einsatz vorausschauender Wartung auch hier sinnvoll. Auch aus technisch wirtschaftlicher Sicht.
+
+Die Fragestellung die bei der Umsetzung aller PDM-Anwendungen zunächst geklärt werden muss ist, ob das entwickelte Modell zur Vorhersage ausreichend präzise Vorhersagen trifft. Insbesondere entscheidend ist dabei der vergleich mit der gegenwärtigen Instandhaltungsstrategie.
+
+In jedem Fall muss die Frage geklärt werden, ob sich die Umstellung auf ein vorrauschauendes Instandhaltungsprogramm lohnt. Ein umfangreiche Analyse der zu erwartenden Kosten stellt die Grundlage zur Beantwortung dieser Frage dar. Das Vorhersagemodel, auf dem der Anwendungsfall basiert, stellt die wichtiste Grundlage zur Kostenanalyse dar. Ohne eine zuverlässige Einschätzung über die Treffsicherheit der Vorhersagen, kann kein Kostenvergleich zu einem anderen Verfahren erstellt werden. Die Entwicklung eines Vorhersagemodels stellt deswegen eine entscheidende Grundlage dar. 
+
+% \begin{figure}[ht]
+% 	\centering
+% 	\includegraphics[scale=0.4]{FH_Kiel_Logo_deut_rgb.jpg}
+% 	\caption{Logo}
+% 	\label{fig:fhlogo}
+% \end{figure}
+
+\section{Ziel der Arbeit}
+\label{sec:ziel}
+WELCHE ERGEBNISSE UND ERKENNTNISSE SOLLEN AM ENDE FESTSTEHEN?
+
+Der System von Interesse in dieser Arbeit ist eine Türschließanlage. Diese findet in Intercity-Züge der Deutschen Bahn Anwendung. Für ausgewählte Komponenten der Anlage wird ein Anwendungsfall zur vorausschauenden Wartung der Komponenten erdacht. Dabei wird das Ziel verfolgt den Zustand einer Komponenten anhand von Sensordaten klassifizieren zu können. 
+
+Es soll ein PdM-Usecase zu einer Komponente der Türschließanlage erdacht werden. Den Kern dieser Arbeit stellt darauf aufbauend die Entwicklung eines maschinellen Lernmodels dar, das eine Klassifikation einer Komponente vornehmen kann. Unterschieden werden soll dabei zwischen intakte und beschädigten Bauteilen. Bei der Entwicklung des Models sollen sowohl Erfolgskriterien für den potentiellen Anwendungsfall, wie auch Eigenschaften der betrachteten Modeltypen berücksichtigt werden. Aus einer Auswahl an Modellen soll das beste für den gegebenen Anwendungsfall bestimmt werden.
+
+Abschließend soll ein Ausblick gegeben werden, der mögliche nachfolgende Schritte beleuchtet, um den Anwendungsfall praxistauglich zu gestalten, sollte ein geeignete Vorhersagemodel entwickelt werden können.
+
+
+
+Das Modell soll in der Lage sein Beschädigungen einer Umlenkrolle zu erkennen. Die Umlenkrolle mit dem ein simulierter Schadenfall vorhergesagt werden könnte. Die Arbeit ist dabei vor der Vision angesiedelt maschinelle Lernverfahren für die vorausschauende Instandhaltung einzusetzten. Entsprechend sollen die Ergebnisse der Modelentwicklung vor diesem Hintergrund beleuchtet werden.
+
+\section{Vorgehensweise}
+\label{sec:vorgehensweise}
+WELCHE SCHRITTE WERDEN DURCHLAUFEN UM DIE ANGESTREBTEN ERGEBNISSE ZU ERHALTEN?
+(LÄSST SICH NACH KAPITELN ORDNEN)
+
+In den Kapiteln 2 bis 4 wird der Stand der Technik der Elemente beschrieben, die für den Inhalt der Arbeit von Bedeutung sind. \cref{ch:vorausschauende instandhaltung} befasst sich mit den grundlegend mit der vorausschauenden Instandhaltung und diskutiert dessen Potentiale und Voraussetzungen.
+
+In \cref{ch:maschinelles lernen} werden zunächst Kernpunkte von maschinellem Lernen erörtert, ehe auf die Grundlagen der Lernmodelle eingegangen wird, die im weiteren Verlauf dieser Arbeit verwendet werden. Für die einzelnen Modelle werden u.a. Funktionsweise, Parametereinstellungen, Vor- und Nachteile, sowie die Eignung für den in \cref{ch:usecase} dargestellten Anwendungsfall besprochen.
+
+\cref{ch:usecase} stellt den neu erdachten PDM-Usecase vor. Dabei wird an den entsprechenden Stellen auf die Inhalte aus \cref{ch:vorausschauende instandhaltung} verwiesen und ein Beispielszenoario beschrieben, wie die Anwendung des Usecases aussehen könnte. Um den Usecase in den Kontext der praktischen Bahntechnik zu setzen, werden die Inhalte zweier Interviews mit Bahnsachverständigen rekapituliert. In Zuge dessen wird auch der reale Bedarf des vorgeschlagenen Usecases diskutiert. Die Darstellung des Usecases schließt mit einer Aufführung der Erfolgskriterien des Usecases.
+
+In \cref{ch:methodik} wird die Methodik beschrieben mit der der Usecase exemplarisch untersucht wurde. Es wird der Versuchaufbau beschrieben, eine Einschätzung über den Datensatz abgegeben und eine begründete Vorauswahl maschineller Lernmodele getroffen (vgl. \cref{ch:maschinelles lernen}). Im \cref{sec:bewertungskriterien} werden die Erfolgskriterien des Usecases aus \cref{ch:usecase} aufgegriffen, um die zu erstellenden Modelle daran bewerten zu können. In \cref{sec:praeferenzfunktion} wird damit eine Präferenzfunktion zur Beurteilung der Modelle erstellt.
+
+In \cref{ch:modelierung} erfolgt die Erstellung der maschinellen Lernmodele anhand des aufgenohmenen Datensatzes. Um möglichst gute Modelqualitäten zu erreichen wird für zu trainierenden Modelle eine Parameterstudie durchgeführt.
+
+In \cref{ch:modelbewertung} werden wird die Eignung der trainierten Modelle für den Usecase dargestellt und diskurtiert. Es wird eine Einschätzung über die Qualität der Modelle abgegebn und -- anhand der Präferenzfunktion -- das Model bestimmt welches am besten für den Usecase geeignet ist.
+
+\cref{ch:fazit} fasst die Ergebnisse der Arbeit zusammen und gibt einen Ausblick über Verbesserungsmöglichkeiten in Bezug auf den Usecase an sich und die erarbeiteten Ergebnisse.

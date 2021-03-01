@@ -1,0 +1,36 @@
+\chapter{Modelbewertung und Diskussion}
+\label{ch:modelbewertung}
+WAS SIND DIE ERGEBNISSE DER MODELLIERUNG? WIE ERFÜLLEN DIE MODELLE DIE BEWERTUNGSKRITERIEN? WELCHES MODEL IST AM BESTEN FÜR DEN USECASE GEEIGNET UND WARUM? WIE SIND DIE ERGEBNISSE DER MODELLE ZU INTERPRETIEREN? WELCHE SCHWACHSTELLEN BIETET DIE GEWÄHLTE BETRACHTUNG?
+
+\cref{tab:metrikwerte_der_trainierten_modelle} zeigt die Parameter der besten Modelle jedes Typs und deren Sensitivität und Relevanz. Zusätzlich ist der Gesamtscore aufgeführt der sich aus der Präferenzfunktion ergibt.
+
+\begin{table}[ht]
+	\raggedright
+	\begin{tabularx}{\textwidth}{ | l | r | r | r|}
+		\hline
+		\rowcolor{lightgray}
+		Metrik & Baum & Random Forest & GBT\\
+		\hline
+		Tiefe & 1 & 1 & 1\\
+		Anzahl Bäume & 1 & 19 & 26\\
+		Sensitivität & \num{0.87} & \num{0.85} & \num{0.91}\\
+		Relevanz & \num{0.91} & \num{0.85} & \num{0.91}\\
+		\hline
+		\hline
+		Nutzen & \num{0.77} & \num{1} & \num{0.87}\\
+		\hline
+	\end{tabularx}
+	\caption{Metrikwerte der trainierten Modelle und Nutzenwert nach Präferenzfunktion}%muss unten sein, sonst caption über Tab
+	\label{tab:metrikwerte_der_trainierten_modelle}	%zum referenzieren
+\end{table}
+
+
+Den Ergebnissen nach ist das Random Forest Modell am besten geeignet, um für Vorhersagen zu dem Usecase verwendet zu werden. Nach \cref{tab:metriken_praeferenzfunktion} erreicht das Model für jedes Bewertungskriterium die maximale Punktzahl. Von allen Modellen weist es die höchste Sensitivität auf. Seine Relevanz ist zwar die niedrigste der dreien; den Kriterium wird nach \cref{tab:metriken_praeferenzfunktion} aber dennoch der gleiche Wert zugewiesen wie den anderen beiden Modellen.
+
+Der Random Forest fällt auffällig simple aus. Die Tiefe der Bäume ist minimal und die Anzahl der Bäume ist klein. Üblicherweise zählt ein Random Forest hundert Bäume oder mehr. Die geringe Anzahl ist vermutlich auf den Datensatz zurückzuführen. Ein Hinweis darauf bietet die Tatsache, dass alle Modelle die minimale Baumtiefe verwenden und alle das Merkmal "gx\_median" verwenden. Zwar verwenden der Random Forest und die GBT einen groß Teil der Merkmale, jedoch erreicht selbst der einfache Entscheidungsbaum, der nur "gx\_median" verwendet, verhältnismäßig gut Ergebnisse. Daraus wird gefolgert, dass sich die Kategorien gut anhand dieses einen Merkmals einteilen lassen. Das erklärt die niedrige Komplexität des Random Forest.
+
+\todo{Referenz für Diagramm einfügen} zeigt die Verteilung der "gx\_median"-Werte für die positive (beschädigt) wie für die negative Kategorie (intakt). Für die positive Kategorie zeigt sich annäherd eine Normalverteilung. Die negative Kategorie hingegen ist bimodal. Es wird daher vermutet, dass dieser Verteilung eine weitere nicht näher bekannte Kategorie zu grunde liegt.
+
+Von der negativen Kategorie überlagert sich nur der linke Bereich mit den positiven Datenpunkten. Der Großteil der Datenpunkte lässt sich anhand des abgebildeten Merkmals richtig den beiden Kategorien zuordnen. Dies erklärt warum selbst die Qualität des einfachen Entscheidungsbaums -- gemessen an den Bewertungskriterien -- relativ hoch ist. Es macht auch deutlich warum alle Modelle Bäume mit je nur einem Knoten erstellt haben. In Kombination mit dem wichtigsten Merkmal liefern die übrigen Merkmale nur noch wenige Informationen und verzehren ggf. das Ergebnis nur. Andernfalls hätte der einfache Entscheidungsbaum davon profitieren können, mehrere Merkmale zu verwenden.
+
+Damit ist auch begründet warum Random Forest und GBT ungewöhlich wenige Bäume aufweisen.

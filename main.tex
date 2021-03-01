@@ -1,0 +1,72 @@
+%laden der Präambel mit Latexbefehlen/-klassen
+\include{content/preambel}
+
+\begin{document}
+%globale Einstellung für Quellcodedarstellung mit listings
+%\lstset{basicstyle=\scriptsize\ttfamily,language={[LaTeX]TeX}}
+
+
+% 							Frontmatter
+%================================================================
+\input{content/titlepage}
+
+\pagenumbering{roman}
+\input{content/confidential_clause}
+\input{content/abstract}
+
+\cleardoubleemptypage
+
+%Inhaltsverzeichnis
+%Es werden nur Kapitel und Abschnitte angezeigt. Unterabschnitte (/subsection) nicht mehr. Sonst tocdepth höher einstellen.
+\setcounter{tocdepth}{1}
+\tableofcontents
+\cleardoubleemptypage
+%================================================================
+
+
+% 							Mainmatter
+%================================================================
+%Seitennummerierung zurücksetzen und arabisch
+\pagestyle{headings}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+%Beginn der Kapitel
+\input{content/einleitung}\cleardoublepage
+\input{content/grundlagenpdm}\cleardoublepage	
+\input{content/machinelearning}\cleardoublepage	
+\input{content/usecase}\cleardoublepage	
+\input{content/methodik}\cleardoublepage
+\input{content/modelbewertung}\cleardoublepage
+\input{content/fazit}\cleardoublepage
+
+
+% 							Backmatter
+%================================================================
+%Literatur
+\printbibliography[heading=bibintoc]
+\cleardoublepage
+
+%Abkürzungs- und Symbolverzeichnis
+\input{content/symbole_abk}
+\cleardoublepage
+
+%Abbildungsverzeichnis
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\cleardoublepage
+
+%Tabellenverzeichnis
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+\cleardoublepage
+
+%Anhang
+\appendix
+\input{content/anhang}
+%================================================================
+\end{document}
+
+% ToDo
+
+% Vorlage für Tabellenumgebung vorbereiten

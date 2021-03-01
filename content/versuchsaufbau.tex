@@ -1,0 +1,34 @@
+\chapter{Versuchsaufbau}
+\label{ch:versuchsaufbau}
+
+Versuchsgegenstand ist eine Türschließanlage; eingesetzt in Fernverkehrszügen. Für den Versuch werden Öffnungs/Schließ-Zyklen beobachtet. Innerhalb eines Zykluses wird die Tür also einmal geöffnet und wieder geschlossen. Während des Versuchs und der Datenaufzeichnung wird die Tür automatisch geöffnet und geschlossen. Um einen reallen Bewegungsablauf zu simulieren, wird die Tür erst zwei Sekunden nach der ihrer Öffnung wieder geschlossen. In dieser Zeit können die Nachschwingungen ausklingen, sodass sie sich nicht nennenswert mit den Anfahrschwingungen überlagern. Ebenso wird ein neuer Zyklus erst dann gegonnen, wenn der vorangegangene für mehrere Sekunden beendet ist. 
+
+Die Entscheidung ob eine defekte Umlenkrolle vorliegt oder nicht, wird anhand der Messwerte eines Zykluses getroffen. Im Sinn von Condition Monitoring könnte als bei jeder Betätigung der Tür ein Update über dessen Zustand gewonnen werden.
+
+Um Vergleichbarkeit zwischen intakten und geschädigiten Rollen gewährleisten zu können, werden anstelle der Originalen Umlenkrolle Nachbildungen gleicher Herstellungsart und Material verwendet. \todo{Frank fragen wie genau das Material heiß aus dem die Rollen gemacht sind} Die verwendeten Rollen wurden im Lasersinterverfahren hergestellt und bestehen aus xxxxxxxxx. Die Rollen wurden gemäß der Zeichnungen im Anhang gefertigt.
+
+Die künstlich erzeugte Beschädigung der liegen in Form von drei Rillen längst der Bohrung vor. Da die Rolle nicht durch ein Lager mit Wälzkörpern gelagert ist, ist zu erwarten, dass sich in der Bohrung als erstes und die kritischten Verschleißerscheinungen zeigen. Die Rillen simulieren kleine Materialausbrüche in Folge von Pittings.
+
+Durch die Ausbrüche unterscheidet sich die Lagerfläche einer intaken Rolle von einer beschädigten. Durch die Rillen werden Kraftspitzen hervorgerufen, die über das Grundgerüst der Türschließanlage aufgefangen werden und sich im Schwingungsprofil wiederspiegeln.
+
+\section{Versuchsdruchführung}
+\label{sec:versuchsdurchfuehrung}
+
+Um ein Model zu trainieren mit dem auf defekte Umlenkrollen geschlossen werden kann, wird mindestens ein Datensatz benötigt, dessen Datenpunkte intakte Umlenkrollen beschreiben. In derartigen Datenwolken könnten defekte Rollen in Form von Anomalien detektiert werden. Diese Vorgehensweise birgt die Schwachstelle, dass ein zu bewertender Datenpunkt zwar eine Anomalie zu den Trainingsdaten darstellt, dies aber auch eine andere Ursache als eine defekte Umlenkrolle haben kann. Es besteht also die Gefahr das ein signifikanter Anteil der Datenpunkte falsch positiv eingestuft wird.
+
+Zu bevorzugen ist daher ein gemischter Trainingsdatensatz mit Datenpunkten defekter sowie intaken Umlenkrollen. So kann sicher gestellt werden, dass eine Bewertung des mechanischen Zustand der Rollen allein auf dessen Eigenschaffen beruht. 
+
+Aus diesem Grund werden zwei Versuchsreihen durchgeführt. Eine mit intaken Rollen, eine mit defekten. Für den Trainingsdatensatz werden anschließen Datenpunkte aus beiden Versuchsreihen zu gleichen Teilen, zusammen geführt.
+
+Beide Versuchsreihen laufen nach dem selben Schema ab:
+Es werden 500 Datenpunkte aufgezeichnet, wobei jeder Datenpunkt einen Zyklus entspricht. Zu einem Zyklus gehört das vollständige Öffnen und Schließen der Schließanlage. Die Anlage verharrt während eines Zykluses kruz sowohl in geöffneter als auch in geschlossener Stellung, um Nachschwingungen von Stop- bzw. Anfahrbewegungen abklingen zu lassen.
+
+Während der Zyklen werden alle x Millisekunden die Beschleunigungswerte und Rotartionsgeschwindigkeiten an einem Sensor vom Model \enquote{LSM6DS33} ausgelesen. 
+
+Von Beginn eines Zykluses an werden insgesamt x Werte einer Messgröße aufgenommen, sodass insgesamt eine Zeitspanne von von zwölf Sekunden abgedeckt wird. Selbst wenn die Zykluszeiten in der Versuchsreihe mit den defekten Rollen länger dauern sollten als mit intakten Rollen, so wird dennoch erwartet das diese innerhalb dieses Zeitfensters abgeschlossen werden können. Auf diese Weise enthalten alle Datenpunkte die gleiche Anzahl Merkmale und es kann stets der gesamte Zyklus erfasst werden. 
+
+Die Tatsache, dass alle Datenpunkte gleich viele Merkmale aufweisen, erleichtert die Auswertung, weil keine fehlenden Messwerte behandelt werden müssen. Es bedeutet auch, dass eine gewisse Anzahl der letzten Einträge jedes Merkmals keine Aussagekraft mehr über den Zyklus oder den Rollenzustand haben, weil die Türschließanlage zu diesem Zeitpunkt bereits wieder geschlossen ist. Da dies umgekehr aber auch nichst an der Bedeutung des Datensatzen für die Umlenkrollen ändert, können auch diese Merkmale bedenkenlos in die Modelentwicklung mit einfließen.
+
+Die Versuchsaparatur ist eine Türschließanlage, wie sie in Fern-Zügen der deutschen Bahn zum Einsatz kommen. Betrieben wird die Anlage durch einen pneumatischen Zylinder, der mit einem Druckluftanschluss von ca. 80 psi versorgt wird. Die Linearbewegung des Kolbens wird über eine Zahnstange in rotartorische Bewegung eines Rads umgewandelt. Dieses Rad wickelt je eins von zwei Stahlseilen auf bzw. ab, während diese über einen Bautenzug die Zugtür in Bewegung versetzten. Die Aufhängung der Tür ruht auf Hebeln, die ihrerseits am Chasi des Zuges befestigt sind. Für den Versuchsaufbau sind sie an einem Stahlrahmen montiert. Wir die Tür durch den Bautenzug gezogen, wirkt die entsprechende Kraft auf die Hebel. Aufgrund des resultierenden Drehmoments wird die Tür aus dem Rahmen gehoben und kann durch den Bautenzug aufgezogen werden.
+
+Je Zyklus werden für jede Beschleunigungsrichtung und Winkelgeschwindigkeit, um die Achsen 240 Messwerte aufgenommen. Zusätzlich wird für jeden Zyklus die Zyklusdauer erfasst. Insgesamt verfügt jeder Datenpunkt also über 1441 Merkmale. Da Datensatz wird daher als hochdimensional betrachtet.
