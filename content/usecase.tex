@@ -1,66 +1,75 @@
 \chapter{Usecase}
 \label{ch:usecase}
-WIE SIEHT DER POTENTIELLE USECASE AUS? WARUM IST ER SINNVOLL? WIE KANN ER UMGESETZT WERDEN? WIE KÖNNEN ML-MODELE DABEI VERWENDET WERDEN?
+F: Um welches System geht es?
 
-Im Folgenden wird der Usecase beschrieben der mittels der zu entwickelnden Modelle behandelt werden können soll.
+\cref{fig:foto_tureschliessanlage} zeigt eine Türschließanlage wie sie aktuell in Zügen der Intercity-Klasse von der Deutschen Bahn eingesetzt werden. Die Anlage wird durch einen pneumatischen Kolben angetrieben. Über eine Zahnstange treibt der Kolben ein Rad an, welches wiederum einen Bautenzug betätigt. Am einem Stahlseil, das über Umlenkrollen geführt wird, wird die Tür auf- bzw. zugezogen.
 
-Die Türschließanlage eines Schienenfahrzeugs öffnet und schließt eine Zugtür über einen Bautenzug, der von einem pneumatischen Zylinder angetrieben wird. Die Anlage verfügt über mehrere Bauteile die starken Verschleiß aufgrund von Reibung unterworfen sind. Dazu gehören Rollenlager, Gleitschienen und Seilrollen. 
+\todo{Beschriftungen in Foto einfügen. ggf als Positionsnummern}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.8]{Foto_Türschließanlage.jpg}
+	\caption{Ausgebaute Türschließanlage eines Zuges der Intercity-Klasse (Deutsche Bahn)}
+	\label{fig:foto_tureschliessanlage}
+\end{figure}
 
-Condition Mointoring, und die daraus erwachsenden Möglichkeiten zur vorausschauenden Wartung, sind in Allgemeinen nur für besonders teure oder extrem sicherheitsrelevante Komponenten wirtschaftlich. Da die gesamte Türschließanlage keine kritische Komponenten des Zuges ist, ist auch die Fragestellung nach einer besonders kritischen Komponente in diesen Subsystem redundant. Ein effizienter PDM-Usecase an solch einer Schließanlage würde, die Komponenten in Betracht ziehen, die relativ zu anderen häufig ausfallen oder teuer sind und somit Ausfälle hohe Kosten nach sich ziehen würden. Da Umlenkrollen wie eingangs erwähnt zu den Komponenten gehören, die starkem Verschleiß ausgesetzt sind, kann angenommen werden, dass Umlenkrollen eine sinnvollerweise zu überwachende Komponenten sind. 
+F: wie wird die Anlage bisher gewartet
 
-Ziel des PdM-Usecases ist es Beschädigungen an den Umlenkrollen erkennen zu können. Dies soll anhand von Sensordaten durch ein maschinelles Lernmodel möglichsein; also ohne Demontage der Komponenten. Zunächst soll lediglich eine Unterscheidung beider Fälle möglich sein. Eine Modell zur zukünftigen Zustandsveränderung und konkreter Ausfallvorhersage wird zunächst nicht berücksichtigt.
+Wartungen der Anlage werden im Rahmen einer präventiven Instandhaltung durchgeführt. Zu diesem Zweck werden auch die Umlenkrollen regelmäßig ausgetauscht. Die Instandhaltungsmaßnahme wird entweder nach sechs Jahren oder nach \num{1.2} Millionen gefahrenen Kilometern durchgeführt~\cite{db.27.01.2021}.
 
-Ziel des fiktiven PDM-Usecases ist es einen Algorithmus zu verwenden, um anhand von Messwerten auf den Zustand der Umlenkrollen schließen zu können. Dabei wird von einer starken Beschädigung ausgegangen, die jedoch noch nicht so weit fortgeschritten ist, dass sie ihre Funktion nicht mehr erfüllen kann und in Konsequenz die Türschließanlage ausfällt. 
+F: warum müssen die Rollen gewechselt werden
 
-Die Daten, die durch das Condition Mointoring aufgenommen werden sollen, richten sich nach den mechanischen Eigenschaften der Umlenkrollen und dem Funktionsprinzip der Türschließanlage. Es ist zu erwarten, dass sich mit zunehmender Beschädigung der Umlenkrolle dessen Vibrationsprofil ändert. Daher werden die Beschleunigungen entlang der drei Raumrichtungen, sowie die Winkelgeschwindigkeiten gemessen. 
-Da sich mit zunehmendem Verschleiß Reibungsverluste vergrößern, ist zu erwarten, dass die pneumatische Leistung, die nötig ist um die Anlage zu betreiben ebenfalls steigen wird. Bedeuten tut dies, dass der Zylinder eine größere Kraft aufbringen muss, sprich ein größerer Druck in Zylinder herschen muss. Es wäre daher sinnvoll auch den Luftdruck in Zylinder zu messen.
+Die Umlenkrollen aus Kunststoff \todo{CAD bild von rolle einfügen} sind ohne Wälzlager auf Bolzen montiert. Verschleiß und Materialermüdung sind in erster Linie an der Mantelfläche der Bohrung zu erwarten, an der die Rolle auf dem Bolzen aufliegt. Fortschreitende Rissbildung aufgrund von Materialermüdung bestimmt die Lebensdauer der Umlenkrollen. Mit steigendem Grad der Beschädigung steigt auch das Risiko eines Gewaltbruchs durch Überlast. In diesem Fall fällt die Türschließanlage aus und eine nicht planmäßige Instandsetzungsmaßnahme ist erforderlich.
 
-Zusätzlich wird die Zeit aufgenohmen, die benötigt wird, um eine Öffen/Schleißen-Zyklus zu beenden. Es wird erwartet, das sich die Zyklusdauer verlängert, wenn sich die Reibverluste aufgrund von Verschleiß ansteigen.
+F: welche Änderung der INSTANDHALTUNG ist denkbar?
 
-\section{Anwendungsszenario}
-\label{sec:anwendungsszenario_usecase}
-WIE KANN DER USECASE IN DER ANWENDUNG CHRONOLOGISCH ABLAUFEN?
+Kann zu einem beliebigen Zeitpunkt der Zustand der Umlenkrollen bestimmt werden, so kann jederzeit der Bedarf einer Instandhaltungsmaßnahme eingeschätzt werden. Unerwartete Ausfällen können so vermieden werden (vgl. \cref{ch:instandhaltungsstrategien}). 
 
-Während der Öffnungs- und Schließvorgänge in Bahnhof werden ausgewählte Sensordaten der Tür aufgezeichnet. Nach Abfahrt des Zuges werden die Daten durch einen Algorithmus ausgewertet. Das Ergebnis sollte dabei idealerweise vorliegen ehe der nächste Bahnhof erreicht wird. Wird festegestellt, dass die Tür kurz vor einem Ausfall steht, kann so die Auswrikungen auf den Fahrgast minimiert werden. 
+F: wie soll der usecase UMGESETZT werden
 
-Angenommen es kann anhand der Daten und bekannter Verschleißzustände eine Progrnose über die verbleidende Lebensdauer abgegeben werden, kann der Austausch der Umlenkrollen geplant werden.
-
-Es wird festegestellt, dass es innerhalb der nächsten zwei Wochen zu einem Bruch der Umlenkrollen kommen wird; vorrausgesetzt die Rollen wird weiter wie bisher belastet. Da es in den Zeitrahmen passt, wird der Austausch auf den nächsten Wartungsarbeitsgang gelegt. Die Zeitspanne bis dahin ist ausreichend, um die nötige ersetzenden Komponenten beim Zulieferer zu bestellen, sodass sie punktlich zum WArtungstermin bereit steht. Zusammen mit Routinearbeiten, wie der Reinigung der Zuges durch den Betreiber, werden auch die Umlenkrollen der Tür ausgewechselt. Durch den zeitnahen Austausch kurz vor den vorhergesagtem Ausfall können Ausfälle vermieden werden und gleichzeitig die Lebensdauer ideal ausgenutzt werden. 
-
-\section{Einordnung in den Kontext der Bahntechnik}
-\label{sec:kontext_bahntechnik_von_usecase}
-WELCHE ANFORDUNGEN ERHEBT DIE PRAXIS AN DEN USECASE? BESTEHT BEDARF AM DEM USECASE?
-
-Der beschriebene Usecase beruht auf der Annahme, dass die in \cref{sec:vorteile_nachteile_pdm} genannten Vorteile zutreffen. 
-
-Der vorgeschlagene Usecase soll nun im Rahmen der praktischen Bahntechnik diskuitert werden; insbesondere in Hinblick darauf ob der Usecase einen Mehrwert gegenüber der aktuellen Instandhaltungsstratigie darstellt. Zu diesem Zweck werden die Aussagen von Sachverstängigen der Bahntechnik im Folgenden zusammengefasst.
-
-\subsection{Interview: Hochbahn Hamburg}
-\label{subsec:interview_hochbahn}
-BESTEHT BEDARF AN DEM USECASE? WELCHE ANFORDERUNGEN WERDEN AN EINEN MÖGLICHEN USECASE GESTELLT? MACHT DIE EINFÜHRUNG DES USECASES SINN? WELCHE AUSWIRKUNGEN HABEN AUSFÄLLE? 
-
-\textit{Interview mit Herr xxxxxxxxxxxxxxx am xx.xx.2020}
-
-\subsection{Interview: Deutsche Bahn}
-\label{subsec:interview_deutsche_bahn}
-WIE LÄUFT DIE INSTANDHALTUNG AB? WIE WÜRDE DER USECASE DAS VORGEHEN BEI DER INSTANDHALTUNG VERÄNDERN? WAS MÜSSTE GESCHEHEN, UM DEN USECASE UMZUSETZEN? KANN DIE VERBESSERUNG GEGENÜBER DER AKTUELLEN INSTANDHALTUNGSSTRATEGIE QUANTIFIZIERT WERDEN?
-
-\textit{Interview mit Herr xxxxxxxxxxxxxxx am xx.xx.2020}
-
+Die Instandhaltung der Umlenkrollen kann durch einem PdM-Ansatz gelöst werden. Voraussetzung dafür ist Erstens, dass Messwerte vorliegen, die Informationen über den Zustand der Umlenkrolle beinhalten. Zweitens sind diese Informationen in ein Entscheidungsmodel zu integrieren, das anhand von neuen Messwerten den Zustand der Rollen bestimmen kann. Drittens muss eine Infrastruktur geschaffen werden mit der in festgelegten Zeitabständen aktuelle Messwerte aufgenommen und verarbeitet werden können.
+%===============================================================================
 \section{Erfolgskriterien}
 \label{sec:erfolgskriterien_usecase}
+F: wieso müssen Erfolgskriterien definiert werden?
 
-Aufgrund der grundlegend unterschiedlichen Natur von PM und PdM, lassen sich nur wenige Vergleichende kriterien bestimmen. Um zu bestimmen welche Strategie besser für einen Usecase geeignet ist sollten, vor einer Umstellung ausgiebige Kostenabschätzungen durchgeführt werden. Ggf. können noch weitere Faktoren, wie die Möglichkeit der Prozesssteuerung, mit in eine Entscheidung einfließen.
+Um bestimmen zu können ob die Umstellung der Instandhaltung auf einen PdM-Ansatz sinnvoll ist, muss eine ausgiebige Nutzwertanalyse abgeschlossen und mit dem aktuell verwendetem PM-Ansatz verglichen werden. 
 
-Dennoch können Kriterien definiert werden, an denen der Nutzen des PdM-Usecases gemessen werden kann. 
+F: was ist das Problem bei der vergleichsführung?
+
+Aufgrund der prinzipiell verschiedenen Natur von PM und PdM, lassen sich nur wenige Vergleichende kriterien bestimmen. Beispielsweise kann die Anzahl richtig positiver Vorhersagen -- also die Anzahl vermeidbarer Ausfälle -- nicht verglichen werden, weil bei einem PM-Ansatz dazu keine Informationen zur Verfügung stehen. Auch werden bei PM per Definition keine unnötigen Inspektionen durchgeführt, wie es bei PdM für falsch positive Meldungen der Fall wäre. Um einen Vergleich der beiden Ansätze erheben zu können, sind also allgemeinere vergleichende Kriterien zu finden.
+
+Im Rahmen dieser Arbeit wird ausschließlich auf Kriterien eingegangen, die den Nutzwert des vorgeschlagenen PdM-Ansatzes quantifizieren. Die Kriterien werden für die Bewertung der maschinellen Lernmodelle herangezogen, die in \cref{sec:modelierung} erstellt werden. Die Beurteilung des besten Models ist die Grundlage auf der eine Kosten-Nutzen-Analyse durchgeführt werden kann. Die folgenden Kriterien definieren den Nutzen der PdM-Anwendung.
 
 \textbf{Komplexität}
 
-Ein Kriterium ist die Komplexität des maschinellen Lernmodels. Idealerweise soll das Modell nicht nur möglichst konkrete Vorhersagen zur Zustandsänderung abgeben können, sondern auch Informationen extrahieren, die für Verbesserungen der Konstruktion verwendet werden können. Dafür ist ein Model nötig dessen Entscheidungverfahren nachvollziehbar ist. Ein zu komplexes Model kann nicht unter praktikablen Bedingungen ausgewertet werden. Aus diesem Grund ist ein einfach nachzuvollziehendes Model einem komplexeren vorzuziehen.
+Idealerweise soll das Modell nicht nur möglichst korrekte Vorhersagen über den Zustand der Umlenkrollen abgeben können, sondern auch Informationen extrahieren, die für Verbesserungen der Konstruktion verwendet werden können. Dafür ist ein Model nötig dessen Entscheidungverfahren nachvollziehbar ist. Ein zu komplexes Model kann nicht unter praktikablen Bedingungen ausgewertet werden. Aus diesem Grund ist ein einfach nachzuvollziehendes Model einem komplexeren vorzuziehen.
 
 \textbf{Qualität der Vorhersagen}
 
-Damit der Usecase einen Mehrwert gegenüber dem vorherigen Vorgehen bietet, müssen die Vorhersagen des Models ein Mindestmaß an Genauigkeit bieten können. Sowohl falsch positive; also Fehlalarme; wie auch falsch negative; unentdeckte Beschädigungen; Vorhersagen, sollten möglichst gering sein und dem jeweiligen Mindestmaß gerecht werden.
-Dabei sind falsch positive Vorhersagen geringer zu wichten als falsch negative. Falsch positve Vorhersagen haben eine unnötige Inspektion oder Austausch der Komponente zufolge, wohingegen falsch negative Vorhersagen zu einem unerwarteten Ausfall führen. Im ersten Fall entstehen Kosten durch Verschwendung; im zweiten durch die notwendige Behebung der Störung. Letzteres ist jedoch in der Regel mit vergleichsweise höheren Kosten verbunden. Deswegen wird falsch negativen Vorhersagen ein höheres Gewicht zugeschrieben als falsch positiven Vorhersagen. 
-Die Qualität der Vorhersagen ist einerseits wichtig für die Abschätzung entstehender kosten des gesamten Usecases. Das Kriterium lässt sich in Form der Sensitivität und Relevanz direkt auf die Bewertung des verwendeten Vorhersagemodels anwenden.
+Damit der Usecase einen Mehrwert gegenüber dem vorherigen Vorgehen bietet, müssen die Vorhersagen des Models ein Mindestmaß an Genauigkeit bieten können. Die Zahl falsch positiver, wie auch falsch negativer Vorhersagen (Fehlalarme bzw. unentdeckte Beschädigungen), sollten möglichst gering ausfallen. Ein Mindestmaß für beide Eigenschaften hängt von der Qualität des gegenüber stehenden PM-Usecases ab. Weil -- wie einleitend erwähnt -- dieses Kriterium keinen direkten Vergleich zwischen dem PM- und PdM-Ansatz zulässt, werden Annahmen für die Mindestmaße getroffen (s. \cref{sec:praeferenzfunktion}).
+
+Bei Qualität der Vorhersagen sind falsch positive Vorhersagen geringer zu wichten als falsch negative. Falsch positive Vorhersagen haben eine unnötige Inspektion oder Austausch der Komponente zufolge, wohingegen falsch negative Vorhersagen zu einem unerwarteten Ausfall führen. Im ersten Fall entstehen Kosten durch Verschwendung; im zweiten durch die notwendige Behebung einer Störung. Letzteres ist jedoch in der Regel mit höheren Kosten verbunden. Deswegen wird falsch negativen Vorhersagen ein höheres Gewicht zugeschrieben als falsch positiven Vorhersagen \todo{Verweis auf Paarvergleich einfügen}. 
+Das Kriterium lässt sich in Form der Sensitivität und Relevanz direkt auf die Bewertung des verwendeten Vorhersagemodelle anwenden.
+%===============================================================================
+\section{Einordnung in den Kontext der Bahntechnik}
+\label{sec:kontext_bahntechnik_von_usecase}
+Der eröffnete Usecase beruft sich auf allgemeinen Konzepten von PdM. Darüberhinaus gehend ist es sinnvoll den Usecase in den Kontext der praktischen Bahntechnik zu stellen. Insbesondere eine Diskusion über den tatsächlichen Bedarf, als auch eine Darstellungen des Praxisumfelds ist für eine Bewertung des Usecases zuträglich.
+
+Um den Usecase in den Kontext der Bahntechnik zu stellen, wurden zwei Interviews mit Sachverständigen der Deutschen Bahn und der Hochbahn Hamburg geführt. Die folgenden Abschnitte geben die wichtigsten Ergebnisse dieser Interviews wieder.
+%===============================================================================
+\subsection{Interview: Hochbahn Hamburg}
+\label{subsec:interview_hochbahn}
+\textit{Interview mit Jürgen Beck~\cite{hochbahn.23.11.2020} am {23.11.2020}}
+
+Herr Beck benannte im Allgemeinen Lager als Komponenten, deren Wartungen von Kenntnissen über den aktuellen Zustand profitieren kann. Sie gehören zu den Komponenten, die dem größten Verschleiß unterworfen sind und daher häufig zu ersetzen sind. Die Umlenkrollen sind nicht in Verbindung mit einem Wälzlager montiert, sondern stützen sich direkt an deren Aufhängung ab. Verschleiß -- bedingt durch Relativbewegung zwischen Bolzen und Rolle -- tritt also an der Umlenkrolle selbst auf. Vor diesem Hintergrund ist die Wahl, die Umlenkrollen mit einem PdM-Ansatz instand zu halten, ebenso sinnvoll wie für Wälzlager.
+
+Bezogen auf den Betrieb der Hochbahn in Hamburg wurde diskutiert welche Auswirkungen ein Ausfall der Türschließanlage hat und ob sich daraus ein Bedarf für den vorgeschlagenen Usecase ableiten lässt. Herr Beck betonte, dass eine Störung der Türanlage nur in Ausnahmefällen einen bedeutsamen Einfluss auf den Betriebsablauf hat. Für einen solchen Ausnahmefall müssten mehrere Türschließanlage an dem selben Waggon ausfallen und der Waggon dürfte nicht durch Zwischentüren mit den anhängenden Waggons verbunden sein. In einem solchen Fall ist ein sicherer Betrieb des Waggons nicht mehr möglich, weil Fluchtmöglichkeiten unzulässig beschränkt sind. Es wird nicht erwartet, dass eine derartiger Ausnahmefall eine Umstellung der Instandhaltung auf einen PdM-Ansatz rechtfertigen kann. Dies ist der auch der Grund dafür warum die Hochbahn Hamburg aktuell nicht an der Umsetzung einer PdM-Anwendung arbeitet, wie sie zu Beginn dieses Kapitels vorgeschlagen wurde.
+%===============================================================================
+\subsection{Interview: Deutsche Bahn}
+\label{subsec:interview_deutsche_bahn}
+\textit{Interview mit Dr. Jörg Lehmann~\cite{db.27.01.2021} am {27.01.2021}}
+
+
+%===============================================================================
+
 
