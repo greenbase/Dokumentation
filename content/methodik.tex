@@ -3,21 +3,39 @@
 
 WIE WERDEN DIE ANGESTREBTEN ERGEBNISSE ERARBEITET?
 
+Um eine zustandsbasierte -- und darauf aufbauend eine prädiktive -- Instandhaltung umsetzten zu können, ist es nötig Daten zu gewinnen, die diesen Zustand beschreiben, und ein Model zu erstellen, das diese auswertet. Es folgt eine Beschreibung der Methodik nach der die Ergebnisse aus \cref{ch:modelbewertung} erarbeitet werden. Die Methodik beschränkt sich auf die Entwicklung eines zustandbestimmenden Models. Eine Weiterentwicklung hin zu einem Model mit dem Ausfälle vorhergesagt werden können, war im zeitlichen Rahmen dieser Arbeit nicht möglich. Das erarbeitete Model stellt eine Voraussetzungen für die Weiterentwicklung dar. 
+
 \section{Versuchsaufbau}
 \label{sec:versuchsaufbau}
-An die Türschließanlage ist eine Druckluftzufuhr angeschlossen. Ein Druckregeler regelt den Luftdruck auf ca. \SI{550000}{\pascal} (ca. \SI{80}{psi}). Der Luftstrom wird durch ein 5/2-Wegeventil geleitet, dass magnetisch betätigt wird. Die Ventilstellung bestimmt die Bewegungsrichtung des Kolbens der Pneumatikzylinders. 
+Der in \todo{verweis auf Kapitel: Datensatz/Preparation} beschriebene Datensatz wird mit folgendem Messaufbau erfasst:
 
-Zwischen Druckregeler und Wegeventil ist außerdem ein Absperrventil eingebaut. Dieses wird ebenfalls durch einen Elektromagneten betätigt und kappt die Luftzufuhr, wenn das System zum Stillstand gebracht werden soll.
+An die Türschließanlage ist eine Druckluftzufuhr angeschlossen. Ein Druckregeler regelt den Luftdruck auf ca. \SI{550000}{\pascal} (\SI{80}{psi}). Der Luftstrom wird durch ein 5/2-Wegeventil gesteuert, dass magnetisch betätigt wird. Die Ventilstellung bestimmt die Bewegungsrichtung des Kolbens der Pneumatikzylinders. Zwischen Druckregeler und Wegeventil ist außerdem ein Absperrventil eingebaut. Dieses wird ebenfalls durch einen Elektromagneten betätigt und kappt die Luftzufuhr, wenn das System zum Stillstand gebracht werden soll.
 
-Sämtliche Ventile werden über Relais mit den jeweils nötigen elektrischen Spannungen versorgt. Die Schaltung der Relais erfolgt durch einen Mircrokontroller, der den Programmcode zur Versuchsdurchführung ausführt. Dazu gehört auch das Auslesen des installierten Beschleunigungssensor und Gyroskops. Zur Speicherung der Daten werden diese über eine serielle USB-Schnittstelle an ein angeschlosses Computersystem übertragen. Der dort, parallel laufende Programmcode decodiert das Signal des Microkontrollers und speichert die Daten in einer passend fortmatierten CSV-Datei ab.
+Sämtliche Ventile werden über Relais mit den jeweils nötigen elektrischen Spannungen versorgt. Die Schaltung der Relais -- und damit die Steuerung der Türschließanlage -- erfolgt durch einen Mikrocontroller vom Typ \todo{Modelname rausfinden}. Dieser führt den Programmcode (s. Anhang) zur Versuchsdurchführung aus.  Dazu gehört auch das Auslesen des installierten Beschleunigungssensor und Gyroskops \todo{Bild von montiertem B-Sensor einfügen}. 
 
-Um vergleichbare Datenpunkte zu erhalten wird nicht das Original der Umlenkrolle verwendet, sondern eine im Lasersinterverfahren hergestellte Nachbildung. Die Festigkeit des Materials ist für den Versuch ausreichend. Nach dem Versuch wurden bei einer Sichtprüfung keine plastischen Verforumungen festgestellt. In eine der Nachbildungen wurden Rillen längst der Bohrung vorgesehen, die Materialausbrüche als Folge von Pittings simulieren. Insgesamt weist die so künstlich beschädigte Umlenkrolle drei Rillen auf die um jeweils 40° \todo{wie viel Grad sind es?} zueinander verschoben sind.
+Die Position des Beschleunigungssensors ist so gewählt, dass keine konstruktive Änderung an der Türschließanlage vorgenommen werden muss. Abhängig von der Position des Sensors relativ zur Umlenkrolle sind unterschiedliche Messwerte zu erwarten. Da die absoluten Messwerte für die Klassifikation nicht von Bedeutung ist; sondern nur deren Unterschied in Bezug auf die Kategorien; hat die Position des Sensors jedoch keine Einfluss auf die Qualität.
 
-Mit verbauter intakter bzw. beschädigter Umlenkrolle werden jeweils 100 Datenpunkte aufgezeichnet.
+Zur Speicherung der Daten werden diese über eine serielle USB-Schnittstelle an ein angeschlossenes Computersystem übertragen. Der dort, parallel laufende Programmcode decodiert das Signal des Mikrocontrollers und speichert die Daten in einer passend formatierten CSV-Datei ab.
+
+Um vergleichbare Datenpunkte zu erhalten wird nicht das Original der Umlenkrolle verwendet, sondern mit im Lasersinterverfahren hergestellten Nachbildungen. Die Festigkeit des Materials ist für den Versuch ausreichend. Nach dem Versuch wurden bei einer Sichtprüfung keine plastischen Verformungen festgestellt. Eine der Nachbildungen wurde Rillen versehen, die längst der Bohrung verlaufen \todo{Bild eifügen von CAD model}. Die Rillen simulieren Materialausbrüche als Folge von Pittings. Insgesamt weist die so künstlich beschädigte Umlenkrolle drei Rillen auf die um jeweils 40° \todo{wie viel Grad sind es?} zueinander verschoben sind. Mit verbauter intakter bzw. beschädigter Umlenkrolle werden jeweils 100 Datenpunkte aufgezeichnet.
 
 \section{Messdaten}
 \label{sec:messdaten}
-WIE WERDEN DIE MESSDATEN AUFGENOMMEN? WARUM DIESE? WIE UND WARUM WERDEN DIE DATEN AUFBEREITET? WIE SIEHT DER FINALE DATENSATZ AUS?
+Der Datensatz ist perfekt balanciert. Das bedeutet, dass die gleiche Menge an Informationen für beide Zielkategorien zur Verfügung stehen. Dies begünstigt die Qualität des damit trainierten Models.
+
+Der Datensatz weißt \num{1441} Merkmale auf. Je \num{240} davon bilden eine Zeitreihe einer der Messwerte von Beschleunigungssensor bzw. dem Gyroskop. Insgesamt beinhaltet der Datensatz folgende Messwerte (Achsenrichtungen beziehen sich auf den Beschleunigungssensor):
+\begin{itemize}
+	\item Beschleunigung in positive X-Richtung
+	\item Beschleunigung in positive Y-Richtung
+	\item Beschleunigung in positive Z-Richtung
+	\item Rotationgeschwindigkeiten um X-Achse
+	\item Rotationgeschwindigkeiten um Y-Achse
+	\item Rotationgeschwindigkeiten um Z-Achse
+	\item Zykluszeit: Dauer von einem Öffnungs- und Schließvorgang inkl. Laufzeitpause das Programmcodes
+\end{itemize}
+
+
+ WARUM DIESE? WIE UND WARUM WERDEN DIE DATEN AUFBEREITET? WIE SIEHT DER FINALE DATENSATZ AUS?
 
 Die Klassifizierung der Datenpunkte erfolgt anhand von Messwerten, die während einer Messreihe aufgezeichnet werden. 
 
