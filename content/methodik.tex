@@ -13,13 +13,13 @@ An die Türschließanlage ist eine Druckluftzufuhr angeschlossen. Ein Druckregel
 
 Sämtliche Ventile werden über Relais mit den jeweils nötigen elektrischen Spannungen versorgt. Die Schaltung der Relais -- und damit die Steuerung der Türschließanlage -- erfolgt durch einen Mikrocontroller vom Typ \todo{Modelname rausfinden}. Dieser führt den Programmcode (s. Anhang) zur Versuchsdurchführung aus.  Dazu gehört auch das Auslesen des installierten Beschleunigungssensor und Gyroskops \todo{Bild von montiertem B-Sensor einfügen}. 
 
-Die Position des Beschleunigungssensors ist so gewählt, dass keine konstruktive Änderung an der Türschließanlage vorgenommen werden muss. Abhängig von der Position des Sensors relativ zur Umlenkrolle sind unterschiedliche Messwerte zu erwarten. Da die absoluten Messwerte für die Klassifikation nicht von Bedeutung ist; sondern nur deren Unterschied in Bezug auf die Kategorien; hat die Position des Sensors jedoch keine Einfluss auf die Qualität.
+Die Position des Beschleunigungssensors ist so gewählt, dass keine konstruktive Änderung an der Türschließanlage vorgenommen werden muss. Abhängig von der Position des Sensors relativ zur Umlenkrolle sind unterschiedliche Messwerte zu erwarten. Da die absoluten Messwerte für die Klassifikation nicht von Bedeutung sind; sondern nur deren Unterschied in Bezug auf die Kategorien; hat die Position des Sensors jedoch keine Einfluss auf die Qualität.
 
 Zur Speicherung der Daten werden diese über eine serielle USB-Schnittstelle an ein angeschlossenes Computersystem übertragen. Der dort, parallel laufende Programmcode decodiert das Signal des Mikrocontrollers und speichert die Daten in einer passend formatierten CSV-Datei ab.
 
 Um vergleichbare Datenpunkte zu erhalten wird nicht das Original der Umlenkrolle verwendet, sondern mit im Lasersinterverfahren hergestellten Nachbildungen. Die Festigkeit des Materials ist für den Versuch ausreichend. Nach dem Versuch wurden bei einer Sichtprüfung keine plastischen Verformungen festgestellt. Eine der Nachbildungen wurde Rillen versehen, die längst der Bohrung verlaufen \todo{Bild eifügen von CAD model}. Die Rillen simulieren Materialausbrüche als Folge von Pittings. Insgesamt weist die so künstlich beschädigte Umlenkrolle drei Rillen auf die um jeweils 40° \todo{wie viel Grad sind es?} zueinander verschoben sind. Mit verbauter intakter bzw. beschädigter Umlenkrolle werden jeweils 100 Datenpunkte aufgezeichnet.
 
-\section{Messdaten}
+\section{Messwerte und Datenaufbereitung}
 \label{sec:messdaten}
 Der Datensatz ist perfekt balanciert. Das bedeutet, dass die gleiche Menge an Informationen für beide Zielkategorien zur Verfügung stehen. Dies begünstigt die Qualität des damit trainierten Models.
 
@@ -31,26 +31,21 @@ Der Datensatz weißt \num{1441} Merkmale auf. Je \num{240} davon bilden eine Zei
 	\item Rotationgeschwindigkeiten um X-Achse
 	\item Rotationgeschwindigkeiten um Y-Achse
 	\item Rotationgeschwindigkeiten um Z-Achse
-	\item Zykluszeit: Dauer von einem Öffnungs- und Schließvorgang inkl. Laufzeitpause das Programmcodes
+	\item Zykluszeit: Dauer von einem Öffnungs- und Schließvorgang (inkl. Laufzeitpause das Programmcodes)
 \end{itemize}
 
+Die Messgrößen der Beschleunigungen und der Rotationgeschwindigkeiten wurden ausgewählt, da sie das Schwingungsprofil der Anlage beschreiben. Es wird erwartet, dass sich dieses mit dem Grad der Beschädigung der Umlenkrollen ändert. Es kann also erwartet werden, dass die gewählten Messgrößen aussagekräftig über den Zustand der Umlenkrollen sind. Voraussetzung ist das, dass eine andere Ursache für die Änderung des Vibrationsprofils nicht in Frage kommt. Diese Voraussetzung ist hier geben, weil die Umlenkrolle die einzige Variable im Versuchsaufbau ist.
 
- WARUM DIESE? WIE UND WARUM WERDEN DIE DATEN AUFBEREITET? WIE SIEHT DER FINALE DATENSATZ AUS?
+Für die Modelentwicklung ist es sinnvoll die Rohdaten in einem beschreibenden Datensatz zusammen zu fassen. Die erstellten Modelle basieren auf Entscheidungsbäumen mit maximal sechs Knoten je Ast (vgl. \cref{ch:modelauswahl} bzw. \cref{ch:modelierung}). Das bedeutet, dass jeder Entscheidungsbaum nur einen sehr kleinen Anteil der Merkmale des Rohdatensatzes verwenden kann. Dies kann eine ungewünschte negative Auswirkung auf die Entwicklung des Models haben. Es besteht die Möglichkeit, dass ein Model nur Merkmale berücksichtigt, die zu dem selben Messwert gehören, weil diese zufällig eine höhe Aussagekraft für den Datensatz haben, aber nicht zwangsläufig für die Population gültig sind. Informationsgehalt der anderen Messwerte geht so verloren. Mit einem Datensatz, der die Informationen der Zeitreihen in statistischen Parametern zusammenfasst, kann eine größerer Anteil dieser Merkmale verwendet werden und so mehr Informationen des Rohdatensatzes genutzt werden. Die Entscheidungsbäume der erstellten Modelle besitzen maximal \num{32} Knoten (s.~\cref{ch:modelierung}). Sie können alle Merkmale des beschreibenden Datensatzes nutzen, der insgesamt über \num{25} Merkmale verfügt.
 
-Die Klassifizierung der Datenpunkte erfolgt anhand von Messwerten, die während einer Messreihe aufgezeichnet werden. 
-
-Es wird die Dauer der Zyklen aufgenommen. Das ist die Zeit von der Initierung des Öffnungsvorgangs bis zu dem Zeitpunkt andem der Magnetschalter der Anlage anschlägt und damit eine geschlossene Tür signalisiert. Bei verschließenen Bauteilen wird erwartet, dass die Verlustleistungen zunehmen. Gleichzeitig bleibt die Leistung des pneumatischen Antriebs unverändert. Aus diesem Grund wird erwartet, dass sich die Beschädigungen an den Umlenkrollen auch in den Zykluszeit wiederspiegeln.
-
-Mit einem am Rahmen der Anlage befestigtem Gyroskop und Beschleunigungssensor, werden die Beschleunigungen und Rotationgeschwindigkeiten entlang der Raumrichtungen aufgezeichnet. Der Sensor ist schräg montiert, sodass die Werte nicht direkt mit der Gravitationbeschleunigung $g$ verglichen werden können. Da dies allerdings nicht von Bedeutung ist für die Klassikation der Datenpunkte, ist die Ausrichtung des Sensors für die Auswertung nicht relevant. 
-Das gleiche gilt für die Rotationgeschwindigkeiten; entscheidend sind die statischischen Parameter der Messwertpopulationen.
-
-Die Messgrößen der Beschleunigungen und der Rotationgeschwindigkeiten wurden ausgewählt, da sie das Schwingungsprofil der Anlage beschreiben. Es wird erwartet, dass sich dieses mit dem Grad der Beschädigung der Umlenkrollen ändert. Es kann also erwartet werden, dass die gewählten Messgrößen aussagekräftig über den Zustand der Umlenkrollen sind.
-
-Der Rohdatensatz ist perfekt balanciert. 
-
-Es ist zu erwarten, dass sich mit zunehmender Beschädigung der Umlenkrolle dessen Vibrationsprofil ändert. Daher werden die Beschleunigungen entlang der drei Raumrichtungen, sowie die Winkelgeschwindigkeiten gemessen.
-
-Zusätzlich wird die Zeit aufgenohmen, die benötigt wird, um eine Öffen/Schleißen-Zyklus zu beenden. Es wird erwartet, das sich die Zyklusdauer verlängert, wenn sich die Reibverluste aufgrund von Verschleiß ansteigen.
+Aus dem genannten Grund wird ein beschreibender Datensatz aus den Rohdaten abgeleitet. Der Datensatz beschreibt die Messungen anhand folgender Parameter (je Messgröße).
+\begin{itemize}
+	\item Minimalwert
+	\item Maximalwert
+	\item Median
+	\item Standardabweichung
+	\item Zykluszeit
+\end{itemize}
 
 \section{Modelauswahl}
 \label{sec:modelauswahl}
