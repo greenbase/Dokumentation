@@ -1,13 +1,10 @@
 \chapter{Methodik}
 \label{ch:methodik}
-
-WIE WERDEN DIE ANGESTREBTEN ERGEBNISSE ERARBEITET?
-
 Um eine zustandsbasierte -- und darauf aufbauend eine prädiktive -- Instandhaltung umsetzten zu können, ist es nötig Daten zu gewinnen, die diesen Zustand beschreiben, und ein Model zu erstellen, das diese auswertet. Es folgt eine Beschreibung der Methodik nach der die Ergebnisse aus \cref{ch:modelbewertung} erarbeitet werden. Die Methodik beschränkt sich auf die Entwicklung eines zustandbestimmenden Models. Eine Weiterentwicklung hin zu einem Model mit dem Ausfälle vorhergesagt werden können, war im zeitlichen Rahmen dieser Arbeit nicht möglich. Das erarbeitete Model stellt eine Voraussetzungen für die Weiterentwicklung dar. 
-
+%===============================================================================
 \section{Versuchsaufbau}
 \label{sec:versuchsaufbau}
-Der in \todo{verweis auf Kapitel: Datensatz/Preparation} beschriebene Datensatz wird mit folgendem Messaufbau erfasst:
+Der in \cref{sec:messdaten} beschriebene Datensatz wird mit folgendem Messaufbau erfasst:
 
 An die Türschließanlage ist eine Druckluftzufuhr angeschlossen. Ein Druckregeler regelt den Luftdruck auf ca. \SI{550000}{\pascal} (\SI{80}{psi}). Der Luftstrom wird durch ein 5/2-Wegeventil gesteuert, dass magnetisch betätigt wird. Die Ventilstellung bestimmt die Bewegungsrichtung des Kolbens der Pneumatikzylinders. Zwischen Druckregeler und Wegeventil ist außerdem ein Absperrventil eingebaut. Dieses wird ebenfalls durch einen Elektromagneten betätigt und kappt die Luftzufuhr, wenn das System zum Stillstand gebracht werden soll.
 
@@ -18,11 +15,9 @@ Die Position des Beschleunigungssensors ist so gewählt, dass keine konstruktive
 Zur Speicherung der Daten werden diese über eine serielle USB-Schnittstelle an ein angeschlossenes Computersystem übertragen. Der dort, parallel laufende Programmcode decodiert das Signal des Mikrocontrollers und speichert die Daten in einer passend formatierten CSV-Datei ab.
 
 Um vergleichbare Datenpunkte zu erhalten wird nicht das Original der Umlenkrolle verwendet, sondern mit im Lasersinterverfahren hergestellten Nachbildungen. Die Festigkeit des Materials ist für den Versuch ausreichend. Nach dem Versuch wurden bei einer Sichtprüfung keine plastischen Verformungen festgestellt. Eine der Nachbildungen wurde Rillen versehen, die längst der Bohrung verlaufen \todo{Bild eifügen von CAD model}. Die Rillen simulieren Materialausbrüche als Folge von Pittings. Insgesamt weist die so künstlich beschädigte Umlenkrolle drei Rillen auf die um jeweils 40° \todo{wie viel Grad sind es?} zueinander verschoben sind. Mit verbauter intakter bzw. beschädigter Umlenkrolle werden jeweils 100 Datenpunkte aufgezeichnet.
-
+%===============================================================================
 \section{Messwerte und Datenaufbereitung}
 \label{sec:messdaten}
-Der Datensatz ist perfekt balanciert. Das bedeutet, dass die gleiche Menge an Informationen für beide Zielkategorien zur Verfügung stehen. Dies begünstigt die Qualität des damit trainierten Models.
-
 Der Datensatz weißt \num{1441} Merkmale auf. Je \num{240} davon bilden eine Zeitreihe einer der Messwerte von Beschleunigungssensor bzw. dem Gyroskop. Insgesamt beinhaltet der Datensatz folgende Messwerte (Achsenrichtungen beziehen sich auf den Beschleunigungssensor):
 \begin{itemize}
 	\item Beschleunigung in positive X-Richtung
@@ -46,61 +41,45 @@ Aus dem genannten Grund wird ein beschreibender Datensatz aus den Rohdaten abgel
 	\item Standardabweichung
 	\item Zykluszeit
 \end{itemize}
-
+%===============================================================================
 \section{Modelauswahl}
 \label{sec:modelauswahl}
-WELCHE MODELTYPEN EIGNEN SICH GRUNDSÄTZLICH, UM FÜR DEN USECASE VERWENDET ZU WERDEN? WELCHE NICHT UND WARUM? 
+Für die Modelentwicklung können aus Zeitgründen nicht alle in Frage kommenden Modeltypen berücksichtigt werden. Aus der Menge der Klassifikationsmodelle kann eine sinnvolle Vorauswahl getroffen werden. So kann die Anzahl der Modelle, die tatsächlich entwickelt und verglichen werden müssen, auf ein handhabbares Maß reduziert werden.
 
-Grundsätzlich eignet sich jedes Klassifikatormodel für die vorliegende Aufgabe. Darüber hinaus geben sich aus der Natur der Problemstellung weitere Anforderungen an die Modelle:
+Die Vorauswahl geeigneter Modeltypen richtet sich nach folgenden Anforderungen. Die Anforderungen sind von den Erfolgskriterien Komplexität und Modelqualität des Usecases abgeleitet (vgl.~\cref{sec:erfolgskriterien_usecase}).
 
 \begin{itemize}
-    \item Das Model muss die Ergebnisse in Form einer Konfusionmatrix wiedergeben können, damit Sensitivität und Relevanz bestimmt werden können. \todo{Prüfe: geben nicht eh alle Modelle eine Konfusionsmatrix aus?} Diese werden für die Bewertung der Modelle benötigt; s. \todo{Füge Verweis auf Präferenzfunktion ein}
-    \item Das Model muss prinzipiell nachvollziehbar sein. D.h. das Sachverständige in der Lage seinen müssen die Ergebnisse des Modell auf Logikfehler hin untersuchen zu können. \todo{Verweis auf diesen Punkt, wenn begründet wird warum NN und SVM´s rausfliegen}
+    \item Für den vorhandenen Datensatz muss eine hohe Modelqualität erwartet werden können. Die Modelqualität wird für den Usecase durch die Sensitivität und Relevanz der Klassifikation bestimmt.
+    \item Das Model muss prinzipiell nachvollziehbar sein. D.h. es muss möglich sein die Ergebnisse des Modell auf Logikfehler hin untersuchen zu können, um zufällige Abweichungen der Ergebnisse identifizieren zu können. Gleichzeitig muss die Komplexität quantifizierbar sein, damit ein Vergleich möglich ist.
 \end{itemize}
 
-Unter den genannten Voraussetzungen kommen Modelle folgender Arten in Frage:
+Unter den genannten Voraussetzungen kommen diese Modeltypen in Frage:
 \begin{itemize}
     \item Logistic Regression
-    \item Bäume
+    \item Entscheidungsbäume
     \item k-nearest neighbors
     \item Naive Bayes
 \end{itemize}
 
-Modeltypen, die von ihrem Funktionsprinzip her, keine Beurteilung des Entscheidungsprozesses zulassen, sind erfüllen die Grundvorsetzung für das Komplexitäts-Kriterium nicht und scheiden damit aus.
+Modeltypen, die von ihrem Funktionsprinzip her keine Beurteilung des Entscheidungsprozesses zulassen, sind erfüllen die Grundvorsetzung für das Komplexitäts-Kriterium nicht. \enquote{Support Vector Machines} und \enquote{neuronale Netze} scheiden daher aus.
 
-Da der Datensatz im Vergleich zu anderen Machinelearningproblemen wenige Features beinhaltet \todo{spezifizieren wie viele Features} können Modelle die auf Entscheidungsbäumen basieren gut dargestellt werden. Außerdem lassen sich die Entscheidungen in den einzelnen Blättern genau nachvollziehen und bewerten. Aus diesen beiden Gründen werden für die Modellentwicklung zunächst nur Entscheidungsbäume herangezogen. 
+Für die Modelentwicklung werden nur Modelle verwendet, die auf Entscheidungsbäumen basieren. Gegenüber den anderen Modeltypen sind sie günstig zu visualisieren und lassen auf dicht besetzten Datensätzen gute Modelqualitäten erwarten. Außerdem ist eine weniger aufwendige Aufbereitung der Daten nötig, weil die Daten nicht skaliert werden müssen~\cite[S.~84--85]{Muller.2017}
 
+Die Modelentwicklung wird auf die Vorauswahl hin weiter auf die drei Algorithmen \textit{einfacher Entscheidungsbaum}, \textit{Random Forest} und \textit{Gradient Boosted Trees} begrenzte (s.~\cref{sec:algorithmen_mit_entscheidungsbaum})
+%===============================================================================
 \section{Bewertungskriterien}
 \label{sec:bewertungskriterien}
-WONACH WIRD BEWERTET WELCHES MODEL AM BESTEN FÜR DEN USECASE GEEIGNET IST? WARUM SIND DIESE KRITERIEN FÜR DEN USECASE RELEVANT?
+Aus der Vorauswahl an Algorithmen soll das Model bestimmt werden, das die Anforderungen an den Usecase (s.~\cref{sec:erfolgskriterien_usecase}) best möglich erfüllt. Es ist deswegen notwendig den Erfüllungsgrad der Anforderungen durch die einzelnen Modelle quantifizieren zu können. Die Bewertung der Modelle erfolgt in zwei Schritten.
 
-Tabelle \todo{Verweis auf Tabelle einfügen} zeigt die einzelnen Bewertungskriterien der Modelle. Im Abschnitt \todo{Verweis auf abschnitt Präferenzfunktion} werden diese zu einem einzelnen Wert zusammengefasst. 
+Erstens werden Bewertungskriterien definiert, die verschiedenen Modeleigenschaften einen konkreten Wert zwischen \num{0} und \num{1} zuweisen. Im zweiten Schritt werden die Bewertungskriterien zu einer Präferenzfunktion zusammengefasst. Die Präferenzfunktion addiert die gewichteten Kriterienwerte auf. So wird für ein Model ein Gesamtscore ermittelt, der ebenfalls Werte zwischen \num{0} und \num{1} annehmen kann. Ein Wert von \num{1} entspricht einer idealen Erfüllung der Anforderungen.
 
-An dieser Stelle sollen die Bewertungskriterien genauer beschrieben, ihre Wertefunktionen und Limits begründet und ihre Bedeutung für die Modelqualität dargestellt werden.
+\cref{tab:bewertungskriterien_fuer_praeferenzfunktion} zeigt die Bewertungskriterien und die zugeordneten Kriterienwerte. Die Gewichtungen der Kriterien wurden durch einen Paarvergleich bestimmt; siehe \cref{tab:paarvergleich}. Eine \num{1} bedeutet dabei, dass das Kriterium weniger wichtig ist; eine \num{2}, dass es wichtiger ist als das Vergleichskriterium.
 
-Die Komplexität bezieht sich auf die Anforderung, dass das Model nachvollziehbar sein muss. Wie in \cref{sec:modelauswahl} bereits erwähnt darf das Model von seiner Natur her keine Blackbox sein, um eine Nachvollziehbarkeit grundsätzlich möglich zu machen. Für die Komplexität gilt, dass sie so gering wie möglich sein sollte und dennoch die Dataminingerfolgskriterien erreicht werden können. Quantifiziert wird die Komplexität anhand der von Model verwendeten Merkmale. 
+Die Komplexität bezieht sich auf die Anforderung, dass das Model nachvollziehbar sein muss. Für die Komplexität gilt, dass sie so gering wie möglich sein sollte und dennoch die Erfolgskriterien des Usecases (\cref{sec:erfolgskriterien_usecase}) erreicht werden können. Quantifiziert wird die Komplexität durch die Anzahl der Baumebenen (Tiefe) und die Anzahl der Bäume, die zusammen ein Model bilden.
 
-Die Sensitivität beschreibt wie viele Datenpunkte der positiven Kategorie als solche erkannt wurden. Im Kontext der vorausschauende Instandhaltung bedeutet die Sensitivität welcher Anteil an bevorstehenden Ausfällen vermieden werden kann. Ihr Betrag sollte also möglichst groß sein. Zwar ist nicht bekannt wie viele Ausfälle durch präventive Instandhaltung verhindert werden könnten, aber es wird die Bedingung gestellt, dass mindestens \SI{95}{\percent} aller Ausfälle richtig vorhergesagt werden können. Diese Wahl ist sinnvoll, weil ungeplante Ausfälle in der Regel deutlich höher Kosten nach sich ziehen, als Fehlalarme.
+Die Sensitivität beschreibt wie viele Datenpunkte der positiven Kategorie als solche erkannt wurden. Im Kontext der vorausschauende Instandhaltung bedeutet die Sensitivität welcher Anteil an bevorstehenden Ausfällen vermieden werden kann. Ihr Betrag sollte also möglichst groß sein. Zwar ist nicht bekannt wie viele Ausfälle durch präventive Instandhaltung verhindert werden könnten, aber es wird die Bedingung gestellt, dass mindestens \SI{95}{\percent} aller Ausfälle richtig vorhergesagt werden können. In der Regel ziehen ungeplante Ausfälle deutlich höher Kosten nach sich als Fehlalarme.
 
 Die Relevanz beschreibt wie viele Datenpunkte tatsächlich der positiven Kategorie angehören von denen die als solche eingestuft worden sind. Eine niedrige Relevanz bedeutet demnach eine große Anzahl Fehlalarme. Da Fehlalarme jedoch verhältnismäßig kleine Kosten -- im Vergleich zu ungeplanten Ausfällen -- nach sich ziehen, kann auch eine niedrige Relevanz toleriert werden.
-
-
-\section{Präferenzfunktion}
-\label{sec:praeferenzfunktion}
-WELCHES KRITERIUM IST WIE WICHTIG? WIE WIRD DER NUTZENSCORE BERECHNET?
-
-Um die Modelle einfach mit ein ander vergleichen zu können, wird eine Präferenzfunktion aufgestellt. Diese erlaubt es einem Modell anhand relevanter Kriterien einen \textit{Kosten-Nutzen-Score} zuzuweisen. Die Präferenzfunktion lautet:
-\begin{center}
-    Nutzenscore=\num{0,22}$\cdot$Komplexität + \num{0,44}$\cdot$Sensitivität + \num{0,33}$\cdot$Relevanz
-\end{center}
-
-Die einzelnen Variablen der Funktion stellen die Bewertungskriterien dar. Ihnen wird jeweils ein Wert zwischen 0 und 1 zugewiesen; entsprechend \todo{Tabelle für Bewertungskriterien verweisen}.
-
-Die Bewertungskriterien sind mit einem Gewichtungsfaktor versehen. Die Gewichtungen spiegeln die Ergebnisse eines Paarvergleichs der Kriterien wieder. \todo{Paarvergleichstabelle erstellen und in Anhang einfügen}
-
-Der Nutzenscore kann einen beliebigen Wert zwischen 0 und 1 annehmen. Das Model, das den höchsten Nutzenscore erzielt, ist für den potentiellen PDM-Anwendungsfall zu bevorzugen.
-
-Tabelle \todo{Refernez einfügen} zeigt die gewählt Zuordnung der Werte für die Summanden der Präferenzfunktion sowie derer Gewichtungen. Die Gewichtungen wurden durch einen Paarvergleich ermittelt.
 
 \begin{table}[ht]
 	\raggedright
@@ -126,10 +105,37 @@ Tabelle \todo{Refernez einfügen} zeigt die gewählt Zuordnung der Werte für di
         Relevanz & xx & \num{0.33} & Eine hohe Relevanz bedeutet, dass wenige falsch positive Vorhersagen getroffen werden. Entsprechend niedrig fällt die Anzahl unnötiger Inspektionen für den PDM-Usecase aus.\\
 		\hline
 	\end{tabularx}
-	\caption{Metriken für Präferenzfunktion}%muss unten sein, sonst caption über Tab
-	\label{tab:metriken_praeferenzfunktion}	%zum referenzieren
+	\caption{Bewertungskriterien für Präferenzfunktion}%muss unten sein, sonst caption über Tab
+	\label{tab:bewertungskriterien_fuer_praeferenzfunktion}	%zum referenzieren
 \end{table}
 
+\begin{table}[h]
+	\begin{tabularx}{\textwidth}{|l|ccc|c|r|}
+		\hline
+		& \rotatebox{90}{Komplexität} & \rotatebox{90}{Sensitivität} & \rotatebox{90}{Relevanz} & \rotatebox{90}{Summe} & Gewicht\\
+		\hline
+		Komplexität & -- & 1 & 1 & 2 & 22\%\\
+		Sensitivität & 2 & -- & 2 & 4 & 44\%\\
+		Relevanz & 2 & 1 & -- & 3 & 33\%\\
+		\hline
+		\hline
+		Gesamt & \multicolumn{2}{c}{} & & 9 & $\approx$ 100\%\\
+		\hline
+	\end{tabularx}
+	\caption{Paarvergleich zur Bestimmung der Gewichtungen der Bewertungskriterien}
+	\label{tab:paarvergleich}
+\end{table}
+
+Mit den Werten aus \cref{tab:bewertungskriterien_fuer_praeferenzfunktion} wird die Präferenzfunktion aufgestellt:
+
+\begin{equation*}
+	\text{Gesamtscore}=0.165\cdot t
+	0.055\cdot a+0.44\cdot s+0.33\cdot r
+	\label{eq:praeferenzfunktion}
+\end{equation*}
+
+Dabei ist $t$ der Wert der dem Bewertungskriterium \textit{Tiefe} zugeordnet wird. Entsprechend ist $a$ der Wert zur Baumanzahl, $s$ der Wert zur Sensitivität und $r$ der Wert zur Relevanz (vgl. \cref{tab:bewertungskriterien_fuer_praeferenzfunktion}).
+%===============================================================================
 \section{Modelierung}
 \label{sec:modelierung}
 WIE WERDEN DIE MODELE ERSTELLT? WIESO IST DIE PARAMETERSTUDIE IN DER FORM SINNVOLL? WELCHE EIGENSCHAFTEN DER MODELLE WERDEN BEI DER MODELLIERUNG DER MODELLE BERÜCKSICHTIGT? 
@@ -165,3 +171,4 @@ Um die Modelle während der Gittersuche zu evaluieren, um die beste Kombination 
 Als Scoringparameter der Gittersuche wurde die Sensitivität gewählt. Diese hat in der Präferenzfunktion das größte Gewicht. 
 
 Die Parameterstudie hat für den GBT eine Baumanzahl von 95 ergeben. Das Model war damit sehr komplex verglichen mit den anderen. Gleichzeitig war die Sensitivität bei 1. Daher wird vermutet, dass Overfitting vorlag. Um dem entgegen zu wurde der Wertebereich der Bäumeanzahl auf 10 bis 30 reduziert. Das neue GBT-Model war mit 26 Bäumen deutlich simpler und erzielte dennoch zufrieden stellende, aber nicht länger perfekte Scores. Es könnte daraus geschlossen werden, dass das ursprüngliche Model tatsächlich Overfitting aufwies.
+%===============================================================================
