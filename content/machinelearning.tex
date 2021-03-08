@@ -15,7 +15,7 @@ F: Was hat ML mit PdM zutun?
 Im Zuge der Digitalisierung von Produktionsprozessen stehen zunehmend größere Datenmengen zur Verfügung. Aus dieser Entwicklung folgt, dass Herausforderungen der Prozessoptimierung vom Datamining- und Machine Learning-Ansätzen profitieren können.~\cite[S.~35]{Schafer.25.09.201927.09.2019}
 
 Die Einführung einer PdM-Anwendung anstelle einer anderen Instandhaltungsstrategie stellt einen Optimierungsprozess dar. Sowohl zur Klärung der Frage, ob die PdM-Anwendung eine Verbesserung darstellt, und für den Gebrauch der Anwendung müssen Modelle entwickelt werden, die die Verarbeitung der Anwendungsdaten ermöglichen. Maschinelle Lernalgorithmen sind dafür nützliche Tools, weil sie diese Prozesse vereinfachen (s.o.).
-
+%===============================================================================
 \section{Machine Learning Algorithmen mit Entscheidungsbäumen}
 \label{sec:algorithmen_mit_entscheidungsbaum}
 F: Was sind Entscheidungsbäume?
@@ -39,7 +39,7 @@ F: welche Modelle gibt es? welche sind interesant hier?
 Es gibt verschiedenen Arten von ML-Modellen, die auf Entscheidungsbäumen basieren. Sie unterscheiden sich sowohl in der Strategie zum Aufbau der Bäume; der Anzahl der Bäume; als auch der Ermittlung des Gesamtergebnisses für einen Datenpunkt. 
 
 Im weiteren Verlauf dieser Arbeit werden drei verschiedene maschinelle Lernalgorithmen angewendet, die auf Entscheidungsbäumen basieren. In den folgenden Abschnitten werden wichtige Eigenschaften dieser Modeltypen beleuchtet. Alle drei Modeltypen sind für die Programmiersprache \textit{Python} in dem Packet \textit{scikit-learn} implementiert.
-
+%===============================================================================
 \subsection{Einfache Entscheidungsbäume}
 \label{sec:einfache_entscheidungsbaeume}
 F: was ist das?
@@ -48,8 +48,8 @@ Der einfachste Modeltyp, der auf Entscheidungsbäumen beruht, ist ein einzelner 
 
 Ein einzelner Entscheidungsbaum lässt sich praktikabel visualisieren; vorausgesetzt seine Knotenanzahl ist überschaubar. Das Verfahren nach dem der Baum Entscheidungen triff, kann so durch Sachverständige nachvollzogen und beurteilt werden. Dies ist der entscheidende Vorteil gegenüber anderen Modelarten, wie dem Random Forest oder den Gradient Boosted Trees.
 
-Nachteil von Entscheidungsbäumen ist das sie zu Overfitting neigen. Selbst durch die Verwendung von \textit{Präpruning}-Parametern -- wie einer maximalen Baumtiefe -- lässt sich Overfitting nicht gänzlich verhindern. \cite[S.~80]{Muller.2017}
-
+Nachteil von Entscheidungsbäumen ist das sie zu Overfitting neigen~\cite[S.~80]{Muller.2017}. Selbst durch die Verwendung von \textit{Präpruning}-Parametern -- wie einer maximalen Baumtiefe -- lässt sich Overfitting nicht gänzlich verhindern~\cite[S.~80]{Muller.2017}. Dennoch ist es laut Müller~\cite[S.~79]{Muller.2017} in der Regel ausreichend nur einen Parameter für Präpruning zu setzten.
+%===============================================================================
 \subsection{Random Forests}
 \label{sec:random_forest}
 F: Was ist das?
@@ -60,6 +60,8 @@ F: was sind vorteile - und nachteile?
 
 Durch die große Anzahl an Bäumen sind Random Forests wesentlich komplexer als einfache Entscheidungsbäume. Bei geeigneten Parametereinstellungen lassen sich so bessere Ergebnisse erzielen als bei einfachen Entscheidungsbäumen. Da zum Aufbau eines Random Forest aber viele Entscheidungsbäume erstellt werden müssen ist der Rechenaufwand relativ hoch~\cite[S.~84]{Muller.2017}. Laut Müller~\cite[S.~85]{Muller.2017} sind Random Forests außerdem nicht für dünn besetzte Datensätze geeignet.
 
+Nach Müller~\cite[S.~85]{Muller.2017} sind die wichtigsten Parameter eines Random Forest die Anzahl der Klassifikatoren, die Anzahl maximal zu verwendender Merkmale und ein Parameter zum Prä-Pruning.
+%===============================================================================
 \subsection{Gradient Boosted Trees}
 \label{sec:gradient_boosted_trees}
 F: was ist das?
@@ -68,6 +70,7 @@ Gradient Boosted Trees (GBT) ist, wie der Random Forest, eine Ensembles-Methode.
 
 F: was sind vorteile - und nachteile?
 
-Laut Müller~\cite{Muller.2017} sind die wichtigsten Parameter von GBT die Lernrate und die Anzahl der Bäume. Weiterhin gewähre eine höhere Lernrate dem GBT die Möglichkeit mit jedem Baum die Fehler des Vorherigen stärker zu korrigieren. Je größer die Baumanzahl ist desto häufiger kann der Korrekturvorgang wiederholt werden, um das Ergebnis zu verbessern. Beide Parameter beeinflussen die Komplexität des Models. Müller~\cite{Muller.2017} weißt auch darauf hin, dass eine höhere Baumanzahl nicht zwangsläufig zu einer Verbesserung des Models führt, wie beim Random Forest. GBT neige bei großen Anzahlen an Bäumen zu Overfitting. Für den Fall, dass Overfitting in Zusammenhang mit einer hohen Baumanzahl vermutet wird, sollte daher die Anzahl reduziert werden, bis vertrauenswürdigere Ergebnisse beobachtet werden können.
+Laut Müller~\cite{Muller.2017} sind die wichtigsten Parameter von GBT die Lernrate und die Anzahl der Bäume. Demnach gewähre eine höhere Lernrate dem GBT die Möglichkeit mit jedem Baum die Fehler des Vorherigen stärker zu korrigieren. Je größer die Baumanzahl ist desto häufiger kann der Korrekturvorgang wiederholt werden, um das Ergebnis zu verbessern. Beide Parameter beeinflussen die Komplexität des Models. Müller~\cite{Muller.2017} weißt auch darauf hin, dass eine höhere Baumanzahl nicht zwangsläufig zu einer Verbesserung des Models führt, wie beim Random Forest. GBT neige bei großen Anzahlen an Bäumen zu Overfitting. Für den Fall, dass Overfitting in Zusammenhang mit einer hohen Baumanzahl vermutet wird, sollte daher die Anzahl reduziert werden, bis vertrauenswürdigere Ergebnisse beobachtet werden können.
 
 Als relevanteste Vorteilen von GBT nennt Müller~\cite{Muller.2017}, dass derartige Modelle in vielen Fällen hohe Genauigkeiten im Vergleich zu anderen Modeltypen liefern; vorausgesetzt die Parameter sind geeignet eingestellt.
+%===============================================================================
