@@ -150,4 +150,6 @@ Für die Modellierung der gewählten Algorithmen (s.~\cref{sec:modelauswahl}) wi
 Die Modelle, die im Laufe der Gittersuche erstellt werden, werden mit einer 10-fachen Kreuzvalidierung ausgewertet und der Vergleich der Modelle erfolgt währenddessen anhand der erreichten Sensitivität. Nach \cref{sec:bewertungskriterien} fällt der Sensitivität nämlich die größte Gewichtung für die Modellbewertung zu.
 
 Der Aufbau von Entscheidungsbäumen ist Pseudo-Zufallszahlen abhängig. Um reproduzierbare Modelle zu entwickeln, wird für die Generierung dieser Zahlen ein Startwert von \num{42} verwendet.
+
+Während der Parameterstudie des GBT wurde ein Overfit des Models vermutet, da die Sensitivität bei einem Wert von \num{1} lag und die Baumanzahl mit \num{95} deutlich größer war als die des Random Forest. Um dem entgegen zu wirken, wurde für den GBT im Anschluss an die ursprüngliche Gittersuche die Baumanzahl soweit reduziert bis ein realistischer Sensitivitätswert vorlag.
 %===============================================================================
