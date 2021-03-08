@@ -1,10 +1,6 @@
 \chapter{Modelbewertung und Diskussion}
 \label{ch:modelbewertung}
-WAS SIND DIE ERGEBNISSE DER MODELLIERUNG? WIE ERFÜLLEN DIE MODELLE DIE BEWERTUNGSKRITERIEN? WELCHES MODEL IST AM BESTEN FÜR DEN USECASE GEEIGNET UND WARUM? WIE SIND DIE ERGEBNISSE DER MODELLE ZU INTERPRETIEREN? WELCHE SCHWACHSTELLEN BIETET DIE GEWÄHLTE BETRACHTUNG?
-
-Der Datensatz ist perfekt balanciert. Demnach wäre die Genauigkeit eine geeignete Metrik um die Qualität der Modelle zu beschreiben~\cite[S.~282]{Muller.2017}. Da positiver und negativer Kategorie (unnötige Inspektionen bzw. Ausfälle) aber unterschiedliche Gewichtungen zufallen (vgl. \cref{sec:erfolgskriterien_usecase}) sind die Sensitivität und Relevanz bessere Metriken zur Bestimmung der Modelqualität.
-
-\cref{tab:metrikwerte_der_trainierten_modelle} zeigt die Parameter der besten Modelle jedes Typs und deren Sensitivität und Relevanz. Zusätzlich ist der Gesamtscore aufgeführt der sich aus der Präferenzfunktion ergibt.
+\cref{tab:metrikwerte_der_trainierten_modelle} zeigt die Ergebnisse der Gittersuche (s.~\cref{sec:modellierung}); es werden die besten Werte der Parametergitter aufgeführt, sowie die erreichten Sensitivitäten und Relevanzen. Die unterste Zeile führt den Gesamtscore für das jeweilige Model auf.
 
 \begin{table}[ht]
 	\raggedright
@@ -19,23 +15,23 @@ Der Datensatz ist perfekt balanciert. Demnach wäre die Genauigkeit eine geeigne
 		Relevanz & \num{0.91} & \num{0.85} & \num{0.91}\\
 		\hline
 		\hline
-		Nutzen & \num{0.77} & \num{1} & \num{0.87}\\
+		Gesamtscore & \num{0.77} & \num{1} & \num{0.87}\\
 		\hline
 	\end{tabularx}
 	\caption{Metrikwerte der trainierten Modelle und Nutzenwert nach Präferenzfunktion}%muss unten sein, sonst caption über Tab
 	\label{tab:metrikwerte_der_trainierten_modelle}	%zum referenzieren
 \end{table}
 
+Den Ergebnissen nach ist das Random Forest Modell am besten für die Klassifizierung zwischen den beiden Zielkategorien geeignet. Nach \cref{tab:bewertungskriterien_fuer_praeferenzfunktion} erreicht das Model für jedes Bewertungskriterium die maximale Punktzahl. Von allen Modellen weist es die höchste Sensitivität auf. Seine Relevanz ist zwar die niedrigste der dreien; den Relevanz-Kriterium wird nach \cref{tab:bewertungskriterien_fuer_praeferenzfunktion} aber dennoch der gleiche Wert zugewiesen wie den anderen beiden Modellen.
 
-Den Ergebnissen nach ist das Random Forest Modell am besten geeignet, um für Vorhersagen zu dem Usecase verwendet zu werden. Nach \cref{tab:metriken_praeferenzfunktion} erreicht das Model für jedes Bewertungskriterium die maximale Punktzahl. Von allen Modellen weist es die höchste Sensitivität auf. Seine Relevanz ist zwar die niedrigste der dreien; den Kriterium wird nach \cref{tab:metriken_praeferenzfunktion} aber dennoch der gleiche Wert zugewiesen wie den anderen beiden Modellen.
+Der Random Forest fällt auffällig simple aus. Die Tiefe der Bäume ist minimal und die Anzahl der Bäume ist klein. Üblicherweise zählt ein Random Forest mehr als einhundert Bäume. Die geringe Anzahl ist auf den Datensatz zurückzuführen. Ein Hinweis darauf bietet die Tatsache, dass alle Modelle die minimale Baumtiefe verwenden und alle das Merkmal \enquote{gx\_median} (Rotationgeschwindigkeit um die X-Achse) verwenden. Zwar verwenden der Random Forest und die GBT einen groß Teil der Merkmale, jedoch erreicht selbst der einfache Entscheidungsbaum -- der nur \enquote{gx\_median} verwendet -- verhältnismäßig gute Ergebnisse. Daraus folgt, dass sich die Kategorien gut anhand des Merkmals \enquote{gx\_median} unterscheiden lassen.
 
-Der Random Forest fällt auffällig simple aus. Die Tiefe der Bäume ist minimal und die Anzahl der Bäume ist klein. Üblicherweise zählt ein Random Forest hundert Bäume oder mehr. Die geringe Anzahl ist vermutlich auf den Datensatz zurückzuführen. Ein Hinweis darauf bietet die Tatsache, dass alle Modelle die minimale Baumtiefe verwenden und alle das Merkmal \enquote{gx\_median} verwenden. Zwar verwenden der Random Forest und die GBT einen groß Teil der Merkmale, jedoch erreicht selbst der einfache Entscheidungsbaum, der nur \enquote{gx\_median} verwendet, verhältnismäßig gut Ergebnisse. Daraus wird gefolgert, dass sich die Kategorien gut anhand dieses einen Merkmals einteilen lassen. Das erklärt die niedrige Komplexität des Random Forest.
+Der hohe Informationsgehalt des Merkmals \enquote{gx\_median} zeigt sich deutlich an dessen Verteilung (siehe \cref{fig:histogramm_gx_median}). Das Diagramm zeigt die Häufigkeitsverteilungen des Messwertes; aufgeteilt nach den beiden Zielkategorien. Ein Großteil der Histogramme überschneidet sich nicht. Die verbleibende Ungenauigkeit für Entscheidungsbäume, die nur nach \enquote{gx\_median} unterteilen, rüht aus der Überschneidung her. 
 
-\todo{Referenz für Diagramm einfügen} zeigt die Verteilung der \enquote{gx\_median}-Werte für die positive (beschädigt) wie für die negative Kategorie (intakt). Für die positive Kategorie zeigt sich annäherd eine Normalverteilung. Die negative Kategorie hingegen ist bimodal. Es wird daher vermutet, dass dieser Verteilung eine weitere nicht näher bekannte Kategorie zu grunde liegt.
-
-Von der negativen Kategorie überlagert sich nur der linke Bereich mit den positiven Datenpunkten. Der Großteil der Datenpunkte lässt sich anhand des abgebildeten Merkmals richtig den beiden Kategorien zuordnen. Dies erklärt warum selbst die Qualität des einfachen Entscheidungsbaums -- gemessen an den Bewertungskriterien -- relativ hoch ist. Es macht auch deutlich warum alle Modelle Bäume mit je nur einem Knoten erstellt haben. In Kombination mit dem wichtigsten Merkmal liefern die übrigen Merkmale nur noch wenige Informationen und verzehren ggf. das Ergebnis nur. Andernfalls hätte der einfache Entscheidungsbaum davon profitieren können, mehrere Merkmale zu verwenden.
-
-Damit ist auch begründet warum Random Forest und GBT ungewöhlich wenige Bäume aufweisen.
-
-Die Parameterstudie hat für den GBT eine Baumanzahl von 95 ergeben. Das Model war damit sehr komplex verglichen mit den anderen. Gleichzeitig war die Sensitivität bei 1. Daher wird vermutet, dass Overfitting vorlag. Um dem entgegen zu wurde der Wertebereich der Bäumeanzahl auf 10 bis 30 reduziert. Das neue GBT-Model war mit 26 Bäumen deutlich simpler und erzielte dennoch zufrieden stellende, aber nicht länger perfekte Scores. Es könnte daraus geschlossen werden, dass das ursprüngliche Model tatsächlich Overfitting aufwies.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{plot_gx_median.pdf}
+	\caption{Häufigkeitsverteilungen des Merkmals \enquote{gx\_median} nach Kategorie der Datenpunkte)}
+	\label{fig:histogramm_gx_median}
+\end{figure}
 %===============================================================================
