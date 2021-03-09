@@ -46,18 +46,21 @@
 \cleardoublepage
 
 %Abkürzungs- und Symbolverzeichnis
-\input{content/symbole_abk}
-\cleardoublepage
+% \input{content/symbole_abk}
+% \cleardoublepage
 
 %Abbildungsverzeichnis
+\begingroup % place list of figures and tables on one page
+\renewcommand\clearpage{\relax} % place list of figures and tables on one page
 \addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures
-\cleardoublepage
+% \cleardoublepage
 
 %Tabellenverzeichnis
 \addcontentsline{toc}{chapter}{\listtablename}
 \listoftables
 \cleardoublepage
+\endgroup % place list of figures and tables on one page
 
 %Anhang
 \appendix
