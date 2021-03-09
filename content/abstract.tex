@@ -4,15 +4,13 @@
 	\textbf{Kurzfassung}
 \end{center}
 \raggedright
-Die vorausschauende Instandhaltung verspricht deutliche Verbesserungen bei der Wartung, Inspektion, Instandsetzung und Verbesserung von Systemen und Anlagen gegenüber der heute zu tage üblichen präventiven Instandhaltung. Insbesondere im Kontext der Industrie~\num{4.0} sind die Erwartungen an die Auswertung großer Datenmengen groß.
+Die vorausschauende Instandhaltung bietet für viele technische Anwendungsbereiche großes Verbesserungspotential gegenüber anderer Instandhaltungsstrategien. Kostenersparnis durch bessere Planbarkeit von Instandhaltungsmaßnahmen, bessere Ausnutzung der Bauteillebensdauer und der Gewinn neuer Erkenntnisse für konstruktive Verbesserungen sind einige der Vorteile die im Zusammenhang mit \textit{Predictive Maintenance} (PdM) genannt werden. Insbesondere im Kontext der Industrie-{4.0} sind die Erwartungen groß. Steigende Verfügbarkeit von Sensordaten und wachsende Rechenkapazitäten eröffnen stetig neue Anwendungsfelder.
 
-Trotz der großen Potentiale der vorausschauenden Instandhaltung sind bis lang relativ wenige Anwendungsfälle erschlossen. In der Regel ist eine präzise Abschätzung nötig ob sich die Implementierung eines PDM-Usecases lohnt.
+Trotz des großen Potentials von PdM machen entsprechende Anwendungen nur einen kleinen Anteil in Instandhaltungsprozessen aus. Entweder ist eine mögliche PdM-Anwendung nicht rentabel oder sie nicht bekannt.
 
-Wenn auch nicht zwingend erforderlich, so kommen doch häufig maschinelle Lernalgorthmen für PDM-Usecases zum Einsatz. Diese sind für eine sinnvolle Umsetzung sorgfälltig auszuwählen und an die gegebenen Umstände anzupassen.
+In dieser Arbeit wird ein potentieller PdM-Usecase für die Instandhaltung einer Zugtür erdacht; genauer für die Wartung der Umlenkrollen eines Bautenzuges. Es wird begründet welche Messwerte benötigt werden, um den Zustand der Umlenkrollen zu bestimmen. Mit den Daten wird anschließend eine Auswahl maschineller Lernmodel trainiert und das am besten für den Usecase geeignete Model bestimmt. Dazu wird sowohl auf die Eigenschaften der Modelle eingegangen, wie auch die Erfolgskriterien des Usecases berücksichtigt. Die Ergebnisse werden im Kontext praktischer Bahntechnik diskutiert.
 
-In dieser Arbeit soll ein potentieller PDM-Usecase für die Instandhaltung einer Zugtür erdacht werden; genauer für die Wartung der Umlenkrollen eines Bautenzuges. Es wird begründet welche Messwerte benötigt werden, um den Zustand der Umlenkrollen zu bestimmen, um daraus Maßnahmen für die Instandhaltung ableiten zu können. Mit den Daten wird anschließend eine Auswahl maschineller Lernmodel trainiert und das am besten für den Usecase geeignete Model bestimmt. Dazu wird sowohl auf die Eigenschaften der Modelle eingegangen, wie auch die Erfolgskriterien des Usecases berücksichtigt und die Ergebnisse in diesem Kontext diskutiert. Schlussendlich kann so eine Einschätzung abgegeben werden, ob der vorgeschlagene Usecase mit dem entwickelten Model eine brauchbare Anwendung von PDM darstellt.
-
-Der Usecase wird außerdem im Kontext der aktuellen Bahntechnik diskuiert.
+Das erstellte maschinelle Lernmodel wird zunächst auf eine zustandsbasierte Instandhaltung ausgelegt. Die gewonnen Erkenntnisse dienen einer Möglichen Weiterentwicklung hin zu einem einsetzbaren PdM-Usecase.
 % <=
 %-------------------------------------------
 \clearpage
@@ -22,7 +20,13 @@ Der Usecase wird außerdem im Kontext der aktuellen Bahntechnik diskuiert.
 	\textbf{Abstract}
 \end{center}
 \raggedright
-english
+The concept of \textit{Predictive Maintenance} (PdM) opens large potential improvements in a wide range of technical fields. Cost reduction hence improved predictability, better exploitation of components lifespan and new insights for constructive improvements are a few of the benefits usually associated with Predictive Maintenance. Considering PdM in context of the Industry-{4.0} the expectations regarding PdM appear even more severe. Increasing availability of sensors and computing capacity supports development of new PdM-Usecases.
+
+Nevertheless today PdM is still not a common approch to maintenance tasks. First that is because many potential usecases prove unprofitability. Secondly there is an anticipated large amount of usecases that has not yet been discovered.
+
+In this paper a new PdM-Usecase is proposed; aiming to provide an improved concept to carry out maintenance tasks for pulleys. Those pulleys are parts of equipment used in trains to open and close a train´s doors. Using collected data of the system machine learing models are erected. The best model then is determined considering characteristics of the models them self as well as success criteria of the PdM-Usecase. The results are discussed within the context of practical railway engineering.
+
+The machine learing model is designed to support condition based monitoring. The insights generated in the process provide the baseline for further development aiming for a practical PdM-Usecase.
 % <=
 %-------------------------------------------
 \clearpage
