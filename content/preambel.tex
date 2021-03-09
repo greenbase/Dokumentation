@@ -1,17 +1,17 @@
 %Dokumentklasse und Spracheinstellung
 %\documentclass[12pt,oneside,paper=A4,DIV=15,BCOR=0mm,abstract=true,headsepline,headings=normal]{scrreprt}
-\documentclass[12pt,twoside,paper=A4,DIV=15,BCOR=12mm,abstract=true,headsepline,headings=normal,parskip=half,ngerman]{scrreprt}
+\documentclass[12pt,twoside,paper=A4,DIV=15,BCOR=22mm,abstract=true,headsepline,headings=normal,parskip=half,ngerman]{scrreprt}
 \usepackage{scrhack}
-\usepackage{babel}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % wichtig für Trennung von Wörtern mit Umlauten
+\usepackage[ngerman]{babel}
 
 %Schriftart
 \usepackage{libertine}
 \usepackage{libertinust1math}
-\usepackage[T1]{fontenc}
 \usepackage{csquotes} % for german quotation
 
-%Mathe, Symbole, EInheitendarstellung, Chemie
+%Mathe, Symbole, Einheitendarstellung, Chemie
 \usepackage{amsmath}
 \usepackage{amsxtra}
 \usepackage{eurosym}
@@ -38,6 +38,7 @@
 \usepackage[table]{xcolor}
 \usepackage{pdfpages}
 \usepackage{listings}
+\usepackage{wrapfig}
 \graphicspath{{images/}}	% define where to look for images
 
 %Farben
@@ -105,6 +106,7 @@ firstinits=true
 % 	\endtabular
 % }
 
+% Silbentrennungen
 
 
 %Verweise und Refernezen, pdf-Eisntellungen
