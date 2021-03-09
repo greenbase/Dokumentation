@@ -18,23 +18,20 @@ Die Einführung einer PdM-Anwendung anstelle einer anderen Instandhaltungsstrate
 %===============================================================================
 \section{Machine Learning Algorithmen mit Entscheidungsbäumen}
 \label{sec:algorithmen_mit_entscheidungsbaum}
-F: Was sind Entscheidungsbäume?
+Entscheidungsbäume sind Entscheidungsstrukturen die auf der Teilung eines Datensatzes im mehreren Schritten beruhen. \cref{fig:entscheidungsbaum_schema} zeigt den prinzipiellen Aufbau eines Entscheidungsbaums.
 
-Entscheidungsbäume sind komplexe Entscheidungsstrukturen. \todo{Bild einfügen Entscheidungsbaum} zeigt den prinzipiellen Aufbau eines Entscheidungsbaums.
-
-F: wie FUNKTIONIEREN Entscheidungsbäume?
+\begin{wrapfigure}{r}{0.5\textwidth}
+	\centering
+	\includegraphics[width=0.48\textwidth]{entscheidungsbaum_aufbau.png}
+	\caption{Schematische Darstellung eines Entscheidungsbaums}
+	\label{fig:entscheidungsbaum_schema}
+\end{wrapfigure}
 
 Ein Datenpunkt wird durch einen Entscheidungsbaum einer Kategorie oder einem Wert zugeordnet. Zunächst wird anhand eines Merkmals eine Entscheidung im Wurzelknoten des Baums getroffen. Je nach Ergebnis wandert der Datenpunkt in einen der darunter liegenden Knoten. Hier wird nun ein anderes Merkmal beurteilt und der Datenpunkt entsprechend dem nächsten Knoten oder -- im letzten Schritt -- einem Blatt zugeordnet. Den Blättern sind die Kategorien oder Werte zugeordnet, welche mit jedem Datenpunkt assoziiert wird, welcher sich in dem Blatt befindet. 
 
-F: wie wird ein Entscheidungsbaum trainiert
-
 Um das Entscheidungskriterium für jeden Knoten zu bestimmen, werden sämtliche möglichen Merkmale überprüft und der Wert bestimmt der den vorhandenen Datensatz am besten den richtigen Zielwerten zuordnen kann. Dies wird für alle Teilungen durch die Knoten wiederholt.~\cite{Muller.2017}
 
-F: wie kann der Aufbau kontrolliert werden
-
 Ohne Beschränkungen würde ein Entscheidungsbaum solange weiter aufgebaut werden bis jedes Blatt nur einen einzelnen Datenpunkt enthält. Ein derart aufgebauter Entscheidungsbaum ist in der Regel ungeeignet, um damit zutreffende Zielwerte für neue Datenpunkte bestimmen zu können. Das Model orientiert sich zu stark an den Merkmalswerten aus dem Trainingsdatensatz und ist daher nicht in der Lage gute verallgemeinernde Entscheidungskriterien zu finden. Man spricht in diesem Zusammenhang von \textit{Overfitting}. Um Overfitting entgegen zu wirken kann beispielsweise die minimale Anzahl der Datenpunkte in einem Blatt limitiert werden oder die Tiefe des Baums und damit die Anzahl der Knoten begrenzt werden.
-
-F: welche Modelle gibt es? welche sind interesant hier?
 
 Es gibt verschiedenen Arten von ML-Modellen, die auf Entscheidungsbäumen basieren. Sie unterscheiden sich sowohl in der Strategie zum Aufbau der Bäume; der Anzahl der Bäume; als auch der Ermittlung des Gesamtergebnisses für einen Datenpunkt. 
 
