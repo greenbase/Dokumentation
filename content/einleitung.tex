@@ -3,11 +3,9 @@
 
 \section{Problemstellung}
 \label{sec:motivation}
-Die vorausschauende Instandhaltung (engl. \textit{Predictive Maintenance}; kurz \textit{PdM}) bietet im Vergleich mit anderen Instandhaltungsstrategien großes Verbesserungspotential. Insbesondere im Zusammenhang mit der Industrie~{4.0} hat PdM in den letzten Jahren viel Aufmerksamkeit gewonnen. PdM rückt für zunehmend mehr Anwendungen in den Fokus, ist heute aber nach wie vor nur in wenigen Fällen zu finden. 
+Die vorausschauende Instandhaltung (engl. \textit{Predictive Maintenance}; kurz \textit{PdM}) bietet für viele Instandhaltungsarbeiten großes Verbesserungspotential. Insbesondere im Zusammenhang mit der Industrie~{4.0} hat PdM in den letzten Jahren viel an Bedeutung gewonnen. PdM rückt für zunehmend mehr Anwendungen in den Fokus, ist aber auch noch heute in vergleichsweise wenigen Anwendungen zu finden. 
 
 Ein Grund dafür warum PdM weniger verbreitet ist als z.B. präventive Methoden ist zum einen der hohe Investitionsaufwand und zum anderen die Tatsache, dass in vielen Bereichen mögliche Anwendungsfälle nicht bekannt sind. Zwar ist es denkbar, dass für den speziellen Fall eine andere Herangehensweise die Bessere ist, jedoch selbst um dies festhalten zu können, muss das Potential für die jeweilige Anwendung analysiert werden. 
-
-Im Kern handelt es sich bei der Machbarkeitsstudie eines neuen PdM-Usecases um ein Data-Mining-Problem; also um die Gewinnung von Informationen anhand von Daten. Entsprechend kann der \textit{Cross-industry standard process for data mining}; kurz CRISP-DM; angewendet werden.
 
 Grundsätzlich bedarf es einer umfassenden Analyse eines neuen PdM-Usecases ehe dieser Umgesetzt werden sollte.
 
@@ -17,25 +15,23 @@ Um eine Einschätzung über das Potential eines bestimmten Anwendungsfall abgebe
 
 Für die vorausschauende Wartung sind Vorhersagemodelle nötig. Deren Qualität ist einer der wichtigste Faktor für den Nutzen des gesamten Anwendungsfalls. Ist beispielsweise die Verhinderung von Ausfällen und eine besserte Ausnutzung der Bauteillebensdauer das Ziel, so muss das Model Vorhersagen treffen die zu einem gewissen Maß zutreffend sind, um einem anderen Verfahren gegenüber bevorzugt werden zu können.
 
-Soll ein maschinelles Lernmodel verwendet werden, um Vorhersagen für einen Anwendungsfall der vorausschauenden Wartung abzugeben, so muss ein solches Model zunächst modelliert und bewertet werden.
-
-Mit dem Aufschwung der Industrie 4.0 und der damit einhergehenden stetig größer werdenden Menge verfügbarer Daten, rückt PdM jedoch aus Nischenanwendungen aktuell weiter in den Fokus von Anlagenbetreidenden. Schließlich bieten sich durch eine große Menge Daten neue Möglichkeiten. Nicht nur können bestehende Anwendungen mit größerer Präzision ausgeführt werden; es ergeben sich auch grundlegend neue Anwendungsmöglichkeiten.
+Mit dem Aufschwung der Industrie 4.0 und der damit einhergehenden stetig größer werdenden Menge verfügbarer Daten, rückt PdM weiter in den Fokus. Schließlich bieten sich durch eine große Menge Daten neue Möglichkeiten. Nicht nur können bestehende Anwendungen mit größerer Präzision ausgeführt werden; es ergeben sich auch grundlegend neue Anwendungsmöglichkeiten.
 
 PDM ist in vielen technischen Bereichen insbesondere deshalb interessant, weil  dadurch folgende Potentiale erschlossen werden können \cite[S.~31]{Holzel.2019}. Diese sind in Abgrenzung zur präventiven Instandhaltung zu sehen:
 \begin{itemize}
 	\item Bedarfsgerechte Ersatzteilbereitstellung
 	\item Instandhaltungsmaßnahmen können zum optimalen Zeitpunkt durchgeführt werden
-	\item Verlängerung der anlagen- und Bauteillebensdauer
+	\item Verlängerung der Anlagen- und Bauteillebensdauer
 	\item Reduzierte Stillstandzeiten
 	\item Reduzierte Instandhaltungskosten
 	\item Verbesserung der Anlagenzuverlässigkeit
 \end{itemize}
 
-Auch für die Instandhaltung von Schienenfahrzeugen erscheinen PDM-Anwendungen interessant. Neben den oben genannten Punkten scheint sich durch die Verringerung von Ausfällen auch Imageschaden abzuwenden. Dieser Entsteht, wenn  der Ausfall einer Anlage sich direkt auf den Kunden auswirkt; in diesem Fall der Fahrgast.
+Auch für die Instandhaltung von Schienenfahrzeugen erscheinen PDM-Anwendungen vielversprechend. Neben den oben genannten Punkten erscheint durch die Verringerung von Ausfällen auch Imageschaden abwendbar. Dieser Entsteht, wenn  der Ausfall einer Anlage (z.B. Zug oder Tür) sich direkt auf den Kunden auswirkt; in diesem Fall der Fahrgast.
 
-Ein für Fahrgäste zu beobachtender Fall sind Türstörungen. In der Regel äußern sich diese darin, dass die Zugtür nicht mehr entsprechend der Sicherheitsanforderungen nutzbar sind. In den meisten Fällen genügt es jedoch die Tür außer Betrieb zusetzen und um so die Sperrung eines Waggons oder gar den Ausfall einer ganzen Fahrt zu verhindern. Dennoch ist der Ausfall einer Zugtür für den Kunden direkt ersichtlich und führt damit zu einem Imageschaden. Aus diesem Grund erscheint der Einsatz vorausschauender Wartung auch hier sinnvoll. Auch aus technisch wirtschaftlicher Sicht.
+Ein für Fahrgäste zu beobachtender Fall sind Türstörungen. In der Regel äußern sich diese darin, dass die Zugtür nicht mehr entsprechend der Sicherheitsanforderungen nutzbar sind. In den meisten Störungsfällen genügt es die Tür außer Betrieb zusetzen und um so die Sperrung eines Waggons oder gar den Ausfall einer ganzen Fahrt zu verhindern. Dennoch ist der Ausfall einer Zugtür für den Kunden direkt ersichtlich und führt damit zu einem Imageschaden.
 
-Die Fragestellung die bei der Umsetzung aller PDM-Anwendungen zunächst geklärt werden muss ist, ob das entwickelte Modell zur Vorhersage ausreichend präzise Vorhersagen trifft. Insbesondere entscheidend ist dabei der vergleich mit der gegenwärtigen Instandhaltungsstrategie.
+Die Fragestellung, die bei der Umsetzung aller PDM-Anwendungen zunächst geklärt werden muss ist, ob das entwickelte Modell zur Vorhersage ausreichend präzise Vorhersagen trifft. Insbesondere entscheidend ist dabei der vergleich mit der gegenwärtigen Instandhaltungsstrategie.
 
 In jedem Fall muss die Frage geklärt werden, ob sich die Umstellung auf ein vorrauschauendes Instandhaltungsprogramm lohnt. Ein umfangreiche Analyse der zu erwartenden Kosten stellt die Grundlage zur Beantwortung dieser Frage dar. Das Vorhersagemodel, auf dem der Anwendungsfall basiert, stellt die wichtigste Grundlage zur Kostenanalyse dar. Ohne eine zuverlässige Einschätzung über die Treffsicherheit der Vorhersagen, kann kein Kostenvergleich zu einem anderen Verfahren erstellt werden. Die Entwicklung eines Vorhersagemodels stellt deswegen eine entscheidende Grundlage dar. 
 
