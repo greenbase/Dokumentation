@@ -1,16 +1,10 @@
 \chapter{Machine Learning}
 \label{ch:machine_learning}
-F: Was ist maschinelles lernen? welchen Zweck hat es?
-
 Maschinelles Lernen (ML) ist \enquote{ein Forschungsfeld in der Schnittmenge von Statistik, künstlicher Intelligenz und Informatik}~\cite[S.~1]{Muller.2017}. Heute wird ML in vielen kommerziellen Bereichen genutzt; ebenso wie in der datengetriebenen Forschung. Die steigende Komplexität von Problemen hat dazu geführt, dass die individuelle Anfertigung von Programmen zur Lösung einer Problemstellung, häufig nicht mehr praktikabel ist. So muss ein ein Programm bereits für eine kleine Änderung der Problemstellung aufwendig überarbeitet werden oder die Aufgabe an sich übersteigt die Fähigkeit eines Experten, das Problem in seiner vollständigen Komplexität zu erfassen. Müller~\cite{Muller.2017} nennt in diesem Zusammenhang die Entwicklung von Gesichtserkennungssoftware als Beispiel. Er betont, dass aufgrund der grundsätzlich verschiedenen \enquote{Wahrnehmung} von Bildern zwischen Menschen und Computern, es für den Menschen unmöglich ist allgemeingültige Regeln zum Erkennen von Gesichtern zu definieren, die eine Software einsetzten könnte. Während Menschen einen optischen Eindruck von der Welt erhalten, sind Computer bei der Interpretation von Bildern auf Farbwerte einzelner Pixel angewiesen; sprich eine konkrete Menge diskreten Zahlenwerte. Die Entwicklung maschineller Lernalgorithmen hat es jedoch möglich gemacht das Erstellen von Entscheidungsmodellen weitgehend zu automatisieren.  
-
-F: welche Unterkategorien gibt es beim machine learning?
 
 Man unterscheidet beim maschinellen Lernen zwischen \textit{überwachten} und \textit{unüberwachten} Lernen. Beim überwachten Lernen werden dem Algorithmus Datenpunkte mit zugehörigem Zielwert übergeben. Im der Algorithmus verallgemeinernde Kriterien bestimmt an denen sich die Datenpunkte dem richtigen Zielwert zuordnen lassen, entsteht ein Model mit dem eine Zuordnung von zuvor unbekannten Datenpunkten getroffen werden kann. Der Zielwert kann dabei ein diskreter Wert (Klassifikation) oder eine kontinuierliche Variable (Regression) sein. Ein Beispiel für eine Klassifikationaufgabe eines überwachten Lernalgorithmus ist die Unterscheidung zwischen normalen Emails und Spam-Emails \cite[S.~2]{Muller.2017}.
 
 Beim unüberwachten Lernen stehen für einen Datensatz keine Informationen über die Zielwerten zur Verfügung. Ziel dieses Ansatzes ist es Cluster in einem gegebenen Datensatz zu finden, um daraus weitere Schlüsse ziehen zu können.
-
-F: Was hat ML mit PdM zutun?
 
 Im Zuge der Digitalisierung von Produktionsprozessen stehen zunehmend größere Datenmengen zur Verfügung. Aus dieser Entwicklung folgt, dass Herausforderungen der Prozessoptimierung vom Datamining- und Machine Learning-Ansätzen profitieren können.~\cite[S.~35]{Schafer.2019}
 
@@ -39,8 +33,6 @@ Im weiteren Verlauf dieser Arbeit werden drei verschiedene maschinelle Lernalgor
 %===============================================================================
 \subsection{Einfache Entscheidungsbäume}
 \label{sec:einfache_entscheidungsbaeume}
-F: was ist das?
-
 Der einfachste Modeltyp, der auf Entscheidungsbäumen beruht, ist ein einzelner Entscheidungsbaum. Wie in \cref{sec:algorithmen_mit_entscheidungsbaum} beschrieben, entspricht die Beurteilung eines Datenpunktes der Kategorie des Blatts, das den Datenpunkt beinhaltet.
 
 Ein einzelner Entscheidungsbaum lässt sich praktikabel visualisieren; vorausgesetzt seine Knotenanzahl ist überschaubar. Das Verfahren nach dem der Baum Entscheidungen triff, kann so durch Sachverständige nachvollzogen und beurteilt werden. Dies ist der entscheidende Vorteil gegenüber anderen Modelarten, wie dem Random Forest oder den Gradient Boosted Trees.
@@ -49,11 +41,7 @@ Nachteil von Entscheidungsbäumen ist das sie zu Overfitting neigen~\cite[S.~80]
 %===============================================================================
 \subsection{Random Forests}
 \label{sec:random_forest}
-F: Was ist das?
-
 \textit{Random Forests} gehören zu den \textit{Ensembles} von Entscheidungsbäumen. Ensembles kombinieren mehrere Modelle miteinander um ein komplexeres Model zu generieren. Im Fall des Random Forest wird eine Vielzahl von Entscheidungsbäumen trainiert. Als Entscheidung eines Random Forest wird der gemittelte Wert aller Bäume gewählt. Die einzelnen Bäume können sich in all ihren Eigenschaften von einander unterscheiden. Das beinhaltet neben der Größe auch die Wahl der verwendeten Merkmale. Jeder Baum wird also unabhängig von den anderen konstruiert. Mit einer großen Anzahl von Bäume, die alle unterschiedliche Entscheidungskriterien verwenden und dennoch passable Ergebnisse liefern, können Random Forests Overfitting weitgehend reduzieren \cite{Muller.2017}.
-
-F: was sind vorteile - und nachteile?
 
 Durch die große Anzahl an Bäumen sind Random Forests wesentlich komplexer als einfache Entscheidungsbäume. Bei geeigneten Parametereinstellungen lassen sich so bessere Ergebnisse erzielen als bei einfachen Entscheidungsbäumen. Da zum Aufbau eines Random Forest aber viele Entscheidungsbäume erstellt werden müssen ist der Rechenaufwand relativ hoch~\cite[S.~84]{Muller.2017}. Laut Müller~\cite[S.~85]{Muller.2017} sind Random Forests außerdem nicht für dünn besetzte Datensätze geeignet.
 
@@ -61,11 +49,7 @@ Nach Müller~\cite[S.~85]{Muller.2017} sind die wichtigsten Parameter eines Rand
 %===============================================================================
 \subsection{Gradient Boosted Trees}
 \label{sec:gradient_boosted_trees}
-F: was ist das?
-
 Gradient Boosted Trees (GBT) ist, wie der Random Forest, eine Ensembles-Methode. GBT beziehen im Gegensatz zum Random Forest die Ergebnisse der einzelnen Bäume nicht parallel, sondern nacheinander in die Gesamtbewertung mit ein. GBT versucht den Fehler eines Baums im nachfolgenden bestmöglich zu beheben. Dies setzt sich durch die gesamte Reihe an Bäumen fort.
-
-F: was sind vorteile - und nachteile?
 
 Laut Müller~\cite{Muller.2017} sind die wichtigsten Parameter von GBT die Lernrate und die Anzahl der Bäume. Demnach gewähre eine höhere Lernrate dem GBT die Möglichkeit mit jedem Baum die Fehler des Vorherigen stärker zu korrigieren. Je größer die Baumanzahl ist desto häufiger kann der Korrekturvorgang wiederholt werden, um das Ergebnis zu verbessern. Beide Parameter beeinflussen die Komplexität des Models. Müller~\cite{Muller.2017} weißt auch darauf hin, dass eine höhere Baumanzahl nicht zwangsläufig zu einer Verbesserung des Models führt, wie beim Random Forest. GBT neige bei großen Anzahlen an Bäumen zu Overfitting. Für den Fall, dass Overfitting in Zusammenhang mit einer hohen Baumanzahl vermutet wird, sollte daher die Anzahl reduziert werden, bis vertrauenswürdigere Ergebnisse beobachtet werden können.
 

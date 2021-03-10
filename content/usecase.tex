@@ -1,7 +1,5 @@
 \chapter{Usecase}
 \label{ch:usecase}
-F: Um welches System geht es?
-
 \cref{fig:foto_tureschliessanlage} zeigt eine Türschließanlage wie sie aktuell in Zügen der Intercity-Klasse von der Deutschen Bahn eingesetzt werden. Die Anlage wird durch einen pneumatischen Kolben angetrieben. Über eine Zahnstange treibt der Kolben ein Rad an, welches wiederum einen Bautenzug betätigt. Am einem Stahlseil, das über Umlenkrollen geführt wird, wird die Tür auf- bzw. zugezogen.
 
 \begin{figure}[ht]
@@ -11,29 +9,17 @@ F: Um welches System geht es?
 	\label{fig:foto_tureschliessanlage}
 \end{figure}
 
-F: wie wird die Anlage bisher gewartet
-
 Wartungen der Anlage werden im Rahmen einer präventiven Instandhaltung durchgeführt. Zu diesem Zweck werden auch die Umlenkrollen regelmäßig ausgetauscht. Die Instandhaltungsmaßnahme wird entweder nach sechs Jahren oder nach \num{1.2} Millionen gefahrenen Kilometern durchgeführt~\cite{db.2021}.
-
-F: warum müssen die Rollen gewechselt werden
 
 Die Umlenkrollen aus Kunststoff sind ohne Wälzlager auf Bolzen montiert. Verschleiß und Materialermüdung sind in erster Linie an der Mantelfläche der Bohrung zu erwarten, an der die Rolle auf dem Bolzen aufliegt. Fortschreitende Rissbildung aufgrund von Materialermüdung bestimmt die Lebensdauer der Umlenkrollen. Mit steigendem Grad der Beschädigung steigt auch das Risiko eines Gewaltbruchs durch Überlast. In diesem Fall fällt die Türschließanlage aus und eine nicht planmäßige Instandsetzungsmaßnahme ist erforderlich.
 
-F: welche Änderung der INSTANDHALTUNG ist denkbar?
-
 Kann zu einem beliebigen Zeitpunkt der Zustand der Umlenkrollen bestimmt werden, so kann jederzeit der Bedarf einer Instandhaltungsmaßnahme eingeschätzt werden. Unerwartete Ausfällen können so vermieden werden (vgl. \cref{ch:instandhaltungsstrategien}). 
-
-F: wie soll der usecase UMGESETZT werden
 
 Die Instandhaltung der Umlenkrollen kann durch einem PdM-Ansatz gelöst werden. Voraussetzung dafür ist Erstens, dass Messwerte vorliegen, die Informationen über den Zustand der Umlenkrolle beinhalten. Zweitens sind diese Informationen in ein Entscheidungsmodel zu integrieren, das anhand von neuen Messwerten den Zustand der Rollen bestimmen kann. Drittens muss eine Infrastruktur geschaffen werden mit der in festgelegten Zeitabständen aktuelle Messwerte aufgenommen und verarbeitet werden können.
 %===============================================================================
 \section{Erfolgskriterien}
 \label{sec:erfolgskriterien_usecase}
-F: wieso müssen Erfolgskriterien definiert werden?
-
 Um bestimmen zu können ob die Umstellung der Instandhaltung auf einen PdM-Ansatz sinnvoll ist, muss eine ausgiebige Nutzwertanalyse abgeschlossen und mit dem aktuell verwendetem PM-Ansatz verglichen werden. 
-
-F: was ist das Problem bei der vergleichsführung?
 
 Aufgrund der prinzipiell verschiedenen Natur von PM und PdM, lassen sich nur wenige Vergleichende kriterien bestimmen. Beispielsweise kann die Anzahl richtig positiver Vorhersagen -- also die Anzahl vermeidbarer Ausfälle -- nicht verglichen werden, weil bei einem PM-Ansatz dazu keine Informationen zur Verfügung stehen. Auch werden bei PM per Definition keine unnötigen Inspektionen durchgeführt, wie es bei PdM für falsch positive Meldungen der Fall wäre. Um einen Vergleich der beiden Ansätze erheben zu können, sind also allgemeinere vergleichende Kriterien zu finden.
 

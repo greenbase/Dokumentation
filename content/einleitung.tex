@@ -3,8 +3,6 @@
 
 \section{Problemstellung}
 \label{sec:motivation}
-WAS SOLL IN DER MASTERARBEIT BEHANDELT WERDEN?
-
 Die vorausschauende Instandhaltung (engl. \textit{Predictive Maintenance}; kurz \textit{PdM}) bietet im Vergleich mit anderen Instandhaltungsstrategien großes Verbesserungspotential. Insbesondere im Zusammenhang mit der Industrie~{4.0} hat PdM in den letzten Jahren viel Aufmerksamkeit gewonnen. PdM rückt für zunehmend mehr Anwendungen in den Fokus, ist heute aber nach wie vor nur in wenigen Fällen zu finden. 
 
 Ein Grund dafür warum PdM weniger verbreitet ist als z.B. präventive Methoden ist zum einen der hohe Investitionsaufwand und zum anderen die Tatsache, dass in vielen Bereichen mögliche Anwendungsfälle nicht bekannt sind. Zwar ist es denkbar, dass für den speziellen Fall eine andere Herangehensweise die Bessere ist, jedoch selbst um dies festhalten zu können, muss das Potential für die jeweilige Anwendung analysiert werden. 
@@ -13,14 +11,13 @@ Im Kern handelt es sich bei der Machbarkeitsstudie eines neuen PdM-Usecases um e
 
 Grundsätzlich bedarf es einer umfassenden Analyse eines neuen PdM-Usecases ehe dieser Umgesetzt werden sollte.
 
-Die vorausschauende Instandhaltung bietet im Vergleich zur präventativen Instandhaltung das Potentiale der Senkung der Instandhaltungskosten und einen darüber hinausgehenden Informationsgewinn der auch für Prozesssteuerung und Verbesserungen genutzt werden kann. Dies ist aber nur unter bestimmten Voraussetzungen der Fall, welche sich dazu vom betrachteten Fall abhängen.
+Die vorausschauende Instandhaltung bietet im Vergleich zur präventiven Instandhaltung das Potentiale der Senkung der Instandhaltungskosten und einen darüber hinausgehenden Informationsgewinn der auch für Prozesssteuerung und Verbesserungen genutzt werden kann. Dies ist aber nur unter bestimmten Voraussetzungen der Fall, welche sich dazu vom betrachteten Fall abhängen.
 
 Um eine Einschätzung über das Potential eines bestimmten Anwendungsfall abgeben zu können, ist es notwendig diesen so weit zu erarbeiteten, dass ein Vergleich mit dem zu ersetzenden Verfahren sinnvoll durchgeführt werden kann.
 
 Für die vorausschauende Wartung sind Vorhersagemodelle nötig. Deren Qualität ist einer der wichtigste Faktor für den Nutzen des gesamten Anwendungsfalls. Ist beispielsweise die Verhinderung von Ausfällen und eine besserte Ausnutzung der Bauteillebensdauer das Ziel, so muss das Model Vorhersagen treffen die zu einem gewissen Maß zutreffend sind, um einem anderen Verfahren gegenüber bevorzugt werden zu können.
 
 Soll ein maschinelles Lernmodel verwendet werden, um Vorhersagen für einen Anwendungsfall der vorausschauenden Wartung abzugeben, so muss ein solches Model zunächst modelliert und bewertet werden.
-
 
 Mit dem Aufschwung der Industrie 4.0 und der damit einhergehenden stetig größer werdenden Menge verfügbarer Daten, rückt PdM jedoch aus Nischenanwendungen aktuell weiter in den Fokus von Anlagenbetreidenden. Schließlich bieten sich durch eine große Menge Daten neue Möglichkeiten. Nicht nur können bestehende Anwendungen mit größerer Präzision ausgeführt werden; es ergeben sich auch grundlegend neue Anwendungsmöglichkeiten.
 
@@ -51,68 +48,20 @@ In jedem Fall muss die Frage geklärt werden, ob sich die Umstellung auf ein vor
 
 \section{Ziel der Arbeit}
 \label{sec:ziel}
-In dieser Arbeit soll eine erste Iteration des CRISP-DM-Models durchlaufen werden.
+Zunächst soll eine neuer PdM-Usecase beschrieben werden, der auf die Erkennung von beschädigten Bauteilen einer Türschließanlage abzielt. Dabei soll lediglich eine Klassifikation mit zwei Kategorien; \enquote{intakt} und \enquote{beschädigt} möglich sein. In diesem Zusammenhang sollen auch Kriterien beleuchtet werden, an denen eine erfolgreiche Umsetzung des Usecases gemessen werden kann.
 
-F: WAS SOLL ERARBEITET WERDEN? WELCHE ERKENNTNISSE SOLLEN GEWONNEN WERDEN?
-A: DAS KONZEPT DES Usecases SOLL BESCHRIEBEN WERDEN
-
-Zunächst soll eine neuer PdM-Usecase beschrieben werden, der auf die Erkennung von beschädigten Bauteilen abzielt. Dabei soll lediglich eine Klassifikation mit zwei Kategorien; \enquote{intakt} und \enquote{beschädigt} möglich sein. In diesem Zusammenhang sollen auch Kriterien beleuchtet werden, an denen eine erfolgreiche Umsetzung des Usecases gemessen werden kann.
-
-F: WAS SOLL ERARBEITET WERDEN? WELCHE ERKENNTNISSE SOLLEN GEWONNEN WERDEN?
-A: EIN VERSUCH ZUR DATENAUFNAHME SOLL DURCHGEFÜHRT WERDEN
-
-Um eine Klassifikationsmodel entwickeln zu können, mit dem der Usecase Umgesetzt werden kann, wird ein Datensatz aufgenommen. Dazu werden an der Türschließanlage Messungen durchgeführt. Für intakte und beschädigte Umlenkrollen wird eine Auswahl an Messwerten aufgenommen. 
-
-F: WAS SOLL ERARBEITET WERDEN? WELCHE ERKENNTNISSE SOLLEN GEWONNEN WERDEN?
-A: DIE BEDEUTUNG DER DATEN FÜR DEN USECASE SOLLEN BESTIMMT WERDEN
-A: WIE MUSS DER DATENSATZ AUFBEREITET WERDEN?
+Um ein Klassifikationsmodel entwickeln zu können, mit dem der Usecase Umgesetzt werden kann, wird ein Datensatz aufgenommen. Dazu werden an der Türschließanlage Messungen durchgeführt. Für intakte und beschädigte Umlenkrollen wird eine Auswahl an Messwerten aufgenommen. 
 
 Im Zuge des \textit{Dataunderstanding} wird die Bedeutung der Daten für den Usecase diskutiert. Dabei wird außerdem ein Datensatz erarbeitet, der den rohen Datensatz beschreibend zusammenfasst. Ziel ist dabei den Informationsgehalt der Daten zu bündeln und so die Verallgemeinerungsleistung der Modelle zu fördern.
 
-F: WAS SOLL ERARBEITET WERDEN? WELCHE ERKENNTNISSE SOLLEN GEWONNEN WERDEN?
-A: MEHRERE MODELLE SOLLEN MODELLIERT WERDEN
-
 Um ein Model zu bestimmen, das die besten Vorhersagen über den Zustand der Umlenkrollen liefert, wird zunächst eine Vorauswahl infrage kommender Modeltypen durchgeführt. Anschließend werden Modelle der in frage kommenden Typen erstellt. Dabei wird für jedes Model eine Parameterstudie durchgeführt.
 
-F: WAS SOLL ERARBEITET WERDEN? WELCHE ERKENNTNISSE SOLLEN GEWONNEN WERDEN?
-A: DAS BESTE FÜR DEN USECASE SOLL BESTIMMT WERDEN
-
-Nach der Modelierung erfolgt eine Bewertung der Modelle. Anhand ausgewählter Kriterien, die für den Usecaes relevant sind, wird das am besten geeignete Model bestimmt.
-
-F: WAS SOLL ERARBEITET WERDEN? WELCHE ERKENNTNISSE SOLLEN GEWONNEN WERDEN?
-A: ES SOLL EIN AUSBLICK GEGEBEN WERDEN WIE DER USECASE ZU ANWENDUNGSREIFE WEITER ENTWICKELT WERDEN KANN
+Nach der Modellierung erfolgt eine Bewertung der Modelle. Anhand ausgewählter Kriterien, die für den Usecase relevant sind, wird das am besten geeignete Model bestimmt.
 
 Abschließend soll ein Ausblick gegeben werden, der mögliche nachfolgende Schritte beleuchtet, um den Anwendungsfall praxistauglich zu gestalten, sollte ein geeignete Vorhersagemodel entwickelt werden können.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Der System von Interesse in dieser Arbeit ist eine Türschließanlage. Diese findet in Intercity-Züge der Deutschen Bahn Anwendung. Für ausgewählte Komponenten der Anlage wird ein Anwendungsfall zur vorausschauenden Wartung der Komponenten erdacht. Dabei wird das Ziel verfolgt den Zustand einer Komponenten anhand von Sensordaten klassifizieren zu können. 
-
-Es soll ein PdM-Usecase zu einer Komponente der Türschließanlage erdacht werden. Den Kern dieser Arbeit stellt darauf aufbauend die Entwicklung eines maschinellen Lernmodels dar, das eine Klassifikation einer Komponente vornehmen kann. Unterschieden werden soll dabei zwischen intakte und beschädigten Bauteilen. Bei der Entwicklung des Models sollen sowohl Erfolgskriterien für den potentiellen Anwendungsfall, wie auch Eigenschaften der betrachteten Modeltypen berücksichtigt werden. Aus einer Auswahl an Modellen soll das beste für den gegebenen Anwendungsfall bestimmt werden.
-
-Das Modell soll in der Lage sein Beschädigungen einer Umlenkrolle zu erkennen. Die Umlenkrolle mit dem ein simulierter Schadenfall vorhergesagt werden könnte. Die Arbeit ist dabei vor der Vision angesiedelt maschinelle Lernverfahren für die vorausschauende Instandhaltung einzusetzten. Entsprechend sollen die Ergebnisse der Modelentwicklung vor diesem Hintergrund beleuchtet werden.
-
 \section{Vorgehensweise}
 \label{sec:vorgehensweise}
-WELCHE SCHRITTE WERDEN DURCHLAUFEN UM DIE ANGESTREBTEN ERGEBNISSE ZU ERHALTEN?
-(LÄSST SICH NACH KAPITELN ORDNEN)
-
 In den Kapiteln 2 bis 4 wird der Stand der Technik der Elemente beschrieben, die für den Inhalt der Arbeit von Bedeutung sind. \cref{ch:instandhaltungsstrategien} befasst sich mit den grundlegend mit der vorausschauenden Instandhaltung und diskutiert dessen Potentiale und Voraussetzungen.
 
 In \cref{ch:machine_learning} werden zunächst Kernpunkte von maschinellem Lernen erörtert, ehe auf die Grundlagen der Lernmodelle eingegangen wird, die im weiteren Verlauf dieser Arbeit verwendet werden. Für die einzelnen Modelle werden u.a. Funktionsweise, Parametereinstellungen, Vor- und Nachteile, sowie die Eignung für den in \cref{ch:usecase} dargestellten Anwendungsfall besprochen. 
