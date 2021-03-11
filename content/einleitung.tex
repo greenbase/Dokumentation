@@ -34,40 +34,28 @@ Ein für Fahrgäste zu beobachtender Fall sind Türstörungen. In der Regel äu�
 Die Fragestellung, die bei der Umsetzung aller PDM-Anwendungen zunächst geklärt werden muss ist, ob das entwickelte Modell zur Vorhersage ausreichend präzise Vorhersagen trifft. Insbesondere entscheidend ist dabei der vergleich mit der gegenwärtigen Instandhaltungsstrategie.
 
 In jedem Fall muss die Frage geklärt werden, ob sich die Umstellung auf ein vorrauschauendes Instandhaltungsprogramm lohnt. Ein umfangreiche Analyse der zu erwartenden Kosten stellt die Grundlage zur Beantwortung dieser Frage dar. Das Vorhersagemodel, auf dem der Anwendungsfall basiert, stellt die wichtigste Grundlage zur Kostenanalyse dar. Ohne eine zuverlässige Einschätzung über die Treffsicherheit der Vorhersagen, kann kein Kostenvergleich zu einem anderen Verfahren erstellt werden. Die Entwicklung eines Vorhersagemodels stellt deswegen eine entscheidende Grundlage dar. 
-
-% \begin{figure}[ht]
-% 	\centering
-% 	\includegraphics[scale=0.4]{FH_Kiel_Logo_deut_rgb.jpg}
-% 	\caption{Logo}
-% 	\label{fig:fhlogo}
-% \end{figure}
-
+%===============================================================================
 \section{Ziel der Arbeit}
 \label{sec:ziel}
-Zunächst soll eine neuer PdM-Usecase beschrieben werden, der auf die Erkennung von beschädigten Bauteilen einer Türschließanlage abzielt. Dabei soll lediglich eine Klassifikation mit zwei Kategorien; \enquote{intakt} und \enquote{beschädigt} möglich sein. In diesem Zusammenhang sollen auch Kriterien beleuchtet werden, an denen eine erfolgreiche Umsetzung des Usecases gemessen werden kann.
+Motivation und zielführende Idee dieser Arbeit ist es für die Türschließanlage eines Intercity-Zuges der Deutschen Bahn einen PdM-Usecase zu erarbeiteten. Konkret soll die Wartung von Umlenkrollen, die Teil des Systems Türschließanlage sind, durch prädiktive Instandhaltung möglich sein.
 
-Um ein Klassifikationsmodel entwickeln zu können, mit dem der Usecase Umgesetzt werden kann, wird ein Datensatz aufgenommen. Dazu werden an der Türschließanlage Messungen durchgeführt. Für intakte und beschädigte Umlenkrollen wird eine Auswahl an Messwerten aufgenommen. 
+Ziel dieser Arbeit ist es fundamentale Erkenntnisse zur erarbeiteten, auf denen Weiterentwicklungen hin zu einer praktikablen PdM-Anwendung aufbauen können. Dies umfasst zum einen eine Beschreibung und Diskussion des potentiellen Anwendungsfalls und zum anderen die Erstellung eines maschinellen Lernmodels. Das Model ist in der Lage zuverlässig zwischen zwei Beschädigungszuständen der Umlenkrollen zu unterscheiden. Die Modelentwicklung wird zunächst also auf eine Zustandserkennung; nicht auf Vorhersagen; ausgelegt.
 
-Im Zuge des \textit{Dataunderstanding} wird die Bedeutung der Daten für den Usecase diskutiert. Dabei wird außerdem ein Datensatz erarbeitet, der den rohen Datensatz beschreibend zusammenfasst. Ziel ist dabei den Informationsgehalt der Daten zu bündeln und so die Verallgemeinerungsleistung der Modelle zu fördern.
+Abschließend wird ein Ausblick gegeben, der mögliche nachfolgende Schritte beleuchtet, um den Anwendungsfall praxistauglich zu gestalten.
+%===============================================================================
+\section{Aufbau dieser Arbeit}
+\label{sec:aufbau_dieser_arbeit}
+Von \cref{ch:instandhaltungsstrategien} bis \cref{ch:machine_learning} wird der Stand der Technik der Elemente beschrieben, die für den Inhalt der Arbeit von Bedeutung sind.
 
-Um ein Model zu bestimmen, das die besten Vorhersagen über den Zustand der Umlenkrollen liefert, wird zunächst eine Vorauswahl infrage kommender Modeltypen durchgeführt. Anschließend werden Modelle der in frage kommenden Typen erstellt. Dabei wird für jedes Model eine Parameterstudie durchgeführt.
+\cref{ch:instandhaltungsstrategien} befasst sich mit verschiedenen Instandhaltungsstrategien, stellt Unterschiede heraus und diskutiert Potentiale und Voraussetzungen für prädiktive Instandhaltung.
 
-Nach der Modellierung erfolgt eine Bewertung der Modelle. Anhand ausgewählter Kriterien, die für den Usecase relevant sind, wird das am besten geeignete Model bestimmt.
+In \cref{ch:machine_learning} werden Kernpunkte von maschinellem Lernen erörtert; ehe auf die Grundlagen der Lernmodelle eingegangen wird, die im weiteren Verlauf dieser Arbeit verwendet werden. Für die einzelnen Modelle werden u.a. Funktionsweise, Parametereinstellungen, Vor- und Nachteile, sowie die Eignung für den in \cref{ch:usecase} dargestellten Anwendungsfall besprochen. 
 
-Abschließend soll ein Ausblick gegeben werden, der mögliche nachfolgende Schritte beleuchtet, um den Anwendungsfall praxistauglich zu gestalten, sollte ein geeignete Vorhersagemodel entwickelt werden können.
+\cref{ch:usecase} stellt den neu erdachten PdM-Usecase vor. Um den Usecase in den Kontext der praktischen Bahntechnik zu setzen, werden die Inhalte zweier Interviews mit Sachverständigen der Bahntechnik rekapituliert. In Zuge dessen wird auch der reale Bedarf des vorgeschlagenen Usecases diskutiert. Die Darstellung des Usecases umfasst außerdem eine Zusammenstellung von Erfolgskriterien.
 
-\section{Vorgehensweise}
-\label{sec:vorgehensweise}
-In den Kapiteln 2 bis 4 wird der Stand der Technik der Elemente beschrieben, die für den Inhalt der Arbeit von Bedeutung sind. \cref{ch:instandhaltungsstrategien} befasst sich mit den grundlegend mit der vorausschauenden Instandhaltung und diskutiert dessen Potentiale und Voraussetzungen.
+In \cref{ch:methodik} wird die Methodik beschrieben mit der der Usecase exemplarisch untersucht wurde. Es wird der Versuchaufbau beschrieben, eine Einschätzung über den Datensatz abgegeben und eine begründete Vorauswahl maschineller Lernmodelle getroffen. In \cref{sec:bewertungskriterien} werden die Erfolgskriterien des Usecases aus \cref{ch:usecase} aufgegriffen, um die zu erstellenden Modelle sinnvoll bewerten zu können. In \cref{sec:bewertungskriterien} wird mit diesen eine Präferenzfunktion zur Beurteilung der Modelle erstellt. Das Kapitel schließt mit einer Beschreibung des Vorgehens bei der Erstellung der Modelle.
 
-In \cref{ch:machine_learning} werden zunächst Kernpunkte von maschinellem Lernen erörtert, ehe auf die Grundlagen der Lernmodelle eingegangen wird, die im weiteren Verlauf dieser Arbeit verwendet werden. Für die einzelnen Modelle werden u.a. Funktionsweise, Parametereinstellungen, Vor- und Nachteile, sowie die Eignung für den in \cref{ch:usecase} dargestellten Anwendungsfall besprochen. 
+In \cref{ch:modelbewertung} wird die Eignung der trainierten Modelle für den Usecase diskutiert. Es wird eine Einschätzung über die Qualität der Modelle abgegeben und anhand der Präferenzfunktion das Model bestimmt welches am besten für den Usecase geeignet ist.
 
-\cref{ch:usecase} stellt den neu erdachten PDM-Usecase vor. Dabei wird an den entsprechenden Stellen auf die Inhalte aus \cref{ch:instandhaltungsstrategien} verwiesen und ein Beispielszenoario beschrieben, wie die Anwendung des Usecases aussehen könnte. Um den Usecase in den Kontext der praktischen Bahntechnik zu setzen, werden die Inhalte zweier Interviews mit Bahnsachverständigen rekapituliert. In Zuge dessen wird auch der reale Bedarf des vorgeschlagenen Usecases diskutiert. Die Darstellung des Usecases schließt mit einer Aufführung der Erfolgskriterien des Usecases.
-
-In \cref{ch:methodik} wird die Methodik beschrieben mit der der Usecase exemplarisch untersucht wurde. Es wird der Versuchaufbau beschrieben, eine Einschätzung über den Datensatz abgegeben und eine begründete Vorauswahl maschineller Lernmodelle getroffen (vgl. \cref{ch:machine_learning}). In \cref{sec:bewertungskriterien} werden die Erfolgskriterien des Usecases aus \cref{ch:usecase} aufgegriffen, um die zu erstellenden Modelle daran bewerten zu können. In \cref{sec:bewertungskriterien} wird damit eine Präferenzfunktion zur Beurteilung der Modelle erstellt.
-
-In \cref{sec:modellierung} erfolgt die Erstellung der maschinellen Lernmodelle anhand des aufgenommen Datensatzes. Um möglichst gute Modelqualitäten zu erreichen wird während des Trainieren der Modelle eine Parameterstudie durchgeführt.
-
-In \cref{ch:modelbewertung} wird die Eignung der trainierten Modelle für den Usecase dargestellt und diskutiert. Es wird eine Einschätzung über die Qualität der Modelle abgegeben und anhand der Präferenzfunktion das Model bestimmt welches am besten für den Usecase geeignet ist.
-
-\cref{ch:fazit} fasst die Ergebnisse der Arbeit zusammen und gibt einen Ausblick über Verbesserungsmöglichkeiten in Bezug auf den Usecase an sich und die erarbeiteten Ergebnisse.
+\cref{ch:fazit} fasst die Ergebnisse der Arbeit zusammen und gibt einen Ausblick über mögliche Schritte zur Weiterentwicklungen des Usecases.
+%===============================================================================
