@@ -3,7 +3,7 @@
 Die Norm DIN~31051~\cite{DIN.2019} definiert die \textit{Instandhaltung} allgemein als \enquote{Kombination aller technischen und administrativen Maßnahmen sowie Maßnahmen des Managements während des Lebenszyklus [\dots] eines Objekts [\dots], die den Erhalt oder der Wiederherstellung ihres funktionsfähigen Zustands dient, sodass es die geforderte Funktion [\dots] erfüllen kann}. Darüber hinaus enthält die Normschrift Definitionen für die folgenden Unterkategorien der Instandhaltung
 
 \begin{table}[ht]
-	\raggedright
+	\centering
 	\begin{tabularx}{\textwidth}{ | l | X |}
 		\hline
         \rowcolor{lightgray}
@@ -30,30 +30,29 @@ Es gibt unterschiedliche Herangehensweisen bzw. Philosophien nach denen Instandh
     \item Prädiktive Instandhaltung - Predictive Maintenance (PdM)
 \end{itemize}
 
-Die drei Instandhaltungsstrategien unterscheiden sich grundlegender Weise dadurch, wie Instandhaltungsmaßnahmen ausgelöst werden.
+Die drei Instandhaltungsstrategien unterscheiden sich grundlegender Weise dadurch, wie Instandhaltungsmaßnahmen ausgelöst werden. Pauschal kann keine Aussage darüber getroffen werden, welche der drei Instandhaltungsstrategien für einen gegebenen Anwendungsfall am besten geeignet ist. Neben wirtschaftlichen Aspekten müssen ggf. auch sicherheitstechnische, ethische und umweltrelevante Aspekte berücksichtigt werden.
+%===============================================================================
+\section{Korrektive Instandhaltung}
+\label{sec:korrektive_instandhaltung}
+Im Falle der rein korrektiven Instandhaltung wird eine Instandhaltungsmaßnahme erst dann initiiert, wenn ein System seine Funktion nicht mehr erfüllen kann. Selbst Wartungsmaßnahmen, wie der regelmäßige Austausch von Schmierstoffen, werden nicht durchgeführt solange es nicht zur Behebung des Funktionsausfalls nötig ist.~\cite[S.~2]{Mobley.2002}
 
-\textbf{Korrektive Instandhaltung}
-
-Im Falle der rein korrektiven Instandhaltung wird eine Instandhaltungsmaßnahme erst dann initiiert, wenn ein System seine Funktion nicht mehr erfüllen. Selbst Wartungsmaßnahmen, wie der regelmäßige Austausch von Schmierstoffen, werden nicht durchgeführt solange es nicht zur Behebung des Funktionsausfalls nötig ist.~\cite[S.~2]{Mobley.2002}
-
-Die korrektive Instandhaltung ist die teuerste unter den drei genannten Strategien. Durchschnittlich fällt sie dreimal so teuer aus, wie eine präventive Instandhaltung der gleichen Anlage. Ursachen dafür sind u.a. hohe Kosten für kurzfristige Beschaffung bzw. Lagerung von Ersatzteilen, vergleichweise lange Ausfallzeiten und Arbeitskosten.~\cite[S.~3]{Mobley.2002}
+Die korrektive Instandhaltung ist die teuerste unter den drei genannten Strategien. Durchschnittlich fällt sie dreimal so teuer aus, wie eine präventive Instandhaltung der gleichen Anlage. Ursachen dafür sind u.a. hohe Kosten für kurzfristige Beschaffung bzw. Lagerung von Ersatzteilen, vergleichweise lange Ausfallzeiten und hohe Arbeitskosten.~\cite[S.~3]{Mobley.2002}
 
 In der Praxis wird selten eine rein korrektive Instandhaltungsstrategie verfolgt. Selbst in Fällen in denen es wirtschaftlich sinnvoll ist, Instandsetzungsmaßnahmen erst dann einzuleiten, wenn eine Störung aufgetreten ist, werden üblicherweise trotzdem grundlegende Wartungsarbeiten durchgeführt. Diese sind der präventiven Instandhaltung zuzuordnen.~\cite[S.~2]{Mobley.2002}
-
-\textbf{Präventive Instandhaltung}
-
+%===============================================================================
+\section{Präventive Instandhaltung}
+\label{sec:präventive_instandhaltung}
 Im Sinne einer präventiven Instandhaltung werden vorbeugende Maßnahmen getroffen. Wartungs-, Inspektions-, und Verbesserungsarbeiten verfolgen das Ziel Störungen zu verhindern. Dies geschieht beispielsweise durch den regelmäßigen Austausch verschleißender Komponenten und Betriebstoffe oder konstruktive Änderungen. Instandsetzungsmaßnahmen sind nur nötige, wenn es trotz der vorbeugenden Maßnahmen zu einer Störung gekommen ist.
 
-Das Intervall, in dem vorbeugende Arbeiten ausgeführt werden, ist stets von Abschätzungen und Erfahrungswerten über die Zustandsänderung des Systems abhängig. Dabei handelt es sich um statischtische Betrachtungen. Der Zeitpunkt eines Komponentenausfalls oder anderweitiger Störung kann somit nicht exakt vorhergesagt werden. Um Störungen mit ausreichender Wahrscheinlichkeit verhindern zu können, wird z.B. ein Komponentenwechsel vor dem erwarteten Ende dessen Lebensdauer angesetzt. Hölzel fasst die Folgen wie folgt zusammen: \enquote{Der routinemäßige Austausch von noch funktionsfähigen Komponenten führt zu einer Verschwendung von Ressourcen}~\cite[S.~29]{Holzel.2019}.
-
-\textbf{Vorausschauende Instandhaltung}
-
-Prinzipiell verfolgt auch die vorrauschauende Instandhaltung das Ziel Ausfälle durch präventive Maßnahmen zu verhindern. Im Gegensatz zur rein präventiven Instandhaltung beruht diese Strategie jedoch auf Kenntnis des aktuellen Zustands einer Anlage oder Komponente. Werden diese Informationen auf bekannte Zusammenhänge projiziert können konkrete Vorhersagen über den zukünftigen Verlauf des Zustandes getroffen werden. Eine Ressourcenverschwendung durch den Austausch funktionsfähiger Komponenten kann so auf ein Minimum reduziert werden.
+Das Intervall, in dem vorbeugende Arbeiten ausgeführt werden, ist stets von Abschätzungen und Erfahrungswerten über die Zustandsänderung des Systems abhängig. Dabei handelt es sich meist um statischtische Betrachtungen. Der Zeitpunkt eines Komponentenausfalls oder anderweitiger Störung kann somit nicht exakt vorhergesagt werden. Um Störungen mit ausreichender Wahrscheinlichkeit verhindern zu können, wird z.B. ein Komponentenwechsel vor dem erwarteten Ende dessen Lebensdauer angesetzt. Hölzel fasst die Folgen wie folgt zusammen: \enquote{Der routinemäßige Austausch von noch funktionsfähigen Komponenten führt zu einer Verschwendung von Ressourcen}~\cite[S.~29]{Holzel.2019}.
+%===============================================================================
+\section{Prädiktive Instandhaltung}
+\label{sec:prädiktive_instandhaltung}
+Prinzipiell verfolgt auch die vorrauschauende Instandhaltung das Ziel Ausfälle durch präventive Maßnahmen zu verhindern. Im Gegensatz zur rein präventiven Instandhaltung setzt diese Strategie jedoch auf Kenntnis über den aktuellen Zustands einer Anlage oder Komponente voraus. Werden diese Informationen auf bekannte Zusammenhänge projiziert können konkrete Vorhersagen über den zukünftigen Verlauf des Zustandes getroffen werden. Eine Ressourcenverschwendung durch den Austausch funktionsfähiger Komponenten kann so auf ein Minimum reduziert werden, weil beispielsweise der Zeitpunkt des Versagens der Komponente genauer vorhergesagt werden kann.
 
 Voraussetzung für PdM ist es zu einem beliebigen Zeitpunkt den Zustand einer Anlage bestimmen zu können. So können Instandhaltungsmaßnahmen günstiger terminiert werden als dies bei der präventive Instandhaltung möglich ist. Für viele Anwendungsfälle ist dafür eine kontinuierliche, automatisierte und sensorbasierte Überwachung nötig. Manuelle Inspektionen sind in einem solchen Umfang nur in seltenen Fällen wirtschaftlich tragbar. Die kontinuierliche Überwachung von Systemen ist unter dem englischen Begriff \textit{Condition Monitoring} bekannt.
 
-Durch fortlaufende Kenntnis um den aktuellen Zustand einer Anlage oder Komponente, sowie dessen voraussichtlich weiterer Verlauf, ergibt sich eine Reihe von Kostenvorteilen gegenüber den anderen beiden Instandhaltungsstrategien. Besteht beispielsweise Kenntnis über einen schmalen Zeitbereich in dem eine Komponente ausfallen wird, können Ersatzteile mit ausreichendem Planungsvorsprung beschafft werden. Eine kostenintensive Lagerung oder kurzfristige Anfertigung der Ersatzteile ist nicht notwendig. Über die Instandhaltung hinaus können außerdem die gewonnen Informationen für die Prozesssteuerung genutzt werden. Aus einer Zustandsänderung von Komponenten folgt zwangsläufig eine Änderung der Prozessparameter. Mit der Kenntnis wie sich ein gewisser Zustand einer Komponenten auf den Gesamtprozess auswirkt, können entsprechende Anpassungen der Prozesseinstellungen vorgenommen werden. PdM lässt sich für die Prozesssteuerung und folglich auch für die Qualitätssicherung verwenden.
+Durch fortlaufende Kenntnis um den aktuellen Zustand einer Anlage oder Komponente, sowie dessen voraussichtlich weiterer Verlauf, ergibt sich eine Reihe von Kostenvorteilen gegenüber den anderen beiden Instandhaltungsstrategien. Besteht beispielsweise Kenntnis über einen schmalen Zeitbereich in dem eine Komponente ausfallen wird, können Ersatzteile mit ausreichendem Planungsvorsprung beschafft werden. Eine kostenintensive Lagerung oder kurzfristige Anfertigung der Ersatzteile ist nicht notwendig. Über die Instandhaltung hinaus können außerdem die gewonnen Informationen für die Prozesssteuerung genutzt werden. Aus einer Zustandsänderung von Komponenten folgt zwangsläufig eine Änderung der Prozessparameter. Mit der Kenntnis, wie sich ein gewisser Zustand einer Komponenten auf den Gesamtprozess auswirkt, können entsprechende Anpassungen der Prozesseinstellungen vorgenommen werden. PdM lässt sich für die Prozesssteuerung und folglich auch für die Qualitätssicherung verwenden.
 
 Zu den Nachteilen von PdM gehört der große Investitionsaufwand. Erstens ist eine umfangreiche Analyse notwendig, um den Mehrwert einer PdM-Anwendung festzustellen; sofern dieser existiert. Zweitens bedeutet die Einführung eines Condition-Monitoring-Systems einen nicht vernachlässigbaren Kostenaufwand. Drittens sind unter Umständen Fortbildungen der Belegschaft oder der Einkauf von qualifiziertem Personal nötig, um ein PdM-Programm zu betreiben. 
-
-Pauschal kann keine Aussage darüber getroffen werden, welche der drei Instandhaltungsstrategien für einen gegebenen Anwendungsfall am besten geeignet ist. Neben wirtschaftlichen Aspekten müssen ggf. auch sicherheitstechnische, ethische und umweltrelevante Aspekte berücksichtigt werden.
+%===============================================================================
