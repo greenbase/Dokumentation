@@ -1,46 +1,51 @@
 \chapter{Methodik}
 \label{ch:methodik}
-Um eine zustandsbasierte -- und darauf aufbauend eine prädiktive -- Instandhaltung umsetzten zu können, ist es nötig Daten zu gewinnen, die diesen Zustand beschreiben, und ein Model zu erstellen, das diese auswertet. Es folgt eine Beschreibung der Methodik nach der die Ergebnisse aus \cref{ch:modelbewertung} erarbeitet werden. Die Methodik beschränkt sich auf die Entwicklung eines zustandbestimmenden Models. Eine Weiterentwicklung hin zu einem Model mit dem Ausfälle vorhergesagt werden können, war im zeitlichen Rahmen dieser Arbeit nicht möglich. Das erarbeitete Model stellt eine Voraussetzungen für die Weiterentwicklung dar. 
+Um eine zustandsbasierte -- und darauf aufbauend eine prädiktive -- Instandhaltung umsetzten zu können, ist es nötig Daten zu gewinnen, die diesen Zustand beschreiben, und ein Model zu erstellen, das diese auswertet. Es folgt eine Beschreibung der Methodik nach der die Ergebnisse aus \cref{ch:modelbewertung} erarbeitet werden. Die Methodik beschränkt sich auf die Entwicklung eines zustandbestimmenden Models.
 %===============================================================================
 \section{Versuchsaufbau}
 \label{sec:versuchsaufbau}
 Der in \cref{sec:messdaten} beschriebene Datensatz wird mit folgendem Messaufbau erfasst:
 
-An die Türschließanlage ist eine Druckluftzufuhr angeschlossen. Ein Druckregeler regelt den Luftdruck auf ca. \SI{550000}{\pascal} (\SI{80}{psi}). Der Luftstrom wird durch ein 5/2-Wegeventil gesteuert, dass magnetisch betätigt wird. Die Ventilstellung bestimmt die Bewegungsrichtung des Kolbens der Pneumatikzylinders. Zwischen Druckregeler und Wegeventil ist außerdem ein Absperrventil eingebaut. Dieses wird ebenfalls durch einen Elektromagneten betätigt und kappt die Luftzufuhr, wenn das System zum Stillstand gebracht werden soll.
+An die Türschließanlage ist eine Druckluftzufuhr angeschlossen, welche die Energie zum Antrieb des Kolbens liefert. Ein Druckregeler regelt den Luftdruck auf ca. \SI{550000}{\pascal} (\SI{80}{psi}). Der Luftstrom wird durch ein 5/2-Wegeventil (Model: VUVS-LK25-B52-D-G14-1B2-S; Fa. Festo) gesteuert, dass magnetisch betätigt wird. Die Ventilstellung bestimmt die Bewegungsrichtung des Kolbens. Zwischen Druckregeler und Wegeventil ist außerdem ein Absperrventil (MFH-3-1/8; Fa. Festo) verbaut. Dieses wird ebenfalls durch einen Elektromagneten betätigt und kappt die Luftzufuhr, wenn das System zum Stillstand gebracht werden soll.
 
-Sämtliche Ventile werden über Relais mit den jeweils nötigen elektrischen Spannungen versorgt. Die Schaltung der Relais -- und damit die Steuerung der Türschließanlage -- erfolgt durch einen Mikrocontroller vom Typ xxxxxxxx. Dieser führt den Programmcode (s. Anhang) zur Versuchsdurchführung aus.  Dazu gehört auch das Auslesen des installierten Beschleunigungssensor und Gyroskops. 
-
-Die Position des Beschleunigungssensors ist so gewählt, dass keine konstruktive Änderung an der Türschließanlage vorgenommen werden muss. Abhängig von der Position des Sensors relativ zur Umlenkrolle sind unterschiedliche Messwerte zu erwarten. Da die absoluten Messwerte für die Klassifikation nicht von Bedeutung sind; sondern nur deren Unterschied in Bezug auf die Kategorien; hat die Position des Sensors jedoch keine Einfluss auf die Qualität.
-
-Zur Speicherung der Daten werden diese über eine serielle USB-Schnittstelle an ein angeschlossenes Computersystem übertragen. Der dort, parallel laufende Programmcode decodiert das Signal des Mikrocontrollers und speichert die Daten in einer passend formatierten CSV-Datei ab.
-
-Um vergleichbare Datenpunkte zu erhalten wird nicht das Original der Umlenkrolle verwendet, sondern mit im Lasersinterverfahren hergestellten Nachbildungen. Die Festigkeit des Materials ist für den Versuch ausreichend. Nach dem Versuch wurden bei einer Sichtprüfung keine plastischen Verformungen festgestellt. Eine der Nachbildungen wurde Rillen versehen, die längst der Bohrung verlaufen (s.~\cref{fig:cad_model_rillen}). Die Rillen simulieren Materialausbrüche als Folge von Pittings. Insgesamt weist die so künstlich beschädigte Umlenkrolle drei Rillen auf die um jeweils 40° zueinander verschoben sind. Mit verbauter intakter bzw. beschädigter Umlenkrolle werden jeweils 100 Datenpunkte aufgezeichnet.
+Sämtliche Ventile werden über Relais mit den jeweils nötigen elektrischen Spannungen (\SI{24}{\volt}) versorgt. Die Schaltung der Relais -- und damit die Steuerung der Türschließanlage -- erfolgt durch einen Mikrocontroller vom Typ Arduino Uno (Fa. Az-Delivery). Dieser führt den Programmcode (Datei \enquote{csvwriter.ino}; s. Anhang) zur Versuchsdurchführung aus.  Dazu gehört auch das Auslesen des installierten Beschleunigungssensor und Gyroskops (s.~\cref{fig:beschleunigungssensor}). 
 
 \begin{figure}
 	\centering
 	\includegraphics{FH_Kiel_Logo_deut_rgb.jpg}
-	\caption{Nachgebildetes CAD-Model der Umlenkrolle}
-	\label{fig:cad_model_rillen}
+	\caption{An Türschließanlage befestigter Beschleunigungssensor}
+	\label{fig:beschleunigungssensor}
 \end{figure}
+
+Die Position des Beschleunigungssensors ist so gewählt, dass keine konstruktive Änderung an der Türschließanlage vorgenommen werden muss. Abhängig von der Position des Sensors relativ zur Umlenkrolle sind unterschiedliche Messwerte zu erwarten. Da die absoluten Messwerte für die Klassifikation nicht von Bedeutung sind; sondern nur deren Unterschied in Bezug auf die Kategorien; erweist sich die Position des Sensors als geeignet.
+
+Zur Speicherung der Daten werden diese über eine serielle USB-Schnittstelle an ein angeschlossenes Computersystem übertragen. Der dort, parallel laufende Programmcode (Datei: \enquote{csvwriter.py};s. Anhang) decodiert das Signal des Mikrocontrollers und speichert die Daten in einer passend formatierten CSV-Datei ab.
+
+Um vergleichbare Datenpunkte zu erhalten wird für die Messreihe nicht das Original der Umlenkrolle verwendet, sondern mit im Lasersinterverfahren hergestellten Nachbildungen. Die Festigkeit des Materials ist für den Versuch ausreichend. Nach dem Versuch wurden bei einer Sichtprüfung keine plastischen Verformungen festgestellt. Eine der Nachbildungen wurde mit Rillen versehen, die längst der Bohrung verlaufen (s.~\cref{fig:cad_model_rillen}). Die Rillen simulieren Materialausbrüche als Folge von Pittings. Insgesamt weist die so künstlich beschädigte Umlenkrolle drei Rillen auf die um jeweils 45° zueinander verschoben sind.
+
+\begin{figure}
+	\centering
+	\includegraphics{FH_Kiel_Logo_deut_rgb.jpg}
+	\caption{Nachgebildete Umlenkrolle mit künstlicher Beschädigung}
+	\label{fig:cad_model_umlenkrolle_rillen}
+\end{figure}
+
+Mit verbauter intakter bzw. beschädigter Umlenkrolle werden jeweils 100 Datenpunkte aufgezeichnet. Ein Datenpunkt entspricht einem Öffnungs- und Schließvorgang, wie er durch den Programmcode vorgegeben wird.
 %===============================================================================
 \section{Messwerte und Datenaufbereitung}
 \label{sec:messdaten}
 Der Datensatz weißt \num{1441} Merkmale auf. Je \num{240} davon bilden eine Zeitreihe einer der Messwerte von Beschleunigungssensor bzw. dem Gyroskop. Insgesamt beinhaltet der Datensatz folgende Messwerte (Achsenrichtungen beziehen sich auf den Beschleunigungssensor):
 \begin{itemize}
-	\item Beschleunigung in positive X-Richtung
-	\item Beschleunigung in positive Y-Richtung
-	\item Beschleunigung in positive Z-Richtung
-	\item Rotationgeschwindigkeiten um X-Achse
-	\item Rotationgeschwindigkeiten um Y-Achse
-	\item Rotationgeschwindigkeiten um Z-Achse
-	\item Zykluszeit: Dauer von einem Öffnungs- und Schließvorgang (inkl. Laufzeitpause das Programmcodes)
+	\item Beschleunigung aller drei Raumachsen
+	\item Rotationgeschwindigkeiten um alle drei Raumachsen
+	\item Zykluszeit: Dauer eines Öffnungs- und Schließvorgangs (inkl. Laufzeitpause das Programmcodes)
 \end{itemize}
 
 Die Messgrößen der Beschleunigungen und der Rotationgeschwindigkeiten wurden ausgewählt, da sie das Schwingungsprofil der Anlage beschreiben. Es wird erwartet, dass sich dieses mit dem Grad der Beschädigung der Umlenkrollen ändert. Es kann also erwartet werden, dass die gewählten Messgrößen aussagekräftig über den Zustand der Umlenkrollen sind. Voraussetzung ist das, dass eine andere Ursache für die Änderung des Vibrationsprofils nicht in Frage kommt. Diese Voraussetzung ist hier geben, weil die Umlenkrolle die einzige Variable im Versuchsaufbau ist.
 
-Für die Modelentwicklung ist es sinnvoll die Rohdaten in einem beschreibenden Datensatz zusammen zu fassen. Die erstellten Modelle basieren auf Entscheidungsbäumen mit maximal sechs Knoten je Ast (vgl. \cref{sec:modelauswahl} bzw. \cref{sec:modellierung}). Das bedeutet, dass jeder Entscheidungsbaum nur einen sehr kleinen Anteil der Merkmale des Rohdatensatzes verwenden kann. Dies kann eine ungewünschte negative Auswirkung auf die Entwicklung des Models haben. Es besteht die Möglichkeit, dass ein Model nur Merkmale berücksichtigt, die zu dem selben Messwert gehören, weil diese zufällig eine höhe Aussagekraft für den Datensatz haben, aber nicht zwangsläufig für die Population gültig sind. Informationsgehalt der anderen Messwerte geht so verloren. Mit einem Datensatz, der die Informationen der Zeitreihen in statistischen Parametern zusammenfasst, kann eine größerer Anteil dieser Merkmale verwendet werden und so mehr Informationen des Rohdatensatzes genutzt werden. Die Entscheidungsbäume der erstellten Modelle besitzen maximal \num{32} Knoten (s.~\cref{sec:modellierung}). Sie können alle Merkmale des beschreibenden Datensatzes nutzen, der insgesamt über \num{25} Merkmale verfügt.
+Für die Modelentwicklung ist es sinnvoll die Rohdaten in einem beschreibenden Datensatz zusammen zu fassen. Die erstellten Modelle basieren auf Entscheidungsbäumen mit maximal sechs Ebenen (vgl. \cref{sec:modelauswahl} bzw. \cref{sec:modellierung}). Das bedeutet, dass jeder Entscheidungsbaum nur einen sehr kleinen Anteil der Merkmale des Rohdatensatzes verwenden kann. Dies kann eine ungewünschte negative Auswirkung auf die Entwicklung des Models haben. Es besteht die Möglichkeit, dass ein Model nur Merkmale berücksichtigt, die zu dem selben Messwert gehören, weil diese zufällig eine höhe Aussagekraft für die Zuordnung der richtigen Kategorien haben, aber nicht zwangsläufig für die Population gültig sind. Informationsgehalt der anderen Messwerte geht so verloren. Mit einem Datensatz, der die Informationen der Zeitreihen in statistischen Parametern zusammenfasst, kann eine größerer Anteil dieser Merkmale verwendet werden und so mehr Informationen des Rohdatensatzes genutzt werden. Die Entscheidungsbäume der erstellten Modelle besitzen maximal \num{32} Knoten (s.~\cref{sec:modellierung}). Sie können alle Merkmale des beschreibenden Datensatzes nutzen, der insgesamt über \num{25} Merkmale verfügt.
 
-Aus dem genannten Grund wird ein beschreibender Datensatz aus den Rohdaten abgeleitet. Der Datensatz beschreibt die Messungen anhand folgender Parameter (je Messgröße).
+Aus dem genannten Grund wird ein beschreibender Datensatz aus den Rohdaten abgeleitet. Der Datensatz beschreibt die Messungen anhand folgender Parameter (ersten vier je Messgröße).
 \begin{itemize}
 	\item Minimalwert
 	\item Maximalwert
