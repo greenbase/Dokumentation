@@ -1,9 +1,8 @@
 \chapter{Modelbewertung und Diskussion}
 \label{ch:modelbewertung}
-\cref{tab:metrikwerte_der_trainierten_modelle} zeigt die Ergebnisse der Gittersuche (s.~\cref{sec:modellierung}); es werden die besten Werte der Parametergitter aufgeführt, sowie die erreichten Sensitivitäten und Relevanzen. Die unterste Zeile führt den Gesamtscore für das jeweilige Model auf.
+\cref{tab:metrikwerte_der_trainierten_modelle} zeigt die Ergebnisse der Gittersuche (s.~\cref{sec:modellierung}); es werden die besten Vergleichswerte der Parametergitter aufgeführt, sowie die erreichten Sensitivitäten und Relevanzen. Die unterste Zeile führt den Gesamtscore nach der Präferenzfunktion -- also die finale Bewertung -- für das jeweilige Model auf.
 
 \begin{table}[ht]
-	\raggedright
 	\begin{tabularx}{\textwidth}{ | l | r | r | r|}
 		\hline
 		\rowcolor{lightgray}
@@ -22,9 +21,9 @@
 	\label{tab:metrikwerte_der_trainierten_modelle}	%zum referenzieren
 \end{table}
 
-Den Ergebnissen nach ist das Random Forest Modell am besten für die Klassifizierung zwischen den beiden Zielkategorien geeignet. Nach \cref{tab:bewertungskriterien_fuer_praeferenzfunktion} erreicht das Model für jedes Bewertungskriterium die maximale Punktzahl. Von allen Modellen weist es die höchste Sensitivität auf. Seine Relevanz ist zwar die niedrigste der dreien; den Relevanz-Kriterium wird nach \cref{tab:bewertungskriterien_fuer_praeferenzfunktion} aber dennoch der gleiche Wert zugewiesen wie den anderen beiden Modellen.
+Den Ergebnissen nach ist das Random Forest Modell am besten für die Klassifizierung zwischen den beiden Zielkategorien geeignet. Nach \cref{tab:bewertungskriterien_fuer_praeferenzfunktion} erreicht das Model für jedes Bewertungskriterium die maximale Punktzahl. Von allen Modellen weist es die höchste Sensitivität auf. Seine Relevanz ist zwar die niedrigste der dreien; dem Relevanz-Kriterium wird nach \cref{tab:bewertungskriterien_fuer_praeferenzfunktion} aber dennoch der gleiche Wert zugewiesen wie den anderen beiden Modellen.
 
-Der Random Forest fällt auffällig simple aus. Die Tiefe der Bäume ist minimal und die Anzahl der Bäume ist klein. Üblicherweise zählt ein Random Forest mehr als einhundert Bäume. Die geringe Anzahl ist auf den Datensatz zurückzuführen. Ein Hinweis darauf bietet die Tatsache, dass alle Modelle die minimale Baumtiefe verwenden und alle das Merkmal \enquote{gx\_median} (Rotationgeschwindigkeit um die X-Achse) verwenden. Zwar verwenden der Random Forest und die GBT einen groß Teil der Merkmale, jedoch erreicht selbst der einfache Entscheidungsbaum -- der nur \enquote{gx\_median} verwendet -- verhältnismäßig gute Ergebnisse. Daraus folgt, dass sich die Kategorien gut anhand des Merkmals \enquote{gx\_median} unterscheiden lassen.
+Der Random Forest fällt auffällig simple aus. Die Tiefe der Bäume ist minimal und die Anzahl der Bäume ist klein. Üblicherweise zählt ein Random Forest mehr als einhundert Bäume. Die geringe Anzahl ist auf den Datensatz zurückzuführen. Ein Hinweis darauf bietet die Tatsache, dass alle Modelle die minimale Baumtiefe verwenden und alle das Merkmal \enquote{gx\_median} (Rotationgeschwindigkeit um die X-Achse) verwenden. Zwar verwenden der Random Forest und die GBT einen großen Teil der Merkmale (12 bzw. 13), jedoch erreicht selbst der einfache Entscheidungsbaum -- der nur \enquote{gx\_median} verwendet -- verhältnismäßig gute Ergebnisse. Daraus folgt, dass sich die Kategorien gut anhand des Merkmals \enquote{gx\_median} unterscheiden lassen.
 
 Der hohe Informationsgehalt des Merkmals \enquote{gx\_median} zeigt sich deutlich an dessen Verteilung (siehe \cref{fig:histogramm_gx_median}). Das Diagramm zeigt die Häufigkeitsverteilungen des Messwertes; aufgeteilt nach den beiden Zielkategorien. Ein Großteil der Histogramme überschneidet sich nicht. Die verbleibende Ungenauigkeit für Entscheidungsbäume, die nur nach \enquote{gx\_median} unterteilen, rüht aus der Überschneidung her. 
 
