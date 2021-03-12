@@ -17,22 +17,22 @@ Sämtliche Ventile werden über Relais mit den jeweils nötigen elektrischen Spa
 	\label{fig:beschleunigungssensor}
 \end{figure}
 
-Die Position des Beschleunigungssensors ist so gewählt, dass keine konstruktive Änderung an der Türschließanlage vorgenommen werden muss. Abhängig von der Position des Sensors relativ zur Umlenkrolle sind unterschiedliche Messwerte zu erwarten. Da die absoluten Messwerte für die Klassifikation nicht von Bedeutung sind; sondern nur deren Unterschied in Bezug auf die Kategorien; erweist sich die Position des Sensors als geeignet.
+Die Position des Beschleunigungssensors ist so gewählt, dass keine konstruktive Änderung an der Türschließanlage vorgenommen werden muss. Abhängig von der Position des Sensors relativ zur Seilrolle sind unterschiedliche Messwerte zu erwarten. Da die absoluten Messwerte für die Klassifikation nicht von Bedeutung sind; sondern nur deren Unterschied in Bezug auf die Kategorien; erweist sich die Position des Sensors als geeignet.
 
 Zur Speicherung der Daten werden diese über eine serielle USB-Schnittstelle an ein angeschlossenes Computersystem übertragen. Der dort, parallel laufende Programmcode (Datei: \enquote{csvwriter.py};s. Anhang) decodiert das Signal des Mikrocontrollers und speichert die Daten in einer passend formatierten CSV-Datei ab.
 
-Um vergleichbare Datenpunkte zu erhalten wird für die Messreihe nicht das Original der Umlenkrolle verwendet, sondern mit im Lasersinterverfahren hergestellten Nachbildungen (s.~\cref{fig:seilrolle_isometrisch}). Die Festigkeit des Materials ist für den Versuch ausreichend. Nach dem Versuch wurden bei einer Sichtprüfung keine plastischen Verformungen festgestellt. Eine der Nachbildungen wurde mit Rillen versehen, die längst der Bohrung verlaufen (s.~\cref{fig:seilrolle_rillen}). Die Rillen simulieren Materialausbrüche als Folge von Pittings. Insgesamt weist die so künstlich beschädigte Umlenkrolle drei Rillen auf die um jeweils 45° zueinander verschoben sind.
+Um vergleichbare Datenpunkte zu erhalten wird für die Messreihe nicht das Original der Seilrolle verwendet, sondern mit im Lasersinterverfahren hergestellten Nachbildungen (s.~\cref{fig:seilrolle_isometrisch}). Die Festigkeit des Materials ist für den Versuch ausreichend. Nach dem Versuch wurden bei einer Sichtprüfung keine plastischen Verformungen festgestellt. Eine der Nachbildungen wurde mit Rillen versehen, die längst der Bohrung verlaufen (s.~\cref{fig:seilrolle_rillen}). Die Rillen simulieren Materialausbrüche als Folge von Pittings. Insgesamt weist die so künstlich beschädigte Seilrolle drei Rillen auf die um jeweils 45° zueinander verschoben sind.
 
 \begin{figure}[ht]
 	\centering
 	\subfloat[Unbeschädigte Nachbildung der Seilrolle\label{fig:seilrolle_isometrisch}]{\includegraphics[width=0.35\textwidth]{seilrolle_isometrisch.jpg}}
 	\qquad
 	\subfloat[Rillen in künstlich beschädigten Nachbildung\label{fig:seilrolle_rillen}]{\includegraphics[width=0.43\textwidth]{seilrolle_rillen_bemaßt.jpg}}
-	\caption{Nachbildungen der Umlenkrolle}
+	\caption{Nachbildungen der Seilrolle}
 	\label{fig:cad_seilrolle}
 \end{figure}
 
-Mit verbauter intakter bzw. beschädigter Umlenkrolle werden jeweils 100 Datenpunkte aufgezeichnet. Ein Datenpunkt entspricht einem Öffnungs- und Schließvorgang, wie er durch den Programmcode vorgegeben wird.
+Mit verbauter intakter bzw. beschädigter Seilrolle werden jeweils 100 Datenpunkte aufgezeichnet. Ein Datenpunkt entspricht einem Öffnungs- und Schließvorgang, wie er durch den Programmcode vorgegeben wird.
 %===============================================================================
 \section{Messwerte und Datenaufbereitung}
 \label{sec:messdaten}
@@ -43,7 +43,7 @@ Der Datensatz weißt \num{1441} Merkmale auf. Je \num{240} davon bilden eine Zei
 	\item Zykluszeit: Dauer eines Öffnungs- und Schließvorgangs (inkl. Laufzeitpause das Programmcodes)
 \end{itemize}
 
-Die Messgrößen der Beschleunigungen und der Rotationgeschwindigkeiten wurden ausgewählt, da sie das Schwingungsprofil der Anlage beschreiben. Es wird erwartet, dass sich dieses mit dem Grad der Beschädigung der Umlenkrollen ändert. Es kann also erwartet werden, dass die gewählten Messgrößen aussagekräftig über den Zustand der Umlenkrollen sind. Voraussetzung ist das, dass eine andere Ursache für die Änderung des Vibrationsprofils nicht in Frage kommt. Diese Voraussetzung ist hier geben, weil die Umlenkrolle die einzige Variable im Versuchsaufbau ist.
+Die Messgrößen der Beschleunigungen und der Rotationgeschwindigkeiten wurden ausgewählt, da sie das Schwingungsprofil der Anlage beschreiben. Es wird erwartet, dass sich dieses mit dem Grad der Beschädigung der Seilrollen ändert. Es kann also erwartet werden, dass die gewählten Messgrößen aussagekräftig über den Zustand der Seilrollen sind. Voraussetzung ist das, dass eine andere Ursache für die Änderung des Vibrationsprofils nicht in Frage kommt. Diese Voraussetzung ist hier geben, weil die Seilrolle die einzige Variable im Versuchsaufbau ist.
 
 Für die Modelentwicklung ist es sinnvoll die Rohdaten in einem beschreibenden Datensatz zusammen zu fassen. Die erstellten Modelle basieren auf Entscheidungsbäumen mit maximal sechs Ebenen (vgl. \cref{sec:modelauswahl} bzw. \cref{sec:modellierung}). Das bedeutet, dass jeder Entscheidungsbaum nur einen sehr kleinen Anteil der Merkmale des Rohdatensatzes verwenden kann. Dies kann eine ungewünschte negative Auswirkung auf die Entwicklung des Models haben. Es besteht die Möglichkeit, dass ein Model nur Merkmale berücksichtigt, die zu dem selben Messwert gehören, weil diese zufällig eine höhe Aussagekraft für die Zuordnung der richtigen Kategorien haben, aber nicht zwangsläufig für die Population gültig sind. Informationsgehalt der anderen Messwerte geht so verloren. Mit einem Datensatz, der die Informationen der Zeitreihen in statistischen Parametern zusammenfasst, kann eine größerer Anteil dieser Merkmale verwendet werden und so mehr Informationen des Rohdatensatzes genutzt werden. Die Entscheidungsbäume der erstellten Modelle besitzen maximal \num{32} Knoten (s.~\cref{sec:modellierung}). Sie können alle Merkmale des beschreibenden Datensatzes nutzen, der insgesamt über \num{25} Merkmale verfügt.
 
