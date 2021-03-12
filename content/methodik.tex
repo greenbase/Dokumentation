@@ -56,7 +56,7 @@ Aus dem genannten Grund wird ein beschreibender Datensatz aus den Rohdaten abgel
 %===============================================================================
 \section{Modelauswahl}
 \label{sec:modelauswahl}
-Für die Modelentwicklung können aus Zeitgründen nicht alle in Frage kommenden Modeltypen berücksichtigt werden. Aus der Menge der Klassifikationsmodelle kann eine sinnvolle Vorauswahl getroffen werden. So kann die Anzahl der Modelle, die tatsächlich entwickelt und verglichen werden müssen, auf ein handhabbares Maß reduziert werden.
+Die Menge an Klassifikationsmodelle ist größer als sie im Rahmen dieser Arbeit berücksichtigt werden kann. Jedoch kann eine sinnvolle Vorauswahl an geeigneten Modeltypen getroffen werden. So kann die Anzahl der Modelle, die tatsächlich entwickelt und verglichen werden müssen, auf ein handhabbares Maß reduziert werden.
 
 Die Vorauswahl geeigneter Modeltypen richtet sich nach folgenden Anforderungen. Die Anforderungen sind von den Erfolgskriterien Komplexität und Modelqualität des Usecases abgeleitet (vgl.~\cref{sec:erfolgskriterien_usecase}).
 
@@ -73,11 +73,11 @@ Unter den genannten Voraussetzungen kommen diese Modeltypen in Frage:
     \item Naive Bayes
 \end{itemize}
 
-Modeltypen, die von ihrem Funktionsprinzip her keine Beurteilung des Entscheidungsprozesses zulassen, sind erfüllen die Grundvorsetzung für das Komplexitäts-Kriterium nicht. \enquote{Support Vector Machines} und \enquote{neuronale Netze} scheiden daher aus.
+Modeltypen, die von ihrem Funktionsprinzip her keine Beurteilung des Entscheidungsprozesses zulassen, sind erfüllen die Grundvorsetzung für das Komplexitäts-Kriterium nicht. \textit{Support Vector Machines} und \textit{neuronale Netze} scheiden daher aus.
 
-Für die Modelentwicklung werden nur Modelle verwendet, die auf Entscheidungsbäumen basieren. Gegenüber den anderen Modeltypen sind sie günstig zu visualisieren und lassen auf dicht besetzten Datensätzen gute Modelqualitäten erwarten. Außerdem ist eine weniger aufwendige Aufbereitung der Daten nötig, weil die Daten nicht skaliert werden müssen~\cite[S.~84--85]{Muller.2017}
+Für die Modelentwicklung werden nur Modelle verwendet, die auf Entscheidungsbäumen basieren. Diese Modeltypen sind günstig zu visualisieren; und damit nachvollziehbar; und lassen auf dicht besetzten Datensätzen (vgl.~\cref{sec:messdaten}) gute Modelqualitäten erwarten. Außerdem ist eine weniger aufwendige Aufbereitung der Daten nötig, weil die Daten nicht skaliert werden müssen~\cite[S.~84--85]{Muller.2017}
 
-Die Modelentwicklung wird; auf die Vorauswahl hin; weiter auf die drei Algorithmen beschränkt:
+Die Modelentwicklung wird; auf die Vorauswahl hin; weiter auf drei Algorithmen beschränkt:
 \begin{itemize}
     \item einfacher Entscheidungsbaum
     \item Random Forest
@@ -86,20 +86,13 @@ Die Modelentwicklung wird; auf die Vorauswahl hin; weiter auf die drei Algorithm
 %===============================================================================
 \section{Bewertungskriterien}
 \label{sec:bewertungskriterien}
-Aus der Vorauswahl an Algorithmen soll das Model bestimmt werden, das die Anforderungen an den Usecase (s.~\cref{sec:erfolgskriterien_usecase}) best möglich erfüllt. Es ist deswegen notwendig den Erfüllungsgrad der Anforderungen durch die einzelnen Modelle quantifizieren zu können. Die Bewertung der Modelle erfolgt in zwei Schritten.
+Aus der Vorauswahl an Algorithmen soll das Model bestimmt werden, das die Anforderungen an den Usecase (s.~\cref{sec:erfolgskriterien_usecase}) bestmöglich erfüllt. Es ist deswegen notwendig den Erfüllungsgrad der Anforderungen durch die einzelnen Modelle quantifizieren zu können. Die Bewertung der Modelle erfolgt in zwei Schritten.
 
-Erstens werden Bewertungskriterien definiert, die verschiedenen Modeleigenschaften einen konkreten Wert zwischen \num{0} und \num{1} zuweisen. Im zweiten Schritt werden die Bewertungskriterien zu einer Präferenzfunktion zusammengefasst. Die Präferenzfunktion addiert die gewichteten Kriterienwerte auf. So wird für ein Model ein Gesamtscore ermittelt, der ebenfalls Werte zwischen \num{0} und \num{1} annehmen kann. Ein Wert von \num{1} entspricht einer idealen Erfüllung der Anforderungen.
+Erstens werden Bewertungskriterien definiert, die verschiedenen Modeleigenschaften einen konkreten Wert zwischen \num{0} und \num{1} zuweisen. Im zweiten Schritt werden die Bewertungskriterien zu einer Präferenzfunktion zusammengefasst. Die Präferenzfunktion addiert die gewichteten Kriterienwerte auf. So wird für ein Model ein Gesamtscore ermittelt, der ebenfalls Werte zwischen \num{0} und \num{1} annehmen kann. Ein Wert von \num{1} entspricht einer idealen Erfüllung der Anforderungen; \num{0} spricht für ein völlig ungeeignetes Model.
 
 \cref{tab:bewertungskriterien_fuer_praeferenzfunktion} zeigt die Bewertungskriterien und die zugeordneten Kriterienwerte. Die Gewichtungen der Kriterien wurden durch einen Paarvergleich bestimmt; siehe \cref{tab:paarvergleich}. Eine \num{1} bedeutet dabei, dass das Kriterium weniger wichtig ist; eine \num{2}, dass es wichtiger ist als das Vergleichskriterium.
 
-Die Komplexität bezieht sich auf die Anforderung, dass das Model nachvollziehbar sein muss. Für die Komplexität gilt, dass sie so gering wie möglich sein sollte und dennoch die Erfolgskriterien des Usecases (\cref{sec:erfolgskriterien_usecase}) erreicht werden können. Quantifiziert wird die Komplexität durch die Anzahl der Baumebenen (Tiefe) und die Anzahl der Bäume, die zusammen ein Model bilden.
-
-Die Sensitivität beschreibt wie viele Datenpunkte der positiven Kategorie als solche erkannt wurden. Im Kontext der vorausschauende Instandhaltung bedeutet die Sensitivität welcher Anteil an bevorstehenden Ausfällen vermieden werden kann. Ihr Betrag sollte also möglichst groß sein. Zwar ist nicht bekannt wie viele Ausfälle durch präventive Instandhaltung verhindert werden könnten, aber es wird die Bedingung gestellt, dass mindestens \SI{95}{\percent} aller Ausfälle richtig vorhergesagt werden können. In der Regel ziehen ungeplante Ausfälle deutlich höher Kosten nach sich als Fehlalarme.
-
-Die Relevanz beschreibt wie viele Datenpunkte tatsächlich der positiven Kategorie angehören von denen die als solche eingestuft worden sind. Eine niedrige Relevanz bedeutet demnach eine große Anzahl Fehlalarme. Da Fehlalarme jedoch verhältnismäßig kleine Kosten -- im Vergleich zu ungeplanten Ausfällen -- nach sich ziehen, kann auch eine niedrige Relevanz toleriert werden.
-
 \begin{table}[ht]
-	\centering
 	\begin{tabularx}{\textwidth}{|p{2.5cm}|p{2.5cm}|c|X|}
 		\hline
 		\rowcolor{lightgray}
@@ -135,6 +128,12 @@ Die Relevanz beschreibt wie viele Datenpunkte tatsächlich der positiven Kategor
 	\label{tab:bewertungskriterien_fuer_praeferenzfunktion}	%zum referenzieren
 \end{table}
 
+Die Komplexität bezieht sich auf die Anforderung, dass das Model nachvollziehbar sein muss. Für die Komplexität gilt, dass sie so gering wie möglich sein sollte. Quantifiziert wird die Komplexität durch die Anzahl der Baumebenen (Tiefe) und die Anzahl der Bäume, die zusammen ein Model bilden.
+
+Die Sensitivität beschreibt wie viele Datenpunkte mit positiver Kategorie als solche erkannt werden. Im Kontext der vorausschauende Instandhaltung bedeutet die Sensitivität welcher Anteil an bevorstehenden Ausfällen vermieden werden kann. Ihr Betrag sollte also möglichst groß sein. Es wird die Bedingung gestellt, dass mindestens \SI{95}{\percent} aller Ausfälle richtig vorhergesagt werden müssen, damit ein Wert von \num{1} vergeben wird.
+
+Die Relevanz beschreibt wie viele Datenpunkte tatsächlich der positiven Kategorie angehören von denen, die als solche eingestuft worden sind. Eine niedrige Relevanz bedeutet demnach eine große Anzahl Fehlalarme. Da Fehlalarme jedoch verhältnismäßig kleine Kosten -- im Vergleich zu ungeplanten Ausfällen -- nach sich ziehen, kann auch eine niedrige Relevanz toleriert werden.
+
 \begin{table}[h]
 	\begin{tabularx}{\textwidth}{|l|ccc|c|r|}
 		\hline
@@ -160,7 +159,7 @@ Mit den Werten aus \cref{tab:bewertungskriterien_fuer_praeferenzfunktion} wird d
 	\label{eq:praeferenzfunktion}
 \end{equation*}
 
-Dabei ist $t$ der Wert der dem Bewertungskriterium \textit{Tiefe} zugeordnet wird. Entsprechend ist $a$ der Wert zur Baumanzahl, $s$ der Wert zur Sensitivität und $r$ der Wert zur Relevanz (vgl. \cref{tab:bewertungskriterien_fuer_praeferenzfunktion}).
+Dabei ist $t$ der Wert, der dem Bewertungskriterium \textit{Tiefe} zugeordnet wird. Entsprechend ist $a$ der Wert zur Baumanzahl, $s$ der Wert zur Sensitivität und $r$ der Wert zur Relevanz (vgl. \cref{tab:bewertungskriterien_fuer_praeferenzfunktion}).
 %===============================================================================
 \section{Modellierung}
 \label{sec:modellierung}
@@ -170,7 +169,7 @@ Für die Modellierung der gewählten Algorithmen (s.~\cref{sec:modelauswahl}) wi
 
 Die Modelle, die im Laufe der Gittersuche erstellt werden, werden mit einer 10-fachen Kreuzvalidierung ausgewertet und der Vergleich der Modelle erfolgt währenddessen anhand der erreichten Sensitivität. Nach \cref{sec:bewertungskriterien} fällt der Sensitivität nämlich die größte Gewichtung für die Modellbewertung zu.
 
-Der Aufbau von Entscheidungsbäumen ist Pseudo-Zufallszahlen abhängig. Um reproduzierbare Modelle zu entwickeln, wird für die Generierung dieser Zahlen ein Startwert von \num{42} verwendet.
+Der Aufbau von Entscheidungsbäumen ist von Pseudo-Zufallszahlen abhängig. Um reproduzierbare Modelle zu entwickeln, wird für die Generierung dieser Zahlen ein Startwert von \num{42} verwendet. Allen Modelinstanzen wird dieser Wert als Parameter übergeben.
 
-Während der Parameterstudie des GBT wurde Overfitting des Models vermutet, da die Sensitivität bei einem Wert von \num{1} lag und die Baumanzahl mit \num{95} deutlich größer war als die des Random Forest. Um dem entgegen zu wirken, wurde für den GBT im Anschluss an die ursprüngliche Gittersuche die Baumanzahl soweit reduziert bis ein realistischer Sensitivitätswert vorlag.
+Während der Parameterstudie des GBT wurde Overfitting des Models vermutet, da die Sensitivität bei einem Wert von \num{1} lag und die Baumanzahl mit \num{95} deutlich größer war als die des Random Forest (19). Um dem entgegen zu wirken, wurde für den GBT im Anschluss an die ursprüngliche Gittersuche die Baumanzahl soweit reduziert bis ein realistischer Sensitivitätswert vorlag.
 %===============================================================================
