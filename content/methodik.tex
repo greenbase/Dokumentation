@@ -10,7 +10,7 @@ An die Türschließanlage ist eine Druckluftzufuhr angeschlossen, welche die Ene
 
 Sämtliche Ventile werden über Relais mit den jeweils nötigen elektrischen Spannungen (\SI{24}{\volt}) versorgt. Die Schaltung der Relais -- und damit die Steuerung der Türschließanlage -- erfolgt durch einen Mikrocontroller vom Typ Arduino Uno (Fa. Az-Delivery). Dieser führt den Programmcode (Datei \enquote{csvwriter.ino}; s. Anhang) zur Versuchsdurchführung aus.  Dazu gehört auch das Auslesen des installierten Beschleunigungssensor und Gyroskops (s.~\cref{fig:beschleunigungssensor}). 
 
-\begin{figure}
+\begin{figure}[ht]
 	\centering
 	\includegraphics{FH_Kiel_Logo_deut_rgb.jpg}
 	\caption{An Türschließanlage befestigter Beschleunigungssensor}
@@ -21,13 +21,15 @@ Die Position des Beschleunigungssensors ist so gewählt, dass keine konstruktive
 
 Zur Speicherung der Daten werden diese über eine serielle USB-Schnittstelle an ein angeschlossenes Computersystem übertragen. Der dort, parallel laufende Programmcode (Datei: \enquote{csvwriter.py};s. Anhang) decodiert das Signal des Mikrocontrollers und speichert die Daten in einer passend formatierten CSV-Datei ab.
 
-Um vergleichbare Datenpunkte zu erhalten wird für die Messreihe nicht das Original der Umlenkrolle verwendet, sondern mit im Lasersinterverfahren hergestellten Nachbildungen. Die Festigkeit des Materials ist für den Versuch ausreichend. Nach dem Versuch wurden bei einer Sichtprüfung keine plastischen Verformungen festgestellt. Eine der Nachbildungen wurde mit Rillen versehen, die längst der Bohrung verlaufen (s.~\cref{fig:cad_model_rillen}). Die Rillen simulieren Materialausbrüche als Folge von Pittings. Insgesamt weist die so künstlich beschädigte Umlenkrolle drei Rillen auf die um jeweils 45° zueinander verschoben sind.
+Um vergleichbare Datenpunkte zu erhalten wird für die Messreihe nicht das Original der Umlenkrolle verwendet, sondern mit im Lasersinterverfahren hergestellten Nachbildungen (s.~\cref{fig:seilrolle_isometrisch}). Die Festigkeit des Materials ist für den Versuch ausreichend. Nach dem Versuch wurden bei einer Sichtprüfung keine plastischen Verformungen festgestellt. Eine der Nachbildungen wurde mit Rillen versehen, die längst der Bohrung verlaufen (s.~\cref{fig:seilrolle_rillen}). Die Rillen simulieren Materialausbrüche als Folge von Pittings. Insgesamt weist die so künstlich beschädigte Umlenkrolle drei Rillen auf die um jeweils 45° zueinander verschoben sind.
 
-\begin{figure}
+\begin{figure}[ht]
 	\centering
-	\includegraphics{FH_Kiel_Logo_deut_rgb.jpg}
-	\caption{Nachgebildete Umlenkrolle mit künstlicher Beschädigung}
-	\label{fig:cad_model_umlenkrolle_rillen}
+	\subfloat[Unbeschädigte Nachbildung der Seilrolle\label{fig:seilrolle_isometrisch}]{\includegraphics[width=0.35\textwidth]{seilrolle_isometrisch.jpg}}
+	\qquad
+	\subfloat[Rillen in künstlich beschädigten Nachbildung\label{fig:seilrolle_rillen}]{\includegraphics[width=0.43\textwidth]{seilrolle_rillen_bemaßt.jpg}}
+	\caption{Nachbildungen der Umlenkrolle}
+	\label{fig:cad_seilrolle}
 \end{figure}
 
 Mit verbauter intakter bzw. beschädigter Umlenkrolle werden jeweils 100 Datenpunkte aufgezeichnet. Ein Datenpunkt entspricht einem Öffnungs- und Schließvorgang, wie er durch den Programmcode vorgegeben wird.
@@ -123,9 +125,9 @@ Erstens werden Bewertungskriterien definiert, die verschiedenen Modeleigenschaft
 		% \hline
         % \multirow{5}{*}{Relevanz} & xx & \num{0.33} & Eine hohe Relevanz bedeutet, dass wenige falsch positive Vorhersagen getroffen werden. Entsprechend niedrig fällt die Anzahl unnötiger Inspektionen für den PDM-Usecase aus.\\
 		\hline
+		\caption{Bewertungskriterien für Präferenzfunktion}%muss unten sein, sonst caption über Tab
+		\label{tab:bewertungskriterien_fuer_praeferenzfunktion}	%zum referenzieren
 	\end{tabularx}
-	\caption{Bewertungskriterien für Präferenzfunktion}%muss unten sein, sonst caption über Tab
-	\label{tab:bewertungskriterien_fuer_praeferenzfunktion}	%zum referenzieren
 \end{table}
 
 Die Komplexität bezieht sich auf die Anforderung, dass das Model nachvollziehbar sein muss. Für die Komplexität gilt, dass sie so gering wie möglich sein sollte. Quantifiziert wird die Komplexität durch die Anzahl der Baumebenen (Tiefe) und die Anzahl der Bäume, die zusammen ein Model bilden.
@@ -146,9 +148,9 @@ Die Relevanz beschreibt wie viele Datenpunkte tatsächlich der positiven Kategor
 		\hline
 		Gesamt & \multicolumn{2}{c}{} & & 9 & $\approx$ 1\\
 		\hline
+		\caption{Paarvergleich zur Bestimmung der Gewichtungen der Bewertungskriterien}
+		\label{tab:paarvergleich}
 	\end{tabularx}
-	\caption{Paarvergleich zur Bestimmung der Gewichtungen der Bewertungskriterien}
-	\label{tab:paarvergleich}
 \end{table}
 
 Mit den Werten aus \cref{tab:bewertungskriterien_fuer_praeferenzfunktion} wird die Präferenzfunktion aufgestellt:
