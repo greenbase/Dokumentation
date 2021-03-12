@@ -15,8 +15,6 @@ Der in \cref{sec:messdaten} beschriebene Datensatz wird mit folgendem Messaufbau
 
 An die Türschließanlage ist eine Druckluftzufuhr (s.~\cref{fig:foto_tureschliessanlage} Pos.~6) angeschlossen, welche die Energie zum Antrieb des Kolbens liefert. Ein Druckregeler regelt den Luftdruck auf ca. \SI{550000}{\pascal} (\SI{80}{psi}). Der Luftstrom wird durch ein 5/2-Wegeventil (Model: VUVS-LK25-B52-D-G14-1B2-S; Fa. Festo) gesteuert, dass magnetisch betätigt wird. Die Ventilstellung bestimmt die Bewegungsrichtung des Kolbens. Zwischen Druckregeler und Wegeventil ist außerdem ein Absperrventil (MFH-3-1/8; Fa. Festo) verbaut. Dieses wird ebenfalls durch einen Elektromagneten betätigt und kappt die Luftzufuhr, wenn das System zum Stillstand gebracht werden soll.
 
-
-
 Sämtliche Ventile werden über Relais mit den jeweils nötigen elektrischen Spannungen (\SI{24}{\volt}) versorgt. Die Schaltung der Relais -- und damit die Steuerung der Türschließanlage -- erfolgt durch einen Mikrocontroller vom Typ Arduino Uno (Fa. Az-Delivery). Dieser führt den Programmcode (Datei \enquote{csvwriter.ino}; s. Anhang) zur Versuchsdurchführung aus.  Dazu gehört auch das Auslesen des installierten Beschleunigungssensor und Gyroskops (s.~\cref{fig:beschleunigungssensor}). 
 
 Die Position des Beschleunigungssensors ist so gewählt, dass keine konstruktive Änderung an der Türschließanlage vorgenommen werden muss. Abhängig von der Position des Sensors relativ zur Seilrolle sind unterschiedliche Messwerte zu erwarten. Da die absoluten Messwerte für die Klassifikation nicht von Bedeutung sind; sondern nur deren Unterschied in Bezug auf die Kategorien; erweist sich die Position des Sensors als geeignet.
