@@ -144,17 +144,16 @@ Dabei ist $t$ der Wert, der dem Bewertungskriterium \textit{Tiefe} zugeordnet wi
 
 \begin{table}[!h]
 	\centering
-	\begin{tabularx}{\textwidth}{|l|ccc|c|r|}
-		\hline
-		& \rotatebox{90}{Komplexität} & \rotatebox{90}{Sensitivität} & \rotatebox{90}{Relevanz} & \rotatebox{90}{Summe} & Gewicht\\
-		\hline
+	\begin{tabularx}{\textwidth}{lccccc}
+		\toprule
+		& \rot{Komplexität} & \rot{Sensitivität} & \rot{Relevanz} & \rot{Summe} & \rot{Gewicht}\\
+		\midrule
 		Komplexität & -- & 1 & 1 & 2 & 0,22\\
 		Sensitivität & 2 & -- & 2 & 4 & 0,44\\
 		Relevanz & 2 & 1 & -- & 3 & 0,33\\
-		\hline
-		\hline
+		\midrule
 		Gesamt & \multicolumn{2}{c}{} & & 9 & $\approx$ 1\\
-		\hline
+		\bottomrule
 		\caption{Paarvergleich zur Bestimmung der Gewichtungen der Bewertungskriterien}
 		\label{tab:paarvergleich}
 	\end{tabularx}

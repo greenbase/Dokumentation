@@ -129,3 +129,5 @@ pdfkeywords={Predictive Maintenance, PdM, Train},
 hidelinks
 ]{hyperref}
 \usepackage{cleveref}
+
+\NewDocumentCommand{\rot}{O{45} O{1em} m}{\makebox[#2][l]{\rotatebox{#1}{#3}}}
