@@ -95,35 +95,19 @@ Erstens werden Bewertungskriterien definiert, die verschiedenen Modeleigenschaft
 \cref{tab:bewertungskriterien_fuer_praeferenzfunktion} zeigt die Bewertungskriterien und die zugeordneten Kriterienwerte. Die Gewichtungen der Kriterien wurden durch einen Paarvergleich bestimmt; siehe \cref{tab:paarvergleich}. Eine \num{1} bedeutet dabei, dass das Kriterium weniger wichtig ist; eine \num{2}, dass es wichtiger ist als das Vergleichskriterium.
 
 \begin{table}[ht]
-	\begin{tabularx}{\textwidth}{|p{2.5cm}|p{2.5cm}|c|X|}
+	\centering
+	\begin{tabularx}{\hsize}{|c|c|c|l|}
 		\hline
 		\rowcolor{lightgray}
-		Kriterium & Wertezuordnung & Gewichtung & Bemerkungen \\ 
+		Kriterium & Wertezuordnung & Gewichtung & Bemerkungen\\ 
 		\hline
-		\multirow[t]{9}{*}{Baumtiefe (Komplexität)} & \multirow[t]{9}{*}{\makecell{$\num{1} \rightarrow \num{1}$\\adsfadf\\asdfadf\\asdf}} & \multirow[t]{9}{*}{\num{0.165}} & \multirow[t]{9}{*}{Insgesamt wird die Komplexität mit \num{0,22} gewichtet. Da die Komplexität exponentiell mit der Baumtiefe steigt und linear mit der Baumanzahl wurde entschieden, dass die Baumtiefe \SI{75}{\percent} der Komplexität ausmacht; also $0.22\cdot0.75=0,165$. Die restlichen \SI{0.055}{\percent} entfälle auf die Baumanzahl}\\
-		% & $\num{2} \rightarrow \num{0,75}$ &&\\
-		% & $\num{3} \rightarrow \num{0,5}$&&\\
-		% & $\num{4} \rightarrow \num{0,25}$&&\\
-		% & $>=5 \rightarrow \num{0}$&&\\
+		\makecell{Baumtiefe\\(Komplexität)} & \makecell[l]{$\num{1} \rightarrow \num{1}$\\$\num{2} \rightarrow \num{0,75}$\\$\num{3} \rightarrow \num{0,5}$\\$\num{4} \rightarrow \num{0,25}$\\$>=\num{5} \rightarrow \num{0}$} & \makecell{\num{0.165}} & \makecell[Xc]{Insgesamt wird die Komplexität mit \num{0,22} gewichtet. Da die Komplexität exponentiell mit der Baumtiefe steigt und linear mit der Baumanzahl wurde entschieden, dass die Baumtiefe \SI{75}{\percent} der Komplexität ausmacht; also $0.22\cdot0.75=0,165$. Die restlichen \SI{0.055}{\percent} entfällt auf die Baumanzahl.}\\
 		\hline
-		% \multirow{5}{2.5cm}{Baumanzahl (Komplexität)} & \multirow{5}{*}{$\begin{array}{ll}
-		% 	\num{1} \mathrm{bis}19 & \rightarrow \num{1}\\
-		% 	\num{20}\mathrm{bis}39 & \rightarrow \num{0,75}\\
-		% 	\num{40}\mathrm{bis}59 & \rightarrow \num{0,5}\\
-		% 	\num{60}\mathrm{bis}79 & \rightarrow \num{0,25}\\
-		% 	>=80 & \rightarrow \num{0}\\
-		% \end{array}$} & \multirow{5}{*}{\num{0.055}} & s. Baumtiefe\\
-		% \multirow{5}{*}{Baumanzahl (Komplexität)} & \multirow{5}{*}{$\begin{array}{ll}
-		% 	
-		% \end{array}$} \num{1} $\rightarrow$ \num{1} & \multirow{5}{*}{\num{0.055}} & s. Baumtiefe\\ 
-		% & \num{2} $\rightarrow$ \num{0,75} &&\\
-		% & \num{3} $\rightarrow$ \num{0,5} &&\\
-		% & \num{4} $\rightarrow$ \num{0,25} &&\\
-		% & $>=5$ $\rightarrow$ \num{0} &&\\
-		% \hline
-		% \multirow{5}{*}{Sensitivität} & \multirow{5}{*}{\thead{1,0 $\rightarrow$ 1\\sadfdsafsadf\\afdsdsaf\\sadfsadf}} & \multirow{5}{*}{\num{0.44}} & Je höher die Sensitivität ist, desto weniger falsch negative Vorhersagen werden getroffen. Für den PDM-Usecase bedeutet es, dass mehr Instandhaltungsarbeiten geplant werden können. \\
-		% \hline
-        % \multirow{5}{*}{Relevanz} & xx & \num{0.33} & Eine hohe Relevanz bedeutet, dass wenige falsch positive Vorhersagen getroffen werden. Entsprechend niedrig fällt die Anzahl unnötiger Inspektionen für den PDM-Usecase aus.\\
+		\makecell{Baumanzahl\\(Komplexität)} & \makecell[l]{$x<=\num{19} \rightarrow \num{1}$\\$\num{20}<=x<=\num{39} \rightarrow \num{0,75}$\\$\num{40}<=x<=\num{59} \rightarrow \num{0,5}$\\$\num{60}<=x<=\num{79} \rightarrow \num{0,25}$\\$x>=\num{80} \rightarrow \num{0}$} & \makecell{\num{0.055}} & \makecell{s. Baumtiefe}\\
+		\hline
+		\makecell{Sensitivität}& \makecell[l]{$\SI{95}{\percent}<=x<=\SI{100}{\percent} \rightarrow \num{1}$\\$\SI{90}{\percent}<=x<\SI{95}{\percent} \rightarrow \num{0,75}$\\$\SI{85}{\percent}<=x<\SI{90}{\percent} \rightarrow \num{0,5}$\\$\SI{80}{\percent}<=x<\SI{85}{\percent} \rightarrow \num{0,25}$\\$<x<\SI{80}{\percent} \rightarrow \num{0}$} & \makecell{\num{0.44}} & \makecell[Xc]{Je höher die Sensitivität ist, desto weniger falsch negative Vorhersagen werden getroffen. Für den PdM-Usecase bedeutet es, dass mehr nötige Instandhaltungsarbeiten erkannt und geplant werden können.}\\
+		\hline
+		\makecell{Relevanz} & \makecell[l]{$\SI{75}{\percent}<=x<\SI{100}{\percent} \rightarrow \num{1}$\\$\SI{50}{\percent}<=x<\SI{75}{\percent} \rightarrow \num{0,5}$\\$\SI{25}{\percent}<=x<\SI{50}{\percent} \rightarrow \num{0,25}$\\$x<\SI{25}{\percent} \rightarrow \num{0}$} & \makecell{\num{0.33}} & \makecell[Xc]{Eine hohe Relevanz bedeutet, dass wenig unnötige Inspektionen wegen FP durchgeführt werden.}\\
 		\hline
 		\caption{Bewertungskriterien für Präferenzfunktion}%muss unten sein, sonst caption über Tab
 		\label{tab:bewertungskriterien_fuer_praeferenzfunktion}	%zum referenzieren
