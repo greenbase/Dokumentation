@@ -3,20 +3,19 @@
 \cref{tab:metrikwerte_der_trainierten_modelle} zeigt die Ergebnisse der Gittersuche (s.~\cref{sec:modellierung}); es werden die besten Vergleichswerte der Parametergitter aufgeführt, sowie die erreichten Sensitivitäten und Relevanzen. Die unterste Zeile führt den Gesamtscore nach der Präferenzfunktion -- also die finale Bewertung -- für das jeweilige Model auf.
 
 \begin{table}[ht]
-	\begin{tabularx}{\textwidth}{ | l | r | r | r|}
-		\hline
-		\rowcolor{lightgray}
+	\begin{tabularx}{\textwidth}{lrrr}
+		\toprule
+		% \rowcolor{lightgray}
 		Metrik & Baum & Random Forest & GBT\\
-		\hline
+		\midrule
 		Tiefe & 1 & 1 & 1\\
 		Anzahl Bäume & 1 & 19 & 26\\
 		Sensitivität & \num{0.87} & \num{0.85} & \num{0.91}\\
 		Relevanz & \num{0.91} & \num{0.85} & \num{0.91}\\
-		\hline
-		\hline
+		\midrule
 		Gesamtscore & \num{0.77} & \num{1} & \num{0.87}\\
-		\hline
-		\caption{Metrikwerte der trainierten Modelle und Nutzenwert nach Präferenzfunktion}%muss unten sein, sonst caption über Tab
+		\bottomrule
+		\caption{Metrikwerte der trainierten Modelle und Gesamtbewertung nach Präferenzfunktion}%muss unten sein, sonst caption über Tab
 	\label{tab:metrikwerte_der_trainierten_modelle}	%zum referenzieren
 	\end{tabularx}
 \end{table}
