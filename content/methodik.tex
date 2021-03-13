@@ -112,34 +112,31 @@ Dabei ist $t$ der Wert, der dem Bewertungskriterium \textit{Tiefe} zugeordnet wi
 
 \begin{table}[ht]
 	\centering
-	\begin{tabularx}{\hsize}{|c|r|r|c|}
-		\hline
-		\rowcolor{lightgray}
-		Kriterium & Wertebereiche & \makecell[cc]{Kriteriums-\\bewertung} & Gewichtung\\ 
-		\hline
-		\multirowcell{5}{Baumtiefe\\(Komplexität)} & \num{1} & \num{1}  & \multirowcell{5}{\num{0.165}}\\
-		\cline{2-3}
-		& \num{2} & \num{0,75}&\\\cline{2-3}
-		& \num{3} & \num{0,5}&\\\cline{2-3}
-		& \num{4} & \num{0,25}&\\\cline{2-3}
-		& >=\num{5} & \num{0}&\\\hline
-		\multirowcell{5}{Baumanzahl\\(Komplexität)} & $x<=\num{19}$ & \num{1}  & \multirowcell{5}{\num{0.055}}\\
-		\cline{2-3}
-		& $\num{20}<=x<=\num{39}$ & \num{0,75}&\\\cline{2-3}
-		& $\num{40}<=x<=\num{59}$ & \num{0,5}&\\\cline{2-3}
-		& $\num{60}<=x<=\num{79}$ & \num{0,25}&\\\cline{2-3}
-		& $x>=\num{80}$ & \num{0}&\\\hline
-		\multirowcell{5}{Sensitivität} & \SI{95}{\percent}$<=x<=$\SI{100}{\percent} & \num{1}  & \multirowcell{5}{\num{0.44}}\\
-		\cline{2-3}
-		& $\SI{90}{\percent}<=x<\SI{95}{\percent}$ & \num{0,75}&\\\cline{2-3}
-		& $\SI{85}{\percent}<=x<\SI{90}{\percent}$ & \num{0,5}&\\\cline{2-3}
-		& $\SI{80}{\percent}<=x<\SI{85}{\percent}$ & \num{0,25}&\\\cline{2-3}
-		& $x<\SI{80}{\percent}$ & \num{0}&\\\hline
-		\multirowcell{4}{Relevanz} & $\SI{75}{\percent}<=x<\SI{100}{\percent}$ & \num{1}  & \multirowcell{4}{\num{0.33}}\\
-		\cline{2-3}
-		& $\SI{50}{\percent}<=x<\SI{75}{\percent}$ & \num{0,75}&\\\cline{2-3}
-		& $\SI{25}{\percent}<=x<\SI{50}{\percent}$&\num{0,5}\\\cline{2-3}
-		& $x<\SI{25}{\percent}$&\num{0}\\\hline
+	\begin{tabularx}{\hsize}{crrr}
+		\toprule
+		% \rowcolor{lightgray}
+		Kriterium & Wertebereiche & \makecell{Kriteriums-\\bewertung} & Gewichtung\\ 
+		\midrule
+		\multirowcell{5}{Baumtiefe\\(Komplexität)} & \num{1} & \num{1}  & \multirowcell{5}[0mm][r]{\num{0.165}}\\
+		& \num{2} & \num{0,75}&\\
+		& \num{3} & \num{0,5}&\\
+		& \num{4} & \num{0,25}&\\
+		& >=\num{5} & \num{0}&\\\midrule
+		\multirowcell{5}{Baumanzahl\\(Komplexität)} & $x<=\num{19}$ & \num{1}  & \multirowcell{5}[0mm][r]{\num{0.055}}\\
+		& $\num{20}<=x<=\num{39}$ & \num{0,75}&\\
+		& $\num{40}<=x<=\num{59}$ & \num{0,5}&\\
+		& $\num{60}<=x<=\num{79}$ & \num{0,25}&\\
+		& $x>=\num{80}$ & \num{0}&\\\midrule
+		\multirowcell{5}{Sensitivität} & \SI{95}{\percent}$<=x<=$\SI{100}{\percent} & \num{1}  & \multirowcell{5}[0mm][r]{\num{0.44}}\\
+		& $\SI{90}{\percent}<=x<\SI{95}{\percent}$ & \num{0,75}&\\
+		& $\SI{85}{\percent}<=x<\SI{90}{\percent}$ & \num{0,5}&\\
+		& $\SI{80}{\percent}<=x<\SI{85}{\percent}$ & \num{0,25}&\\
+		& $x<\SI{80}{\percent}$ & \num{0}&\\\midrule
+		\multirowcell{5}{Relevanz} & $\SI{80}{\percent}<=x<\SI{100}{\percent}$ & \num{1}  & \multirowcell{5}[0mm][r]{\num{0.33}}\\
+		& $\SI{60}{\percent}<=x<\SI{80}{\percent}$ & \num{0,75}&\\
+		& $\SI{40}{\percent}<=x<\SI{60}{\percent}$&\num{0,5}\\
+		& $\SI{20}{\percent}<=x<\SI{40}{\percent}$&\num{0,25}\\
+		& $x<\SI{20}{\percent}$&\num{0}\\\bottomrule
 		\caption{Bewertungskriterien für Präferenzfunktion}%muss unten sein, sonst caption über Tab
 		\label{tab:bewertungskriterien_fuer_praeferenzfunktion}	%zum referenzieren
 	\end{tabularx}
